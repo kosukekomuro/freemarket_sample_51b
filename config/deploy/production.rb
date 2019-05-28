@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.
@@ -61,9 +62,3 @@
 #   }
 
 server '52.196.110.242', user: 'ec2-user', roles: %w{app db web}
-set :ssh_options, {
-    port: 22,
-    keys: [File.expand_path('~/.ssh/keypair.pem')],
-    forward_agent: true,
-    auth_methods: %w(publickey)
-  }
