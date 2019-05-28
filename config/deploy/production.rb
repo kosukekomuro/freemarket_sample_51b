@@ -62,5 +62,8 @@
 
 server '52.196.110.242', user: 'ec2-user', roles: %w{app db web}
 set :ssh_options, {
-    keys: [File.expand_path('~/.ssh/keypair.pem)')]
-   }
+    port: 22,
+    keys: [File.expand_path('~/.ssh/keypair.pem')],
+    forward_agent: true,
+    auth_methods: %w(publickey)
+  }
