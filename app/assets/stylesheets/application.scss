@@ -1,2 +1,7 @@
 @import 'config/reset';
+
+// font-awesome適用
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
 @import 'modules/products';
