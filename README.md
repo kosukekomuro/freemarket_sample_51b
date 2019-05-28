@@ -2,6 +2,9 @@
 
 # DB設計
 
+## ER図
+![ER図](https://gyazo.com/de2a518e4ab6f7dd5d88948cf0751c9d)
+
 ## usersテーブル
 
 |Column|Type|Options|
