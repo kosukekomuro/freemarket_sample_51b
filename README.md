@@ -2,6 +2,12 @@
 
 # DB設計
 
+<<<<<<< HEAD
+=======
+## ER図
+![ER図](https://gyazo.com/de2a518e4ab6f7dd5d88948cf0751c9d.png)
+
+>>>>>>> c44ea41... Update README.md
 ## usersテーブル
 
 |Column|Type|Options|
