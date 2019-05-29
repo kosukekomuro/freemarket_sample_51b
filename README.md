@@ -50,7 +50,8 @@
 ## cardsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|user_id|references|null: false, foreign_key: true| 
+|user_id|references|null: false, foreign_key: true|
+|account holder|string|null: false|
 |valid_month|string|null: false|
 |valid_day|string|null: false|
 |security_code|int|null: false|
