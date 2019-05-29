@@ -158,16 +158,6 @@
 - belongs_to :delivery_fee_burden
 - has_many : products
 
-## prefecturesテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|prefecture|string|null: false|
-
-### Association
-- has_many :products
-- has_many :users
-
 ## delivery_dayテーブル
 
 |Column|Type|Options|
