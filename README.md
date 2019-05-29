@@ -1,10 +1,6 @@
-# README
-
 # DB設計
 
-## ER図
-![ER図](https://gyazo.com/de2a518e4ab6f7dd5d88948cf0751c9d.png)
-
+![ER図](https://gyazo.com/cde284b8fae13456b5e0e26e820f5ede.png)
 ## usersテーブル
 
 |Column|Type|Options|
@@ -14,25 +10,39 @@
 |password|string|null: false|
 |introduce|text||
 |phone_number|int|unique:true, null: false|
-|birthday|string| null:false|
-|last_name|string|null: false|
-|first_name|string|null: false|
-|last_name_kana|string|null: false|
-|first_name_kana|string|null: false|
-|postal_code|string|null: false|
-|prefecture_id|references|null: false, foreign_key: true|
-|city|string|null: false|
-|town|string|null: false|
-|village|string|null: false|
-|building_name|string||
 
 ### Association
 - has_many :likes
 - has_many :comments
 - has_many :seller, class_name: ‘Product’, :foreign_key => ‘seller_id’
 - has_many :buyer, class_name: ‘Product’, :foreign_key => ‘buyer_id’
+
+## user_detailsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id|references|null: false, foreign_key: true|
+|birthday|string|null: false, foreign_key: true|
+|last_name|string|null: false|
+|first_name|string|null: false|
+|last_name_kana|string|null: false|
+|first_name_kana|string|null: false|
+
+### Association
+- belongs_to :user
+
+## user_addressテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id|references|null: false, foreign_key: true|
+|prefecture_id|references|null: false, foreign_key: true|
+|postal_code|string|null: false, unique:true|
+|municipalitie|string|null: false|
+|address|string|null: false|
+|building_name|string||
+
+### Association
+- belongs_to :user
 - belongs_to :prefecture
-- belongs_to :card
 
 ## cardsテーブル
 |Column|Type|Options|
