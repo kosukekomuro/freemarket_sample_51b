@@ -15,7 +15,7 @@
             = link_to "クレジットカードを追加する", '/', method: "post"
       - else
         .card-information
-          %img{src: "//www-mercari-jp.akamaized.net/assets/img/card/master-card.svg?1930558390"}
+          = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/master-card.svg?1930558390"
           = link_to "削除する", '/', method: "delete", class: "card-information__delete-btn"
           .card-information__number
             ************8000
