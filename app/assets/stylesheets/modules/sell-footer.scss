@@ -1,0 +1,34 @@
+
+.sell-footer {
+    width: 456px;
+    height: 220px;
+    margin: 0 auto;
+    z-index: 1;
+    height: 250px;
+    padding: 40px 0;
+    text-align: center;
+    font-size: 12px;
+    &__nav {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 35px;
+    }
+    &__logo {
+      margin: 40px auto 0;
+    }
+      img {
+          width: 80px;
+          height: 65px;
+          &:hover {
+              opacity: 0.7;
+              cursor: pointer;
+          }
+      }
+      p {
+          margin-top: 8px;
+      }
+      small {
+          color: $sell-text;
+          font-size: 13px;
+      }
+  }

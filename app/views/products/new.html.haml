@@ -1,4 +1,123 @@
-%header
-%main
+
+= render "shared/sell-header"
+%main.sell-main
   .sellbox
-%footer
+    %h2.sellbox__title 商品の情報を入力
+    = form_with model: @product, class: "sell-form" do |f|
+      .sell-upload
+        %h3.sell-upload__title
+          出品画像
+          %span.require-form 必須
+        %p 最大10枚までアップロードできます
+        .sell-dropbox
+          .sell-dropbox__upload
+            = f.file_field 'image', style: "display: none"
+            %pre.sell-dropbox__text
+              ドラッグアンドドロップ
+              またはクリックしてファイルをアップロード
+      .sell-content
+        .sell-form-group
+          %h3
+            商品名
+            %span.require-form 必須
+          = f.text_field "name", class: "sell-input-default", placeholder: "商品名（必須 40文字まで)"
+        .sell-form-group.sell-form-group-after
+          %h3
+            商品の説明
+            %span.require-form 必須
+          = f.text_area "text", class: "sell-textarea-default", placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
+      .sell-content.sell-flex
+        %h3.sell-box-subtitle 商品の詳細
+        .sell-form-box
+          .sell-form-group
+            %h3
+              カテゴリー
+              %span.require-form 必須
+            .sell-select-wrapper
+              = f.select :category, [ "---", "メンズ", "レディーズ"], {}, {class: "sell-select-default"}
+              %i.fas.fa-chevron-down
+            .sell-select-wrapper
+              = f.select :category, [ ["---", "---"], ["メンズ", "メンズ"], ["レディース", "レディース"]], {}, {class: "sell-select-default"}
+              %i.fas.fa-chevron-down
+            .sell-select-wrapper
+              = f.select :category, [ ["---", "---"], ["メンズ", "メンズ"], ["レディース", "レディース"]], {}, {class: "sell-select-default"}
+              %i.fas.fa-chevron-down
+          .sell-form-group.sell-product-margin
+            %h3
+              商品の状態
+              %span.require-form 必須
+            .sell-select-wrapper
+              = f.select :category, [ ["---", "---"], ["メンズ", "メンズ"], ["レディース", "レディース"]], {}, {class: "sell-select-default"}
+              %i.fas.fa-chevron-down
+      .sell-content.sell-flex
+        .sell-box-subtilte-flex
+          %h3.sell-box-subtitle 配送について
+          = link_to "？", root_path, class: "sell-form-question"
+        .sell-form-box
+          .sell-form-group
+            %h3
+              配送料の負担
+              %span.require-form 必須
+            .sell-select-wrapper
+              = f.select :category, [ ["---", "---"], ["メンズ", "メンズ"], ["レディース", "レディース"]], {}, {class: "sell-select-default"}
+              %i.fas.fa-chevron-down
+          .sell-form-group.sell-product-margin
+            %h3
+              発送元の地域
+              %span.require-form 必須
+            .sell-select-wrapper
+              = f.select :category, [ ["---", "---"], ["メンズ", "メンズ"], ["レディース", "レディース"]], {}, {class: "sell-select-default"}
+              %i.fas.fa-chevron-down
+          .sell-form-group.sell-product-margin
+            %h3
+              発送元の地域
+              %span.require-form 必須
+            .sell-select-wrapper
+              = f.select :category, [ ["---", "---"], ["メンズ", "メンズ"], ["レディース", "レディース"]], {}, {class: "sell-select-default"}
+              %i.fas.fa-chevron-down
+          .sell-form-group.sell-product-margin
+            %h3
+              発送までの日数
+              %span.require-form 必須
+            .sell-select-wrapper
+              = f.select :category, [ ["---", "---"], ["メンズ", "メンズ"], ["レディース", "レディース"]], {}, {class: "sell-select-default"}
+              %i.fas.fa-chevron-down
+      .sell-content.sell-flex
+        .sell-box-subtilte-flex
+          %h3.sell-box-subtitle 販売価格(300〜9,999,999)
+          = link_to "？", root_path, class: "sell-form-question"
+        .sell-form-box
+          %ul.sell-form-group
+            %li.sell-money-flex
+              %h3.sell-label-left
+                価格
+                %span.require-form 必須
+              .sell-price-left ¥
+              .sell-price-right
+                = f.text_field "price", class: "sell-money-default", placeholder: "例）300"
+            %li.sell-fee
+              .sell-fee-left
+                販売手数料 (10%)
+              .sell-fee-right -
+            %li.sell-fee.sell-font-bold
+              .sell-fee-left
+                販売利益
+              .sell-fee-right.sell-font-big -
+      .sell-content
+        .sell-btnbox
+          %p
+            = link_to "禁止されている出品", root_path, class: "sell-link-blue"
+            、
+            = link_to "行為", root_path, class: "sell-link-blue"
+            を必ずご確認ください。
+          %p
+            またブランド品でシリアルナンバー等がある場合はご記載ください。
+            = link_to "偽ブランドの販売", root_path, class: "sell-link-blue"
+            は犯罪であり処罰される可能性があります。
+          %p
+            また、出品をもちまして
+            = link_to "加盟店規約", root_path, class: "sell-link-blue"
+            に同意したことになります。
+        = f.submit "出品する", class: "sell-btn-default"
+        = link_to "もどる", root_path, class: "sell-btn-back"
+= render "shared/sell-footer"
