@@ -1,23 +1,26 @@
-%header{class: "header"}
+.header
 
-%div{class: "wrapper"}
-  = render "/layputs/sidemenu"
+.wrapper
+  = render "/layouts/sidemenu"
 
-  %div{class: "main-contents"}
-    %div{class: "content-head"} 支払い方法
-    %div{class: "content-body"}
+  .main-contents
+    .content__head
+      支払い方法
+    .content__body
       %h3 クレジットカード一覧
-      - if (true)
-        %div{class: "add-card"}
+      - if (false)
+        .card-registration
           = fa_icon "credit-card"
-          %div{class: "add-card-btn"}
+          .card-registration__btn
             = link_to "クレジットカードを追加する", '/', method: "post"
       - else
-        %div{class: "display-card"}
+        .card-information
           %img{src: "//www-mercari-jp.akamaized.net/assets/img/card/master-card.svg?1930558390"}
-          = link_to "削除する", '/', method: "delete", class: "delete-card-btn"
-          %div{class: "card-number"} ************8000
-          %div{class: "card-valid"} 11 / 23
-      = link_to '/', class: "about-payment" do
+          = link_to "削除する", '/', method: "delete", class: "card-information__delete-btn"
+          .card-information__number
+            ************8000
+          .card-information__valid
+            11 / 23
+      = link_to '/', class: "payment" do
         %span 支払い方法について
         = fa_icon "angle-right"
