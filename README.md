@@ -9,13 +9,16 @@
 |email|string|null: false, unique:true|
 |password|string|null: false|
 |introduce|text||
-|phone_number|int|unique:true, null: false|
+|phone_number|string|unique:true, null: false|
 
 ### Association
 - has_many :likes
 - has_many :comments
 - has_many :seller, class_name: ‘Product’, :foreign_key => ‘seller_id’
 - has_many :buyer, class_name: ‘Product’, :foreign_key => ‘buyer_id’
+- has_one :user_detail
+- has_one :user_addresses
+- has_one :card
 
 ## user_detailsテーブル
 |Column|Type|Options|
@@ -30,7 +33,7 @@
 ### Association
 - belongs_to :user
 
-## user_addressテーブル
+## user_addressesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |user_id|references|null: false, foreign_key: true|
