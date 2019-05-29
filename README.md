@@ -8,9 +8,9 @@
 |------|----|-------|
 |nickname|string|null: false| 
 |email|string|null: false, unique:true|
-|password|string|null: false, unique:true|
+|password|string|null: false|
 |introduce|text||
-|phone_number|int|unique:true|
+|phone_number|int|unique:true, null: false|
 |birthday|string| null:false|
 |last_name|string|null: false|
 |first_name|string|null: false|
@@ -18,7 +18,9 @@
 |first_name_kana|string|null: false|
 |postal_code|string|null: false|
 |prefecture_id|references|null: false, foreign_key: true|
-|address|string|null: false|
+|city|string|null: false|
+|town|string|null: false|
+|village|string|null: false|
 |building_name|string||
 
 ### Association
@@ -52,10 +54,10 @@
 |size_id|references|foreign_key: true|
 |brand_id|references|foreign_key: true|
 |condition_id|references|null: false, foreign_key: true|
-|ship_fee_burden_id|references|null: false, foreign_key: true|
-|ship_method_id|references|null: false, foreign_key: true|
+|delivery_fee_burden_id|references|null: false, foreign_key: true|
+|delivery_method_id|references|null: false, foreign_key: true|
 |prefecture_id|references|null: false, foreign_key: true|
-|ship_day_id|references|null: false, foreign_key: true|
+|delivery_day_id|references|null: false, foreign_key: true|
 |price|int|null: false|
 |trading_evaluation_id|references|null: false, foreign_key: true|
 
@@ -66,10 +68,10 @@
 - belongs_to :size
 - belongs_to :brand
 - belongs_to :conditon
-- belongs_to :ship_fee_burden
-- belongs_to :ship_method
+- belongs_to :delivery_fee_burden
+- belongs_to :delivery_method
 - belongs_to :prefecture
-- belongs_to :ship_day
+- belongs_to :delivery_day
 - belongs_to :trading_evaluation
 
 - has_many :images
@@ -83,7 +85,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |category|string|null: false|
-|hierarchy|references|null: false, foreign_key: true|
+|hierarchy|references|foreign_key: true|
 
 ### Association
 - has_many :products
@@ -132,7 +134,7 @@
 ### Association
 - has_many :products
 
-## ship_fee_burdensテーブル
+## delivery_fee_burdensテーブル
 
 |Column|Type|Options|
 |------|----|-------|
@@ -140,17 +142,17 @@
 
 ### Association
 - has_many :products
-- be_longs :ship
+- be_longs :delivery
 
-## ship_methodsテーブル
+## delivery_methodsテーブル
 
 |Column|Type|Options|
 |------|----|-------|
 |method|string|null: false|
-|ship_fee_burden_id|references|null: false, foreign_key: true|
+|delivery_fee_burden_id|references|null: false, foreign_key: true|
 
 ### Association
-- belongs_to :ship_fee_burden
+- belongs_to :delivery_fee_burden
 - has_many : products
 
 ## prefecturesテーブル
@@ -163,7 +165,7 @@
 - has_many :products
 - has_many :users
 
-## ship_dayテーブル
+## delivery_dayテーブル
 
 |Column|Type|Options|
 |------|----|-------|
@@ -177,7 +179,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |comment|text|null: false|
-|product_id|string|null: false,foreign_key: true|
+|product_id|references|null: false, foreign_key: true|
 |user_id|string|null: false,foreign_key: true|
 
 ### Association
@@ -189,7 +191,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |product_id|string|null: false,foreign_key: true|
-|user_id|string|null: false,foreign_key: true|
+|user_id|references|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :product
@@ -209,7 +211,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |url|string|null: false|
-|product_id|string|null: false,foreign_key: true|
+|product_id|references|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :product
