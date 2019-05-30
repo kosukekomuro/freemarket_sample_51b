@@ -1,0 +1,67 @@
+.header
+
+.wrapper
+  = render "/layouts/sidemenu"
+
+  .main-contents
+    .user-information
+      .user-information__head
+        %img{src: "//static.mercdn.net/images/member_photo_noimage_thumb.png"}
+        %h2 もっち
+        .user-information__head__number
+          評価 0 出品数 0
+      .user-information__tab
+        .user-information__tab__notification
+          %h3{id:"notification"} お知らせ
+        .user-information__tab__todo-list
+          %h3{id:"todo-list"} やることリスト
+      .user-information__contents
+        .item
+          = image_tag "//static.mercdn.net/images/mercari_profile.png", class: "notification__image"
+          .message
+            .message__text 事務局から個別メッセージ「ログイン通知」
+            = fa_icon "clock", class: "clock"
+            .message__time 1時間前
+          = fa_icon "angle-right"
+        .item
+          = image_tag "//static.mercdn.net/images/mercari_profile.png", class: "notification__image"
+          .message
+            .message__text 明日、50%還元お得チケットの有効期限が切れます！詳細を確認しましょう。
+            = fa_icon "clock", class: "clock"
+            .message__time 2時間前
+          = fa_icon "angle-right"
+        .item
+          = image_tag "//static.mercdn.net/images/mercari_profile.png", class: "notification__image"
+          .message
+            .message__text 事務局から個別メッセージ「ログイン通知」
+            = fa_icon "clock", class: "clock"
+            .message__time 3時間前
+          = fa_icon "angle-right"
+        .item
+          = image_tag "//static.mercdn.net/images/mercari_profile.png", class: "notification__image"
+          .message
+            .message__text 【出品はじめかたガイド】安心でかんたんに出品する方法をCHECKしてみよう！
+            = fa_icon "clock", class: "clock"
+            .message__time 4時間前
+          = fa_icon "angle-right"
+        .item
+          = image_tag "//static.mercdn.net/images/mercari_profile.png", class: "notification__image"
+          .message
+            .message__text 《メルカリご登録記念》"最大500円分"をポイントバック！
+            = fa_icon "clock", class: "clock"
+            .message__time 5時間前
+          = fa_icon "angle-right"
+        .list
+          .list__btn 
+            %span 一覧を見る
+    .transaction
+      .transaction__head
+        %h2 購入した商品
+      .transaction__tab
+        .transaction__tab__now
+          %h3{id:"transaction-now"} 取引中
+        .transaction__tab__old
+          %h3{id:"transaction-old"} 過去の取引
+      .transaction__contents
+        = image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo-gray.svg?3856598694"
+        %h2 取引中の商品がありません
