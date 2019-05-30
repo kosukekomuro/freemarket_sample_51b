@@ -7,4 +7,10 @@ Rails.application.routes.draw do
       get 'search'
     end
   end
+
+  resources :mypages, only: [:index] do
+  end
+
+  resources :cards, only: [:index] do
+  end
 end
