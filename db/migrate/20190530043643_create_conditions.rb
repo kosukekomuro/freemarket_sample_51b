@@ -1,0 +1,9 @@
+class CreateConditions < ActiveRecord::Migration[5.2]
+  def change
+    create_table :conditions do |t|
+      t.string :condition, null: false
+
+      t.timestamps null: false
+    end
+  end
+end
