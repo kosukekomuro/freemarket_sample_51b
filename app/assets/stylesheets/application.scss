@@ -1,9 +1,12 @@
 @import 'config/reset';
 @import 'config/color';
 @import 'config/font-size';
+@import 'config/common';
+@import 'mixin/main-header';
 @import 'modules/products';
 @import 'modules/cards';
 @import "font-awesome";
+@import 'modules/main-header';
 @import 'modules/product-sell';
 @import 'modules/sell-footer';
 @import 'modules/sell-header';
