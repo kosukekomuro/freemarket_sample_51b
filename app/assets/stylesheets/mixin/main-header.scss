@@ -1,0 +1,38 @@
+@mixin header-product-nav($margin: 0, $icon-font: 12px, $icon-color: red, $font-size:14px, $font-color: #0099e8,$font-weght:normal){
+
+  display: flex;
+  font-size: 14px;
+
+  &__list{
+    line-height: 32px;
+    margin-right: $margin;
+
+    a{
+      &:hover{
+        text-decoration: none;
+      }
+    }
+
+    &:last-child{
+      margin-right: 0;
+    }
+
+    &--icon{
+      font-size: $icon-font;
+      color: $icon-color;
+
+      &:hover{
+        color: $font-color;
+      }
+    }
+
+    &--font{
+      font-size: $font-size;
+      font-weight: $font-weght;
+      
+      &:hover{
+        color: $font-color;
+      }
+    }
+  }
+}
