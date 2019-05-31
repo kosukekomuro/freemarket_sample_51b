@@ -95,8 +95,6 @@ a {
 .select-wrap {
   margin: 8px 0 0;
   position: relative;
-  // display: inline-block;
-  // width: 35%;
   .select-default {
     position: relative;
     z-index: 2;
@@ -175,14 +173,8 @@ a {
   border: 1px solid #ea352d;
   color: #fff;
   margin: 40px 0 0;
-  // display: block;
-  // width: 100%;
-  // line-height: 48px;
-  // font-size: 14px;
   transition: all ease-out .3s;
   -webkit-transition: all ease-out .3s;
-  // cursor: pointer;
-  // text-align: center;
 }
 .btn-default {
   display: block;
