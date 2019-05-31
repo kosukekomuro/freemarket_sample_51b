@@ -5,7 +5,6 @@ class Product < ApplicationRecord
     belongs_to :size
     belongs_to :brand
     belongs_to :conditon
-    belongs_to :delivery_fee_burden
     belongs_to :delivery_method
     belongs_to :prefecture
     belongs_to :delivery_day
