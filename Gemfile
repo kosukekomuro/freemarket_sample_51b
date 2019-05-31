@@ -76,4 +76,4 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog-aws'
 gem 'font-awesome-rails'
-gem 'ancestry'
+gem 'ancestry', git: "https://github.com/stefankroes/ancestry.git"

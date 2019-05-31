@@ -34,21 +34,21 @@
               カテゴリー
               %span.require-form 必須
             .sell-select-wrapper
-              = f.select :category, [ "メンズ", "レディーズ"], { prompt: "---"}, {class: "sell-select-default"}
+              = f.collection_select(:category_id, @category_parents, :id, :name, { prompt: "---"}, {class: "sell-select-default"})
               %i.fas.fa-chevron-down
-            .sell-select-wrapper
-              = f.select :category, [ ["メンズ", "メンズ"], ["レディース", "レディース"]], { prompt: "---"}, {class: "sell-select-default"}
-              %i.fas.fa-chevron-down
-            .sell-select-wrapper
-              = f.select :category, [ ["メンズ", "メンズ"], ["レディース", "レディース"]], { prompt: "---"}, {class: "sell-select-default"}
-              %i.fas.fa-chevron-down
-          .sell-form-group.sell-product-margin
-            %h3
-              サイズ
-              %span.require-form 必須
-            .sell-select-wrapper
-              = f.select :category, [ ["メンズ", "メンズ"], ["レディース", "レディース"]], { prompt: "---"}, {class: "sell-select-default"}
-              %i.fas.fa-chevron-down
+            -# .sell-select-wrapper
+            -#   = f.select :category, [ ["メンズ", "メンズ"], ["レディース", "レディース"]], { prompt: "---"}, {class: "sell-select-default"}
+            -#   %i.fas.fa-chevron-down
+            -# .sell-select-wrapper
+            -#   = f.select :category, [ ["メンズ", "メンズ"], ["レディース", "レディース"]], { prompt: "---"}, {class: "sell-select-default"}
+            -#   %i.fas.fa-chevron-down
+          -# .sell-form-group.sell-product-margin
+          -#   %h3
+          -#     サイズ
+          -#     %span.require-form 必須
+          -#   .sell-select-wrapper
+          -#     = f.collection_select(:size_id, Size.all, { prompt: "---"}, {class: "sell-select-default"})
+          -#     %i.fas.fa-chevron-down
           .sell-form-group.sell-product-margin
             %h3
               ブランド
@@ -60,7 +60,7 @@
               商品の状態
               %span.require-form 必須
             .sell-select-wrapper
-              = f.select :category, [ ["メンズ", "メンズ"], ["レディース", "レディース"]], { prompt: "---"}, {class: "sell-select-default"}
+              = f.collection_select( :condition_id, Condition.all, :id, :condition, { prompt: "---"}, {class: "sell-select-default"} )
               %i.fas.fa-chevron-down
       .sell-content.sell-flex
         .sell-box-subtilte-flex
@@ -72,28 +72,28 @@
               配送料の負担
               %span.require-form 必須
             .sell-select-wrapper
-              = f.select :category, [ ["メンズ", "メンズ"], ["レディース", "レディース"]], { prompt: "---"}, {class: "sell-select-default"}
+              = f.collection_select(:delivery_id, @delivery_parents, :id, :method, { prompt: "---" } , { class: "sell-select-default"} )
               %i.fas.fa-chevron-down
-          .sell-form-group.sell-product-margin
-            %h3
-              配送の方法
-              %span.require-form 必須
-            .sell-select-wrapper
-              = f.select :category, [ ["メンズ", "メンズ"], ["レディース", "レディース"]], { prompt: "---"}, {class: "sell-select-default"}
-              %i.fas.fa-chevron-down
+          -# .sell-form-group.sell-product-margin
+          -#   %h3
+          -#     配送の方法
+          -#     %span.require-form 必須
+          -#   .sell-select-wrapper
+          -#     = f.collection_select(:delivery_id, @delivery_parents, :id, :method, { prompt: "---" } , { class: "sell-select-default"} )
+          -#     %i.fas.fa-chevron-down
           .sell-form-group.sell-product-margin
             %h3
               発送元の地域
               %span.require-form 必須
             .sell-select-wrapper
-              = f.select :category, [ ["メンズ", "メンズ"], ["レディース", "レディース"]], { prompt: "---"}, {class: "sell-select-default"}
+              = f.collection_select(:prefecture_id, Prefecture.all, :id, :prefecture, { prompt: "---" } , { class: "sell-select-default"} )
               %i.fas.fa-chevron-down
           .sell-form-group.sell-product-margin
             %h3
               発送までの日数
               %span.require-form 必須
             .sell-select-wrapper
-              = f.select :category, [ ["メンズ", "メンズ"], ["レディース", "レディース"]], { prompt: "---"}, {class: "sell-select-default"}
+              = f.collection_select(:delivery_day_id, DeliveryDay.all , :id, :day, { prompt: "---"}, {class: "sell-select-default"})
               %i.fas.fa-chevron-down
       .sell-content.sell-flex
         .sell-box-subtilte-flex
