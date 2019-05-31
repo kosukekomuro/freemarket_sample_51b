@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/stefankroes/ancestry.git
+  revision: c7699401d4e2066c517a68446ca1ae4fc863ab0d
+  specs:
+    ancestry (3.0.6)
+      activerecord (>= 3.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -281,6 +288,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  ancestry!
   bootsnap (>= 1.1.0)
   byebug
   capistrano
