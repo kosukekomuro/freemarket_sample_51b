@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  def index
+  def login
   end
-  def show
+  def signup
   end
   def step1
   end
