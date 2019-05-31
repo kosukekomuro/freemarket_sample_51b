@@ -3,11 +3,11 @@ Rails.application.routes.draw do
   root "products#index"
   get "users/login" => "users#login"
   get "users/signup" => "users#signup"
-  get "users/step1" => "users#step1"
-  get "users/step2" => "users#step2"
-  get "users/step3" => "users#step3"
-  get "users/step4" => "users#step4"
-  get "users/step5" => "users#step5"
+  get "users/user_registration" => "users#user_registration"
+  get "users/sms_confirmation" => "users#sms_confirmation"
+  get "users/address_registration" => "users#address_registration"
+  get "users/scard_registration" => "users#scard_registration"
+  get "users/registration_complete" => "users#registration_complete"
   resources :products, only: [:index, :new] do
     collection do
       get 'search'

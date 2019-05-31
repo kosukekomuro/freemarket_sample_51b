@@ -3,14 +3,14 @@ class UsersController < ApplicationController
   end
   def signup
   end
-  def step1
+  def user_registration
   end
-  def step2
+  def sms_confirmation
   end
-  def step3
+  def address_registration
   end
-  def step4
+  def scard_registration
   end
-  def step5
+  def registration_complete
   end
 end
