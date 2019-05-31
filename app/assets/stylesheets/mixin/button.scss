@@ -1,0 +1,5 @@
+@mixin hover-button-color($font-color, $back-color){
+  color:$font-color;
+  background:$back-color;
+  text-decoration: none;
+}
