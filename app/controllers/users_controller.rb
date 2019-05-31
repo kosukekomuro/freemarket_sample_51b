@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
   def address_registration
   end
-  def scard_registration
+  def card_registration
   end
   def registration_complete
   end

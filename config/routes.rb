@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get "users/user_registration" => "users#user_registration"
   get "users/sms_confirmation" => "users#sms_confirmation"
   get "users/address_registration" => "users#address_registration"
-  get "users/scard_registration" => "users#scard_registration"
+  get "users/card_registration" => "users#card_registration"
   get "users/registration_complete" => "users#registration_complete"
   resources :products, only: [:index, :new] do
     collection do
