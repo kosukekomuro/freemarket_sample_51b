@@ -1,20 +1,16 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
-
-
+@import 'config/reset';
+@import 'config/color';
+@import 'config/font-size';
+@import 'config/common';
+@import 'mixin/main-header';
+@import 'modules/products';
+@import 'modules/cards';
+@import "font-awesome";
+@import 'modules/main-header';
+@import 'modules/product-sell';
+@import 'modules/sell-footer';
+@import 'modules/sell-header';
+@import 'modules/mypages';
+@import 'modules/side-menu';
 @import "modules/signup";
 @import "mogules/signup-header";
-

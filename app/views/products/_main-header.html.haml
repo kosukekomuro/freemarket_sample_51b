@@ -1,0 +1,42 @@
+%header.main-header
+  .main-header-inner
+    .main-header-main
+      .main-header-main-left
+        %h1.main-header-main-left__logo
+          = link_to root_path do
+            = image_tag ("//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?3856598694"), size: "134x36"
+      .main-header-main-right
+        = form_with url: search_products_path, method: :get, class: :"main-header-main-right__form", local: true do |f|
+          = f.text_field :keyword, placeholder: "何かお探しですか？", class: "main-header-main-right__form--input"
+          %i.main-header-main-right__form--icon
+            %i.fa.fa-search
+    .main-header-nav
+      .main-header-nav-left
+        %ul.header-product-nav
+          %li.header-product-nav__list
+            = link_to root_path do
+              %i.fa.fa-bars.header-product-nav__list--icon
+              %span.header-product-nav__list--font
+                カテゴリーから探す
+          %li.header-product-nav__list
+            = link_to root_path do
+              %i.fa.fa-tag.header-product-nav__list--icon
+              %span.header-product-nav__list--font
+                ブランドから探す 
+      .main-header-nav-right
+        %ul.header-user-nav
+          %li.header-user-nav__list
+            = link_to root_path do
+              %i.fa.fa-bell.header-user-nav__list--icon
+              %span.header-user-nav__list--font
+                お知らせ
+          %li.header-user-nav__list
+            = link_to root_path do
+              %i.fa.fa-check.header-user-nav__list--icon
+              %span.header-user-nav__list--font
+                やることリスト
+          %li.header-user-nav__list
+            = link_to root_path do
+              %i.fa.fa-smile-o.header-user-nav__list--icon
+              %span.header-user-nav__list--font
+                マイページ

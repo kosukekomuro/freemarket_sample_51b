@@ -1,0 +1,113 @@
+body {
+  background-color: #F5F5F5;
+}
+
+.wrapper {
+  width: 100%;
+  .main-contents {
+    float: left;
+    background-color: #FFF;
+    width: 700px;
+    height: 368.11px;
+    margin-top: 24px;
+    margin-left: 40px;
+    .content__head {
+      height: 50px;
+      border-bottom: 1px solid #eee;
+      font-size: 24px;
+      text-align: center;
+      line-height: 50px;
+      font-weight: bold;
+    }
+    .content__body {
+      height: 318.11px;
+      margin: 64px;
+      h3 {
+        font-size: 16px;
+        font-weight: bold;
+        width: 320px;
+        margin: auto;
+      }
+      .card-registration {
+        width: 572px;
+        height: 107px;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        &__btn {
+          background-color: #EA352D;
+          width: 320px;
+          height: 50px;
+          color: #fff;
+          font-size: 14px;
+          line-height: 50px;
+          text-align: center;
+          padding: auto;
+          margin: 24px 130px;
+          a {
+            text-decoration: none;
+            color: #FFF;
+          }
+        }
+        i {
+          position: absolute;
+          top: 18px;
+          left: 170px;
+          color: #FFF;
+          font-size: 14px;
+        }
+      }
+      .payment {
+        text-decoration: none;
+        float: right;
+        margin-top: 40px;
+        span {
+          font-size: 14px;
+          color: #0099E8;
+          padding-right: 10px;
+        }
+        i {
+          float: right;
+          font-size: 20px;
+          line-height: 25px;
+          color: #0099E8;
+        }
+      }
+      .card-information {
+        width: 572px;
+        height: 117px;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        img {
+          width: 34px;
+          height: 20px;
+          margin: 24px 0 0 130px;
+        }
+        &__delete-btn {
+          width: 70px;
+          height: 24px;
+          font-size: 14px;
+          color: #EA352D;
+          border: 1px solid #EA352D;
+          line-height: 24px;
+          margin: 24px 0 0 210px;
+          text-decoration: none;
+          padding: 4px 6px;
+        }
+        &__number {
+          width: 320px;
+          height: 16px;
+          margin: 8px 0 0;
+          font-size: 14px;
+          margin: 8px 130px;
+        }
+        &__valid {
+          width: 320px;
+          height: 16px;
+          margin: 8px 0 0;
+          font-size: 12px;
+          margin: 8px 130px;
+        }
+      }
+    }
+  }
+}
