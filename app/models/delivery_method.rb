@@ -1,4 +1,4 @@
 class DeliveryMethod < ApplicationRecord
-    has_many :products
-    has_ancestry
+  has_many :products
+  has_ancestry
 end
