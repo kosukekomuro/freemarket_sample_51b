@@ -104,8 +104,4 @@ ActiveRecord::Schema.define(version: 2019_05_31_013318) do
 
   add_foreign_key "category_sizes", "categories"
   add_foreign_key "category_sizes", "sizes"
-  add_foreign_key "products", "brands"
-  add_foreign_key "products", "categories"
-  add_foreign_key "products", "conditions"
-  add_foreign_key "products", "sizes"
 end
