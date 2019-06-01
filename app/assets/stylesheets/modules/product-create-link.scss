@@ -1,0 +1,30 @@
+.product-create-link{
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 1000;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: #ea352d;
+  color: #fff;
+  text-align: center;
+  font-size: 90px;
+
+  &__msg{
+    position: relative;
+    top: 18px;
+    font-size: 22px;
+  }
+
+  &__icon{
+    position: relative;
+    top: -5px;
+  }
+
+  &:hover{
+    color: #fff;
+    text-decoration: none;
+  }
+
+}
