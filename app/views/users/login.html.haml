@@ -1,0 +1,24 @@
+= render "shared/sell-header"
+%main.login__main
+  %section.login__main__container
+    .login__main__container__sign-up-form
+      %p.login__main__container__sign-up-form__text アカウントをお持ちでない方はこちら
+      = link_to "新規会員登録", root_path, class: "btn-sign-up"
+    .login__main__container__body
+      .login__main__container__body__login-btn
+        %button.btn-default.btn-sns.btn-sns-facebook
+          %i.fab.fa-facebook-square
+          Facebookで登録
+        %button.btn-default.btn-sns.btn-sns-google
+          = image_tag "https://img.icons8.com/color/50/000000/google-logo.png", class: "google-icon"
+          Googleで登録
+    = form_with model: @user do |f|
+      .login__main__container__bottom
+        .form-group
+          = f.text_field :email, placeholder: "メールアドレス", class: "input-default"
+        .form-group
+          = f.text_field :password, placeholder: "パスワード", class: "input-default login-form"
+        = f.submit "ログイン", class: "btn-default btn-red login-submit"
+        .password-forget
+          = link_to "パスワードをお忘れの方", root_path, class: "password-forget__text"
+= render "shared/sell-footer"

@@ -1,0 +1,16 @@
+= render "shared/sell-header"
+%main.sign-up__main
+  %section.sign-up__main__container
+    %h2.sign-up__main__container__head 新規会員登録
+    .sign-up__main__container__body
+      .sign-up__main__container__body__form
+        = link_to root_path, class: "btn-default btn-mail" do
+          %i.material-icons mail_outline
+          メールアドレスで登録
+        %button.btn-default.btn-sns.btn-sns-facebook
+          %i.fab.fa-facebook-square
+          Facebookで登録
+        %button.btn-default.btn-sns.btn-sns-google
+          = image_tag "https://img.icons8.com/color/50/000000/google-logo.png", class: "google-icon"
+          Googleで登録
+= render "shared/sell-footer"
