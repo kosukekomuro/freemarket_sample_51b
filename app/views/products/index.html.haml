@@ -1,1 +1,24 @@
+= render "product-create-link"
 = render "main-header"
+.main-contents
+  %h2.main-contents__head
+    ピックアップカテゴリー
+  -# サーバサイド実装時に変更
+  = render "product-list"
+  = render "product-list"
+  = render "product-list"
+  = render "product-list"
+  -# サーバサイド実装時に変更
+  %h2.main-contents__head
+    ピックアップブランド
+  = render "product-list"
+  = render "product-list"
+  = render "product-list"
+  = render "product-list"
+
+-# 画像スライドは後の実装
+.main-slick-image
+  = image_tag ("https://i.gyazo.com/d377b6ccaecfd13c4e01fe86f25cdbba.jpg"), class: "main-slick-image__img"
+
+= render "main-footer"
+
