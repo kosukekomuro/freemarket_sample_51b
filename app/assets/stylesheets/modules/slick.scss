@@ -1,0 +1,62 @@
+button{
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  appearance: none;
+}
+
+.slide-arrow{
+  position: absolute;
+  top: 50%;
+  margin-top: -15px;
+}
+
+.prev-arrow{
+  z-index: 1;
+  top: 160px;
+  left: 50px;
+  font-size: 100px;
+  color: $sell-link;
+}
+
+.next-arrow{
+  top: 160px;
+  right: 50px;
+  font-size: 100px;
+  color: $sell-link;
+}
+
+.slick-dots{
+  position: relative;
+  top: -37px;
+  right: 8px;
+  text-align: center;
+
+  li{
+    display: inline-block;
+    margin: 0 12px;
+
+    button{
+      position: relative;
+      text-indent: -9999px;
+
+      &:before{
+        content: '○';
+        font-size: 15px;
+        text-indent: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    }
+    
+    &.slick-active{
+      button:before{
+        content: '●';
+      }
+    }
+  }
+}
