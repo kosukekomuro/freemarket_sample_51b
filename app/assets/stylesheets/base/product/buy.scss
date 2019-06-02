@@ -1,0 +1,119 @@
+.buy-main {
+  color: $text-black;
+  width: 700px;
+  margin: 0 auto;
+  background-color: $background-white;
+}
+
+.buybox{
+  &__title{
+    text-align: center;
+    padding: 32px 0;
+    border-bottom: solid 1px $background;
+  }
+}
+
+.buy-contents{
+  padding: 24px 187px;
+  text-align: center;
+
+  &__image{
+    margin: 0 auto;
+  }
+
+  &__product-name{
+    margin: 8px 0 0;
+    @include text-format(16px, 1.5);
+  }
+
+  &__price{
+    margin: 8px 0 0;
+    @include text-format(28px, 1.5);
+
+    &--option{
+      margin: 0 0 0 8px;
+      @include text-format(14px, normal, 400);
+    }
+  }
+
+  &__point{
+    margin: 16px 0 0 0;
+    padding: 16px;
+    background-color: #ccc;
+    font-size: 66.66667%;
+  }
+
+  &__payment{
+    margin: 16px 0 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    &--message{
+      @include text-format(28px);
+    }
+
+    &--price{
+      @include text-format(24px);
+    }
+  }
+
+  &__purchase{
+    margin: 16px 0 0;
+    padding: 16px 0;
+    display: block;
+    background-color: $button-red;
+    color:$text-white;
+  }
+}
+
+.buybox-ship{
+  position: relative;
+  padding: 24px 187px 48px;
+  border-bottom: solid 1px $background;
+
+  &__title{
+    font-size: 14px;
+  }
+
+  &__address{
+    margin: 8px 0 0 0;
+    @include text-format(14px, 1.4, normal);
+  }
+
+  &__change{
+    position: absolute;
+    right: 187px;
+    color: $button-blue;
+
+    &:hover{
+      color: $button-blue;
+      opacity: 0.7;
+    }
+  }
+}
+
+.buybox-payment_method{
+  position: relative;
+  padding: 24px 187px 48px;
+
+  &__title{
+    font-size: 14px;
+  }
+
+  &__info{
+    margin: 8px 0 0 0;
+    @include text-format(14px, 1.4, normal);
+  }
+
+  &__change{
+    position: absolute;
+    right: 187px;
+    color: $button-blue;
+
+    &:hover{
+      color: $button-blue;
+      opacity: 0.7;
+    }
+  }
+}
