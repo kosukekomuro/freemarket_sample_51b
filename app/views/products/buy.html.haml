@@ -1,0 +1,51 @@
+= render "shared/sell-header"
+.buy-main
+  .buybox
+    .buybox__title
+      %h2 
+        購入内容の確認
+    .buy-contents
+      = image_tag "https://static.mercdn.net/thumb/photos/m24756797427_1.jpg?1555989876", class: "buy-contents__image", size: "148x148"
+      %p.buy-contents__product-name
+        美品♡ スエード ストラップ セパレート パンプス ベージュ 10cmヒール
+      %p.buy-contents__price
+        ¥2,500
+        %span.buy-contents__price--option
+          送料込み
+      .buy-contents__point
+        %p
+          ポイントはありません
+      .buy-contents__payment
+        %p.buy-contents__payment--message
+          支払い金額
+        %span.buy-contents__payment--price
+          ¥2,100
+      = link_to root_path, class: "buy-contents__purchase" do
+        購入する
+    .buybox-ship
+      %h3.buybox-ship__title
+        配送先
+      .buybox-ship__address
+        .buybox-ship__address--postal-code
+          〒222-222
+        .buybox-ship__address--address
+          東京都
+        .buybox-ship__address--buyer-name
+          小室洸介
+      = link_to root_path, class: "buybox-ship__change" do
+        変更する
+        %i.fa.fa-chevron-right.buybox-ship__change--icon
+    .buybox-payment_method
+      .buybox-payment_method__title
+        お支払い方法
+      .buybox-payment_method__info
+        ************7999
+        %br
+        08/23
+      .buybox-payment_method__figure
+        = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/master-card.svg?1930558390", size:"34x20"
+      = link_to root_path, class: "buybox-payment_method__change" do
+        変更する
+        %i.fa.fa-chevron-right.buybox-payment_method__change--icon
+= render "shared/sell-footer"
+
