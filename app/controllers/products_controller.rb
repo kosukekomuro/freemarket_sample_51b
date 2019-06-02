@@ -10,4 +10,8 @@ class ProductsController < ApplicationController
     #商品の簡易検索を行う
     def search
     end
+
+    #商品の購入確認を行う
+    def buy
+    end
 end
