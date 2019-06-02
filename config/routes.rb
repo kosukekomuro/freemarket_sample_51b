@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :products, only: [:index, :new] do
     collection do
       get 'search'
+      get 'buy'
     end
   end
 
