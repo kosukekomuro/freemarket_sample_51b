@@ -1,0 +1,4 @@
+<h1>ログイン成功後に飛ぶユーザのshow画面</h1>
+<%= @current_user.nickname %>
+<%= @current_user.email %>
+<%= link_to 'ログアウト', session_path, method: :delete %>

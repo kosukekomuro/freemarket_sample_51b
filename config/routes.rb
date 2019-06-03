@@ -25,4 +25,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :wizard do
+    get :step1
+    get :step2
+    post :validate_step
+  end
+
+  resources :sessions, only: [:create, :destroy]
+
 end

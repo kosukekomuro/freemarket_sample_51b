@@ -13,4 +13,6 @@ class UsersController < ApplicationController
   end
   def registration_complete
   end
+  def show
+  end
 end
