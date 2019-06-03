@@ -5,7 +5,7 @@ class Product < ApplicationRecord
   belongs_to :size, optional: true
   belongs_to :brand, optional: true
   belongs_to :conditon, optional: true
-  belongs_to :delivery_method
+  belongs_to :delivery_method, optional: true
   belongs_to :prefecture
   belongs_to :delivery_day
   belongs_to :trading_evaluation
