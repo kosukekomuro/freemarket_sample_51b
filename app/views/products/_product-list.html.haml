@@ -1,27 +1,24 @@
 .pick-up-category
   %h3.pick-up-category__head
-    = link_to "レディース 新着アイテム", root_path, class: "pick-up-category__link"
+    = link_to "#{pickup} 新着アイテム", root_path, class: "pick-up-category__link"
   .pick-up-category-item
-    -# サーバサイド実装時に編集
-    - 4.times do
+    - items.each do |item|
       = link_to root_path, class: "pick-up-category-item__link" do
-        = image_tag ("//gyazo.com/68950dc5d9f99aceef33e13743682caa.png"), size: "213x213", class: "pick-up-category-item__img"
-        -# サーバサイド実装時に編集（売り切れ）
-        - if true
+        = image_tag ("#{item.images[0].url}"), size: "213x213", class: "pick-up-category-item__img"
+        - if (item.buyer_id)
           .pick-up-category-item__sold
             .pick-up-category-item__sold--msg
               SOLD
         %p.pick-up-category-item__name
-          ブレスレット宝石Ptボリュームブレスレッド
+          = item.name
         .pick-up-category-item-info
           .pick-up-category-item-info-price
             %p.pick-up-category-item-info-price__main
-              ¥100000
-              -# サーバサイド実装時に編集（お気に入り）
-              - if true
+              ¥ #{item.price}
+              - if (item.trading_evaluation_id)
                 %span.pick-up-category-item-info-price__main
                   %i.fa.fa-heart.pick-up-category-item-info-price__main--red
-                  1
+                  = item.trading_evaluation.evaluation
             %p.pick-up-category-item-info-price__sub
               (税込)
   = link_to root_path, class: "pick-up-category__see-all" do

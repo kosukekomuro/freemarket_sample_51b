@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_31_105134) do
+ActiveRecord::Schema.define(version: 2019_06_03_051604) do
 
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "brand", null: false
@@ -53,6 +53,14 @@ ActiveRecord::Schema.define(version: 2019_05_31_105134) do
     t.datetime "updated_at", null: false
     t.string "ancestry"
     t.index ["ancestry"], name: "index_delivery_methods_on_ancestry"
+  end
+
+  create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "url", null: false
+    t.bigint "product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_images_on_product_id"
   end
 
   create_table "prefectures", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -116,4 +124,5 @@ ActiveRecord::Schema.define(version: 2019_05_31_105134) do
 
   add_foreign_key "category_sizes", "categories"
   add_foreign_key "category_sizes", "sizes"
+  add_foreign_key "images", "products"
 end
