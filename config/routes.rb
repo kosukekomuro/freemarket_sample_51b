@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   resource :mypages, only: [:show] do
     collection do
       get 'index'
-      get 'buy'
     end
   end
 
