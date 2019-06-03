@@ -11,6 +11,10 @@ class ProductsController < ApplicationController
     def search
     end
 
+    #商品の詳細情報の表示を行う
+    def show
+    end
+
     #商品の購入確認を行う
     def buy
     end
