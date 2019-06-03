@@ -9,7 +9,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :mypages, only: [:index] do
+  resource :mypages, only: [:show] do
+    collection do
+      get 'index'
+    end
   end
 
   resources :cards, only: [:index] do
