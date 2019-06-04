@@ -30,10 +30,7 @@ $(function(){
       }
       else {
         $('.sign-up__main__container__body__form').prepend(addErrorMessage());
-        $("#card_number").val("");
-        $("#security_code").val("");
-        $("#valid_month").val("");
-        $("#valid_year").val("");
+        $('form')[0].reset();
         alert('error');
       }
     });
