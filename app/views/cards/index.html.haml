@@ -8,19 +8,19 @@
       支払い方法
     .content__body
       %h3 クレジットカード一覧
-      - if (true)
+      - if @user.card_id.nil?
         .card-registration
           = fa_icon "credit-card"
           .card-registration__btn
-            = link_to "クレジットカードを追加する", '/', method: "post"
+            = link_to "クレジットカードを追加する", new_card_path, method: "get"
       - else
         .card-information
-          = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/master-card.svg?1930558390"
-          = link_to "削除する", '/', method: "delete", class: "card-information__delete-btn"
+          = image_tag @url
+          = link_to "削除する", card_path(1), method: "delete", class: "card-information__delete-btn"
           .card-information__number
-            ************8000
+            = "************#{@card.last4}"
           .card-information__valid
-            11 / 23
+            = "#{@card.exp_month} / #{@card.exp_year}"
       = link_to '/', class: "payment" do
         %span 支払い方法について
         = fa_icon "angle-right"
