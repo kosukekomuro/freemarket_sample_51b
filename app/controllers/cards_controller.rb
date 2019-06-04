@@ -2,9 +2,9 @@ class CardsController < ApplicationController
   require 'payjp'
 
   before_action :access_payjp, only: [:index, :create, :destroy]
+  before_action :set_user, only: [:index, :create, :destroy]
 
   def index
-    @user = User.find(1)
     if !(@user.card_id.nil?)
       customer = Payjp::Customer.retrieve(@user.card_id)
       @card = customer.cards.retrieve(customer.cards.data[0].id)
@@ -23,17 +23,15 @@ class CardsController < ApplicationController
           card: token
         )
         card = response_customer.id
-        user = User.find(1)
-        user.update(card_id: card)
+        @user.update(card_id: card)
       }
     end
   end
 
   def destroy
-    user = User.find(1)
-    customer = Payjp::Customer.retrieve(user.card_id)
+    customer = Payjp::Customer.retrieve(@user.card_id)
     customer.delete
-    user.update(card_id: nil)
+    @user.update(card_id: nil)
     redirect_to action: :index
   end
 
@@ -56,6 +54,10 @@ class CardsController < ApplicationController
 
   def access_payjp
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+  end
+
+  def set_user
+    @user = User.find(1)
   end
 
 end
