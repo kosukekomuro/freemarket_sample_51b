@@ -144,6 +144,34 @@ a {
   li {
     margin: 0 0 0 8px;
   }
+  &__visa {
+    width: 49px;
+    height: 20px;
+  }
+  &__master-card {
+    width: 34px;
+    height: 20px;
+  }
+  &__saison-card {
+    width: 30px;
+    height: 20px;
+  }
+  &__jcb {
+    width: 32px;
+    height: 20px;
+  }
+  &__american_express {
+    width: 21px;
+    height: 20px;
+  }
+  &__dinersclub {
+    width: 32px;
+    height: 20px;
+  }
+  &__discover {
+    width: 32px;
+    height: 20px;
+  }
 }
 .signup-card-list li:first-child {
   margin: 0;
