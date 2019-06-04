@@ -23,16 +23,13 @@ class ProductsController < ApplicationController
 
     #商品の購入確認を行う
     def buy
-        @product = Product.find(1)
     end
 
     def create
-        Payjp.api_key = 'sk_test_af9066f8b2f898d1e31d957c'
-        product = Product.find(1)
-        user = User.find(1)
+        Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
         charge = Payjp::Charge.create(
-          amount: product.price,
-          customer: user.card_id,
+          amount: @product.price,
+          customer: @user.card_id,
           currency: 'jpy',
         )
         redirect_to action: :index
