@@ -4,12 +4,6 @@ describe ProductsController do
   describe 'GET #index' do
     categories = FactoryBot.create_list(:category, 13)
     brands = FactoryBot.create_list(:brand, 6564)
-    trading_evaluations = FactoryBot.create(:trading_evaluation)
-    users = FactoryBot.create(:user)
-    sizes = FactoryBot.create(:size)
-    conditions = FactoryBot.create(:condition)
-    prefectures = FactoryBot.create(:prefecture)
-    delivery_days = FactoryBot.create(:delivery_day)
     products = FactoryBot.create(:product)
     before do
       get :index
