@@ -15,7 +15,6 @@ $(function(){
     Payjp.createToken(card, function(status, response) {
       if (status == 200) {
         var token = response.id;
-        console.log('sucsess');
         $.ajax({
           url: '/cards',
           type: "POST",
@@ -24,10 +23,9 @@ $(function(){
         })
         .done(function(){
           window.location.href = 'http://localhost:3000/cards';
-          console.log('done');
         })
         .fail(function(){
-          console.log('fail');
+          alert('fail');
         })
       }
       else {
@@ -36,7 +34,7 @@ $(function(){
         $("#security_code").val("");
         $("#valid_month").val("");
         $("#valid_year").val("");
-        console.log('error');
+        alert('error');
       }
     });
   })
