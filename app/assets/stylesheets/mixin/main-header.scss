@@ -36,3 +36,11 @@
     }
   }
 }
+
+// 隠すメガメニューに対して使用するcssの原型
+@mixin hamburger-menu($top:auto , $left:auto){
+  display:none;
+  position: absolute;
+  top: $top;
+  left: $left;
+}
