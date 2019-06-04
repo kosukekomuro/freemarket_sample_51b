@@ -25,7 +25,7 @@
     %main.sign-up__main
       %section.sign-up__main__container
         %h2.sign-up__main__container__head 支払い方法
-        = form_with model: @user do |f|
+        = form_with url: cards_path, method: "post" do |f|
           .sign-up__main__container__body
             .sign-up__main__container__body__form
               .form-group
@@ -57,7 +57,7 @@
                 %span 月
                 %br
                 .select-wrap.year-month
-                  = f.select :valid_year, [ ["---", "---"], ["2019", "2019"], ["2018", "2018"]], {}, {class: "select-default"}
+                  = f.select :valid_year, [ ["---", "---"], ["2020", "2020"], ["2019", "2019"], ["2018", "2018"]], {}, {class: "select-default"}
                   %i.fa.fa-chevron-down
                 %span 年
               .form-group
@@ -68,5 +68,5 @@
                 .security-code-message__text
                   %span.security-code-message__text__question ?
                   カード裏面の番号とは？
-              = f.submit "次へ進む", class: "btn-default btn-red"
+              = f.submit "次へ進む", class: "btn-default btn-red", id: "card-registration__btn"
 = render "shared/sell-footer"

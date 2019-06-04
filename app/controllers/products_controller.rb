@@ -1,4 +1,8 @@
 class ProductsController < ApplicationController
+
+    before_action :set_product, only: [:buy, :create]
+    before_action :set_user, only: [:create]
+
     def index
         set_pickup_category(1,2,3,7)
         set_pickup_brand(1,593,340,58)
@@ -15,6 +19,16 @@ class ProductsController < ApplicationController
 
     #商品の購入確認を行う
     def buy
+    end
+
+    def create
+        Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+        charge = Payjp::Charge.create(
+          amount: @product.price,
+          customer: @user.card_id,
+          currency: 'jpy',
+        )
+        redirect_to action: :index
     end
 
     private
@@ -44,5 +58,13 @@ class ProductsController < ApplicationController
 
         @brand_fourth = Brand.find(fourth)
         @brand_fourth_items = Product.where(brand_id: fourth)
+    end
+
+    def set_product
+        @product = Product.find(1)
+    end
+
+    def set_user
+        @user = User.find(1)
     end
 end
