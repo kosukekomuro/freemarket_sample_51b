@@ -84,7 +84,7 @@
               発送元の地域
               %span.require-form 必須
             .sell-select-wrapper
-              = f.collection_select(:prefecture_id, Prefecture.all, :id, :prefecture, { prompt: "---" } , { class: "sell-select-default"} )
+              = f.collection_select(:prefecture_id, Prefecture.all, :id, :name, { prompt: "---" } , { class: "sell-select-default"} )
               %i.fas.fa-chevron-down
           .sell-form-group.sell-product-margin
             %h3
