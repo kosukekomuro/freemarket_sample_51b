@@ -29,7 +29,6 @@ $(document).on("turbolinks:load", function() {
         $(".sell-category-select").append(html);
       })
       .fail(function(){
-        console.log('error');
       })
   });
  $(document).on('change', "#sell-child-category", function(){
