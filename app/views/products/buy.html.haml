@@ -5,11 +5,11 @@
       %h2 
         購入内容の確認
     .buy-contents
-      = image_tag "https://gyazo.com/ff3b89e20a08e95075ebbbc1465e47f9.png", class: "buy-contents__image"
+      = image_tag "#{@product.images[0].url}", class: "buy-contents__image"
       %p.buy-contents__product-name
-        美品♡ スエード ストラップ セパレート パンプス ベージュ 10cmヒール
+        = @product.name
       %p.buy-contents__price
-        ¥2,500
+        ¥ #{@product.price}
         %span.buy-contents__price--option
           送料込み
       .buy-contents__point
@@ -19,8 +19,8 @@
         %p.buy-contents__payment--message
           支払い金額
         %span.buy-contents__payment--price
-          ¥2,100
-      = link_to root_path, class: "buy-contents__purchase" do
+          ¥ #{@product.price}
+      = link_to products_path, method: "post", class: "buy-contents__purchase" do
         購入する
     .buybox-ship
       %h3.buybox-ship__title
