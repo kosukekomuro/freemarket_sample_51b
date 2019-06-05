@@ -28,7 +28,7 @@ $(function() {
   $(productShowSlider).slick({
     arrows: false,
     fade: true,
-    infinite: false //これはつけましょう。
+    infinite: false
   });
 
   //初期遷移時、index=0のサムネイルにクラス名(thumbnail-current)を追加
