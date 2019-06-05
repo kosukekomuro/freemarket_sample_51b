@@ -3,7 +3,7 @@
 %main.sell-main
   .sellbox
     %h2.sellbox__title 商品の情報を入力
-    = form_with model: @product, class: "sell-form" do |f|
+    = form_with model: @product, local: true, class: "sell-form" do |f|
       .sell-upload
         %h3.sell-upload__title
           出品画像
@@ -25,7 +25,7 @@
           %h3
             商品の説明
             %span.require-form 必須
-          = f.text_area "text", class: "sell-textarea-default", placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
+          = f.text_area "description", class: "sell-textarea-default", placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
       .sell-content.sell-flex
         %h3.sell-box-subtitle 商品の詳細
         .sell-form-box
@@ -38,7 +38,7 @@
               = f.hidden_field :category_id, value: "", class: "category"
               %i.fas.fa-chevron-down
           .sell-size-brand
-            .sell-form-group.sell-product-margin.sell-size
+            .sell-form-group.sell-product-margin.sell-size-select
             .sell-form-group.sell-product-margin#sell-brand
               %h3
                 ブランド
@@ -62,7 +62,7 @@
               配送料の負担
               %span.require-form 必須
             .sell-select-wrapper
-              = f.select :burden, [["送料込み(出品者負担)"], ["着払い(購入者負担)"]], {include_blank: '---'}, {id: "sell-delivery-burden", class: "sell-select-default"}
+              = f.select :delivery_fee_burden_id, [["送料込み(出品者負担)"], ["着払い(購入者負担)"]], {include_blank: '---'}, {id: "sell-delivery-burden", class: "sell-select-default"}
               %i.fas.fa-chevron-down
           .sell-form-group.sell-product-margin.sell-delivery#seller-burden
             .sell-form-group

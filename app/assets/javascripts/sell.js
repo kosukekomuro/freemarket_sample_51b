@@ -32,8 +32,6 @@ $(document).on("turbolinks:load", function() {
         console.log('error');
       })
   });
-
-
  $(document).on('change', "#sell-child-category", function(){
     $("#sell-grandchild-box").remove();
     $(".sell-size-brand").hide();
@@ -73,7 +71,7 @@ $(document).on("turbolinks:load", function() {
       })
   });
 
-  $(document).one('change', "#sell-grandchild-category", function(){
+  $(document).on('change', "#sell-grandchild-category", function(){
       var category_size = $("#sell-grandchild-category").val();
       $(".category").val(category_size);
       function buildHTML(size){
@@ -98,10 +96,9 @@ $(document).on("turbolinks:load", function() {
         dataType: 'json'
       })
       .done(function(data){
-          console.log(data);
         if( data != ""){
             var html = buildHTML(data);
-            $(".sell-size").append(html);
+            $(".sell-size-select").empty().append(html);
             $(".sell-size-brand").show();
           } else {
             $(".sell-size-brand").hide();
@@ -110,8 +107,6 @@ $(document).on("turbolinks:load", function() {
       .fail(function(){
       })
   });
-
-
   $("#sell-delivery-burden").on("change", function(){
     var burden = $('#sell-delivery-burden option:selected').val();
     if(burden == "送料込み(出品者負担)"){
@@ -125,8 +120,6 @@ $(document).on("turbolinks:load", function() {
         $("#buyer-burden").hide();
     }
 });
-
-
   $("#product_price").on("keyup", function(){
     var val = $(this).val();
     if(val >= 300 && isFinite(val)){
@@ -144,5 +137,13 @@ $(document).on("turbolinks:load", function() {
       $("#list_right_tax").append("-");
       $("#list_right_price").append("-");
       }
+  });
+  $(".btn-reload").on("click", function(e){
+    e.preventDefault();
+    var linkUrl = $(this).attr('href');
+    function action() {
+      location.href = linkUrl;
+    }
+    setTimeout(action,50);
   });
 });

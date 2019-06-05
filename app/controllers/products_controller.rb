@@ -1,33 +1,32 @@
 class ProductsController < ApplicationController
-    def index
-        set_pickup_category(1,2,3,7)
-        set_pickup_brand(1,593,340,58)
-    end
+  def index
+    set_pickup_category(1,2,3,7)
+    set_pickup_brand(1,593,340,58)
+  end
 
-    def new
-        category_parents = Category.roots
-        @category_parents = category_parents.map{|parent| [parent.name]}
-        get_category_children if params[:category]
-        get_category_grandchildren if params[:category_ancestry]
-        get_category_size if params[:category_size]
-        @product = Product.new
-      end
+  def new
+    category_parents = Category.roots
+    @category_parents = category_parents.map{|parent| [parent.name]}
+    get_category_children if params[:category]
+    get_category_grandchildren if params[:category_ancestry]
+    get_category_size if params[:category_size]
+    @product = Product.new
+  end
 
-      def create
-        product = Product.new(product_params)
-        # product.user = current_user
-        product.save
-        redirect_to root_path
-      end
+  def create
+    product = Product.new(product_params)
+    product.save
+    redirect_to root_path
+  end
 
     #商品の簡易検索を行う
-    def search
-    end
+  def search
+  end
+    #商品の購入確認を行う
+  def buy
+  end
 
-　　#商品の購入確認を行う
-    def buy
-    end
-　 private
+  private
 
   def product_params
     params.require(:product).permit(:name, :price, :description, :category_id, :condition_id, :brand_id, :size_id, :prefecture_id, :delivery_fee_burden_id, :delivery_method_id, :delivery_day_id)
@@ -59,6 +58,7 @@ class ProductsController < ApplicationController
       format.json
     end
   end
+
   def set_pickup_category(first, second, third, fourth)
     @category_first = Category.find(first)
     @category_first_items = Product.where(category_id: first)
@@ -71,9 +71,9 @@ class ProductsController < ApplicationController
 
     @category_fourth = Category.find(fourth)
     @category_fourth_items = Product.where(category_id: fourth)
-　 end
+  end
 
-　 def set_pickup_brand(first, second, third, fourth)
+  def set_pickup_brand(first, second, third, fourth)
     @brand_first = Brand.find(first)
     @brand_first_items = Product.where(brand_id: first)
 
@@ -85,5 +85,5 @@ class ProductsController < ApplicationController
 
     @brand_fourth = Brand.find(fourth)
     @brand_fourth_items = Product.where(brand_id: fourth)
-　 end
+  end
 end
