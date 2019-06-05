@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def login
   end
-  def signup
+  def sign_up
   end
   def user_registration
     @user = User.new

@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :basic_auth, if: :production?
   before_action :current_user
   protect_from_forgery with: :exception
+  include SessionsHelper
 
   private
 
@@ -15,11 +16,5 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def current_user
-    @current_user ||= User.find_by(id: session[:user_id])
-  end
 
-  def require_sign_in
-      redirect_to login_path unless current_user
-  end
 end

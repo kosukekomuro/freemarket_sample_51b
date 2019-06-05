@@ -16,19 +16,13 @@ Rails.application.routes.draw do
   resources :users do
     collection do
       get 'login'
-      get 'signup'
+      get 'sign_up'
       get 'user_registration'
       get 'sms_confirmation'
       get 'address_registration'
       get 'card_registration'
       get 'registration_complete'
     end
-  end
-
-  resource :wizard do
-    get :step1
-    get :step2
-    post :validate_step
   end
 
   resources :sessions, only: [:create, :destroy]
