@@ -1,13 +1,12 @@
 class SessionsController < ApplicationController
-  # skip_before_action :require_sign_in, only: [:login]
-  skip_before_action :current_user, only: [:create]
+  before_action :current_user, only: :destroy
 
   def create
     if params[:session]
       @user = User.find_by(email: session_params[:email])
       if @user && @user.authenticate(session_params[:password])
         session[:user_id] = @user.id
-        redirect_to user_path(session[:user_id])
+        redirect_to root_path
       else
         render("/users/login")
       end

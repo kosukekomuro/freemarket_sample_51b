@@ -1,13 +1,19 @@
 class UsersController < ApplicationController
+  before_action :require_sign_in, only: :registration_complete
+
   def login
   end
+
   def sign_up
   end
+
   def user_registration
     @user = User.new
   end
+
   def sms_confirmation
   end
+
   def address_registration
     session[:nickname] = user_params[:nickname]
     session[:email] = user_params[:email]
@@ -16,10 +22,13 @@ class UsersController < ApplicationController
     @user.build_user_detail
     @user.build_user_address
   end
+
   def card_registration
   end
+
   def registration_complete
   end
+
   def create
     @user = User.new(
       nickname: session[:nickname],
@@ -53,7 +62,7 @@ class UsersController < ApplicationController
       user_address_attributes: [
         :id,
         :postal_code,
-        :prefecture_code,
+        :prefecture_id,
         :municipalitie,
         :address,
         :building_name

@@ -28,7 +28,6 @@
         .sign-up__main__container__body
           .sign-up__main__container__body__form
             = form_for @user, url: users_path do |f|
-              -# = hidden_field_tag :current_step, 'step2'
               = f.fields_for :user_detail do |d|
                 .form-group
                   %label.form-label お名前
@@ -49,9 +48,7 @@
                   = a.label :prefecture_code, "都道府県", class: "form-label"
                   %span.form-require 必須
                   .select-wrap
-                    -# = a.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name
-                    = a.collection_select(:prefecture_code, JpPrefecture::Prefecture.all, :code, :name, { prompt: "---" } , { class: "sell-select-default"} )
-                    -# = f.collection_select :prefecture_id, Prefecture.all, :prefecture_id, {class: "select-default"}
+                    = a.collection_select(:prefecture_id, Prefecture.all, :id, :name, { prompt: "---" } , { class: "select-default"} )
                     %i.fa.fa-chevron-down
                 .form-group
                   = a.label :municipalitie, "市区町村", class: "form-label"

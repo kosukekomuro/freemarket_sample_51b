@@ -25,12 +25,11 @@
     %main.sign-up__main
       %section.sign-up__main__container
         %h2.sign-up__main__container__head 会員登録完了
-        = @current_user.nickname if user_signed_in?
         .sign-up__main__container__body
           .sign-up__main__container__body__form
             .registered-message
               %p.registered-message__text
                 ありがとうございます。
                 %br 会員登録が完了しました。
-            = link_to "メルカリを始める", session_path(@current_user.id), method: :delete, class: "btn-default btn-red"
+            = link_to "メルカリを始める", root_path, class: "btn-default btn-red"
 = render "shared/sell-footer"

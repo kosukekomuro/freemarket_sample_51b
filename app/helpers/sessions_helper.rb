@@ -5,10 +5,10 @@ module SessionsHelper
   end
 
   def require_sign_in
-      redirect_to login_path unless current_user
+    redirect_to login_users_path unless current_user
   end
-  
+
   def user_signed_in?
-    !@current_user.nil?
+    !current_user.nil?
   end
 end

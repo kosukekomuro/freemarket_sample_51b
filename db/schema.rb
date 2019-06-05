@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(version: 2019_06_04_034716) do
     t.string "building_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "prefecture_code"
+    t.integer "prefecture_id", null: false
     t.index ["user_id"], name: "index_user_addresses_on_user_id"
   end
 

@@ -26,7 +26,6 @@
       %section.sign-up__main__container
         %h2.sign-up__main__container__head 会員情報入力
         = form_for @user, url: address_registration_users_path, method: :get do |f|
-          -# = hidden_field_tag :current_step, 'step1'
           .sign-up__main__container__body
             .sign-up__main__container__body__form
               .form-group
