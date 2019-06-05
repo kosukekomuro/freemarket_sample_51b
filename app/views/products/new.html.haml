@@ -3,7 +3,7 @@
 %main.sell-main
   .sellbox
     %h2.sellbox__title 商品の情報を入力
-    = form_with model: @product, class: "sell-form" do |f|
+    = form_with model: @product, local: true, class: "sell-form" do |f|
       .sell-upload
         %h3.sell-upload__title
           出品画像
@@ -25,36 +25,26 @@
           %h3
             商品の説明
             %span.require-form 必須
-          = f.text_area "text", class: "sell-textarea-default", placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
+          = f.text_area "description", class: "sell-textarea-default", placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
       .sell-content.sell-flex
         %h3.sell-box-subtitle 商品の詳細
         .sell-form-box
-          .sell-form-group
+          .sell-form-group#sell-category
             %h3
               カテゴリー
               %span.require-form 必須
-            .sell-select-wrapper
-              = f.collection_select(:category_id, @category_parents, :id, :name, { prompt: "---"}, {class: "sell-select-default"})
+            .sell-select-wrapper.sell-category-select
+              = select_tag "category", options_for_select(@category_parents), id: "sell-parent-category", class: "sell-select-default", include_blank: '---'
+              = f.hidden_field :category_id, value: "", class: "category"
               %i.fas.fa-chevron-down
-            -# .sell-select-wrapper
-            -#   = f.select :category, [ ["メンズ", "メンズ"], ["レディース", "レディース"]], { prompt: "---"}, {class: "sell-select-default"}
-            -#   %i.fas.fa-chevron-down
-            -# .sell-select-wrapper
-            -#   = f.select :category, [ ["メンズ", "メンズ"], ["レディース", "レディース"]], { prompt: "---"}, {class: "sell-select-default"}
-            -#   %i.fas.fa-chevron-down
-          -# .sell-form-group.sell-product-margin
-          -#   %h3
-          -#     サイズ
-          -#     %span.require-form 必須
-          -#   .sell-select-wrapper
-          -#     = f.collection_select(:size_id, Size.all, { prompt: "---"}, {class: "sell-select-default"})
-          -#     %i.fas.fa-chevron-down
-          .sell-form-group.sell-product-margin
-            %h3
-              ブランド
-              %span.arbitrary-form 任意
-            .none-box
-              = f.text_field "name", class: "sell-input-default", placeholder: "例) シャネル"
+          .sell-size-brand
+            .sell-form-group.sell-product-margin.sell-size-select
+            .sell-form-group.sell-product-margin#sell-brand
+              %h3
+                ブランド
+                %span.arbitrary-form 任意
+              .none-box
+                = f.text_field "name", class: "sell-input-default", placeholder: "例) シャネル"
           .sell-form-group.sell-product-margin
             %h3
               商品の状態
@@ -72,15 +62,24 @@
               配送料の負担
               %span.require-form 必須
             .sell-select-wrapper
-              = f.collection_select(:delivery_id, @delivery_parents, :id, :method, { prompt: "---" } , { class: "sell-select-default"} )
+              = f.select :delivery_fee_burden_id, [["送料込み(出品者負担)"], ["着払い(購入者負担)"]], {include_blank: '---'}, {id: "sell-delivery-burden", class: "sell-select-default"}
               %i.fas.fa-chevron-down
-          -# .sell-form-group.sell-product-margin
-          -#   %h3
-          -#     配送の方法
-          -#     %span.require-form 必須
-          -#   .sell-select-wrapper
-          -#     = f.collection_select(:delivery_id, @delivery_parents, :id, :method, { prompt: "---" } , { class: "sell-select-default"} )
-          -#     %i.fas.fa-chevron-down
+          .sell-form-group.sell-product-margin.sell-delivery#seller-burden
+            .sell-form-group
+            %h3
+              配送方法
+              %span.require-form 必須
+            .sell-select-wrapper
+              = f.select :name, [["未定"], ["らくらくメルカリ便"], ["ゆうパケット"], ["ゆうパック"], ["ゆうメール"], ["レターパック"], ["普通郵便(定形、定形外)"], ["クロネコヤマト"], ["クリップポスト"]], {include_blank: '---'}, {id: "sell-delivery-method", class: "sell-select-default"}
+              %i.fas.fa-chevron-down
+          .sell-form-group.sell-product-margin.sell-delivery#buyer-burden
+            .sell-form-group
+            %h3
+              配送方法
+              %span.require-form 必須
+            .sell-select-wrapper
+              = f.select :name, [["未定"], ["ゆうパック"], ["ゆうメール"], ["クロネコヤマト"]], {include_blank: '---'}, {id: "sell-delivery-method", class: "sell-select-default"}
+              %i.fas.fa-chevron-down
           .sell-form-group.sell-product-margin
             %h3
               発送元の地域
@@ -107,15 +106,15 @@
                 %span.require-form 必須
               .sell-price-left ¥
               .sell-price-right
-                = f.text_field "price", class: "sell-money-default", placeholder: "例）300"
+                = f.text_field "price", class: "sell-money-default", id: "product_price", placeholder: "例）300"
             %li.sell-fee
               .sell-fee-left
                 販売手数料 (10%)
-              .sell-fee-right -
+              .sell-fee-right#list_right_tax -
             %li.sell-fee.sell-font-bold
               .sell-fee-left
                 販売利益
-              .sell-fee-right.sell-font-big -
+              .sell-fee-right.sell-font-big#list_right_price -
       .sell-content
         .sell-btnbox
           %p
