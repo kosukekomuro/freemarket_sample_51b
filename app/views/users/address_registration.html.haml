@@ -25,40 +25,45 @@
     %main.sign-up__main
       %section.sign-up__main__container
         %h2.sign-up__main__container__head 住所入力
-        = form_with model: @user do |f|
-          .sign-up__main__container__body
-            .sign-up__main__container__body__form
-              .form-group
-                %label.form-label お名前
-                %span.form-require 必須
-                = f.text_field :first_name, placeholder: "例) 山田", class: "input-default"
-                = f.text_field :last_name, placeholder: "例) 彩", class: "input-default"
-              .form-group
-                %label.form-label お名前カナ
-                %span.form-require 必須
-                = f.text_field :first_name_kana, placeholder: "例) ヤマダ", class: "input-default"
-                = f.text_field :last_name_kana, placeholder: "例) アヤ", class: "input-default"
-              .form-group
-                %label.form-label 郵便番号
-                %span.form-require 必須
-                = f.text_field :postal_code, placeholder: "例) 123-4567", class: "input-default"
-              .form-group
-                %label.form-label 都道府県
-                %span.form-require 必須
-                .select-wrap
-                  = f.select :prefecture, [ ["---", "---"], ["東京", "東京"], ["埼玉", "埼玉"]], {}, {class: "select-default"}
-                  %i.fa.fa-chevron-down
-              .form-group
-                %label.form-label 市区町村
-                %span.form-require 必須
-                = f.text_field :city, placeholder: "例) 横浜市緑区", class: "input-default"
-              .form-group
-                %label.form-label 番地
-                %span.form-require 必須
-                = f.text_field :address, placeholder: "例) 青山1−1−1", class: "input-default"
-              .form-group
-                %label.form-label 建物名
-                %span.form-arbitrary 任意
-                = f.text_field :building_name, placeholder: "例) 柳ビル103", class: "input-default"
+        .sign-up__main__container__body
+          .sign-up__main__container__body__form
+            = form_with model: @user, url: users_path do |f|
+              -# = hidden_field_tag :current_step, 'step2'
+              = f.fields_for :user_detail do |d|
+                .form-group
+                  %label.form-label お名前
+                  %span.form-require 必須
+                  = d.text_field :first_name, placeholder: "例) 山田", class: "input-default"
+                  = d.text_field :last_name, placeholder: "例) 彩", class: "input-default"
+                .form-group
+                  %label.form-label お名前カナ
+                  %span.form-require 必須
+                  = d.text_field :first_name_kana, placeholder: "例) ヤマダ", class: "input-default"
+                  = d.text_field :last_name_kana, placeholder: "例) アヤ", class: "input-default"
+              = f.fields_for :user_address do |a|
+                .form-group
+                  = a.label :postal_code, "郵便番号", class: "form-label"
+                  %span.form-require 必須
+                  = a.text_field :postal_code, placeholder: "例) 123-4567", class: "input-default"
+                .form-group
+                  = a.label :prefecture_code, "都道府県", class: "form-label"
+                  %span.form-require 必須
+                  .select-wrap
+                    -# = a.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name
+                    = a.collection_select(:prefecture_code, JpPrefecture::Prefecture.all, :code, :name, { prompt: "---" } , { class: "sell-select-default"} )
+                    -# = f.collection_select :prefecture_id, Prefecture.all, :prefecture_id, {class: "select-default"}
+                    %i.fa.fa-chevron-down
+                .form-group
+                  = a.label :municipalitie, "市区町村", class: "form-label"
+                  %span.form-require 必須
+                  = a.text_field :municipalitie, placeholder: "例) 横浜市緑区", class: "input-default"
+                .form-group
+                  = a.label :address, "番地", class: "form-label"
+                  %span.form-require 必須
+                  = a.text_field :address, placeholder: "例) 青山1−1−1", class: "input-default"
+                .form-group
+                  = a.label :building_name, "建物名", class: "form-label"
+                  %span.form-arbitrary 任意
+                  = a.text_field :building_name, placeholder: "例) 柳ビル103", class: "input-default"
               = f.submit "次へ進む", class: "btn-default btn-red"
 = render "shared/sell-footer"

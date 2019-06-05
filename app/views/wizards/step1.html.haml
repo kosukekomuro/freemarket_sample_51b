@@ -33,10 +33,10 @@
                 = f.label :nickname, "ニックネーム", class: "form-label"
                 %span.form-require 必須
                 = f.text_field :nickname, placeholder: "例) メルカリ太郎", class: "input-default"
-              -# .form-group
-              -#   = f.label :email, "メールアドレス", class: "form-label"
-              -#   %span.form-require 必須
-              -#   = f.email_field :email, placeholder: "PC・携帯どちらでも可", class: "input-default"
+              .form-group
+                = f.label :email, "メールアドレス", class: "form-label"
+                %span.form-require 必須
+                = f.email_field :email, placeholder: "PC・携帯どちらでも可", class: "input-default"
               .form-group
                 = f.label :password, "パスワード", class: "form-label"
                 %span.form-require 必須

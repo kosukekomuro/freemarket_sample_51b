@@ -15,7 +15,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_attributes] = nil
+    # session[:user_attributes] = nil
+    reset_session
     @current_user = nil
     redirect_to login_users_path
   end
@@ -23,6 +24,19 @@ class SessionsController < ApplicationController
 
   private
   def session_params
-    params.require(:session).permit(:nickname, :email, :password)
+    params.require(:session).permit(
+      :nickname,
+      :email,
+      :password,
+      :prefecture,
+      :first_name,
+      :last_name,
+      :first_name_kana,
+      :last_name_kana,
+      :postal_code,
+      :municipalitie,
+      :address,
+      :building_name
+    )
   end
 end

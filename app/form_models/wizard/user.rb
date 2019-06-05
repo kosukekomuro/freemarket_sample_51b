@@ -10,16 +10,18 @@ module Wizard
 
       def initialize(user_attributes)
         @user = ::User.new(user_attributes)
+        # @user.build_user_address
+        # @user.build_user_detail
       end
     end
 
     class Step1 < Base
       validates :nickname, presence: true
+      validates :email, presence: true, format: { with: /@/ }
     end
 
     class Step2 < Step1
       # validates :first_name, presence: true
-      validates :email, presence: true, format: { with: /@/ }
     end
 
     # class Step3 < Step2
