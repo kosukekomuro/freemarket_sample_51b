@@ -52,6 +52,10 @@ a {
 }
 .sign-up__main__container__body__form div:first-child {
   margin: 0;
+  p {
+    color: #ea352d;
+    font-size: 14px;
+  }
 }
 .form-group {
   margin: 40px 0 0;
@@ -139,6 +143,34 @@ a {
   margin: 8px 0 0;
   li {
     margin: 0 0 0 8px;
+  }
+  &__visa {
+    width: 49px;
+    height: 20px;
+  }
+  &__master-card {
+    width: 34px;
+    height: 20px;
+  }
+  &__saison-card {
+    width: 30px;
+    height: 20px;
+  }
+  &__jcb {
+    width: 32px;
+    height: 20px;
+  }
+  &__american_express {
+    width: 21px;
+    height: 20px;
+  }
+  &__dinersclub {
+    width: 32px;
+    height: 20px;
+  }
+  &__discover {
+    width: 32px;
+    height: 20px;
   }
 }
 .signup-card-list li:first-child {

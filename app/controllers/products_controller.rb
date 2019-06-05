@@ -1,4 +1,8 @@
 class ProductsController < ApplicationController
+
+  before_action :set_product, only: [:buy, :create]
+  before_action :set_user, only: [:create]
+
   def index
     set_pickup_category(1,2,3,7)
     set_pickup_brand(1,593,340,58)
@@ -59,9 +63,20 @@ class ProductsController < ApplicationController
     end
   end
 
-  def set_pickup_category(first, second, third, fourth)
-    @category_first = Category.find(first)
-    @category_first_items = Product.where(category_id: first)
+  def create
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    charge = Payjp::Charge.create(
+      amount: @product.price,
+      customer: @user.card_id,
+      currency: 'jpy',
+    )
+    redirect_to action: :index
+  end
+
+    private
+    def set_pickup_category(first, second, third, fourth)
+        @category_first = Category.find(first)
+        @category_first_items = Product.where(category_id: first)
 
     @category_second = Category.find(second)
     @category_second_items = Product.where(category_id: second)
@@ -85,5 +100,13 @@ class ProductsController < ApplicationController
 
     @brand_fourth = Brand.find(fourth)
     @brand_fourth_items = Product.where(brand_id: fourth)
+  end
+
+  def set_product
+    @product = Product.find(1)
+  end
+
+  def set_user
+    @user = User.find(1)
   end
 end
