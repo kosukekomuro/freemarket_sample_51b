@@ -13,4 +13,9 @@
     %link{rel:"stylesheet", type:"text/css", href:"//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"}
     %script{src: "https://js.pay.jp/", type: "text/javascript"}
   %body
+    = render "products/main-header"
+    - if (breadcrumbs != [])
+      .breadwrap
+        = breadcrumbs separator: " &rsaquo; ", style: :ul, class: "breadwrap__ul"
     = yield
+    = render "products/main-footer"

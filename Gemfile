@@ -85,3 +85,4 @@ gem 'font-awesome-rails'
 gem 'ancestry', git: "https://github.com/stefankroes/ancestry.git"
 gem 'devise'
 gem 'payjp'
+gem 'gretel'
