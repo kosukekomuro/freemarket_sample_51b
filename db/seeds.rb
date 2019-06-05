@@ -362,13 +362,6 @@ prefecture = Prefecture.create([{ prefecture: "北海道"}, { prefecture: "青�
 condition = Condition.create([{ condition: "新品、未使用"}, { condition: "未使用に近い"}, { condition: "目立った傷や汚れなし"}, { condition: "やや傷や汚れあり"}, { condition: "傷や汚れあり"}, { condition: "全体的に状態が悪い"}])
 delivery_day = DeliveryDay.create([{ day: "1~2日で発送"}, { day: "2~3日で発送"}, { day: "4~7日で発送"}])
 
-
-delivery_seller = DeliveryMethod.create(method: "送料込み(出品者負担)")
-delivery_buyer = DeliveryMethod.create(method: "着払い(購入者負担)")
-
-delivery_seller.children.create([{method: "未定"},{method: "らくらくメルカリ便"},{method: "ゆうメール"},{method: "レターパック"},{method: "普通郵便(定型、定型外)"},{method: "クロネコヤマト"},{method: "ゆうパック"},{method: "クリップポスト"},{method: "ゆうパケット"}])
-delivery_buyer.children.create([{method: "未定"},{method: "クロネコヤマト"},{method: "ゆうパック"},{method: "ゆうメール"}])
-
 size = Size.create([{size: "XXS以下"},{size: "XS(SS以下)"},{size: "S"},{size: "M"},{size: "L"},{size: "XL(LL)"},{size: "2XL(3L)"},{size: "3XL(4L)"},{size: "4XL(5L)以上"},{size: "FREE SIZE"},{size: "20cm以下"},{size: "20.5cm"},{size: "21cm"},{size: "21.5cm"},{size: "22cm"},{size: "22.5cm"},{size: "23cm"},{size: "23.5cm"},{size: "23.5cm以下"},{size: "24cm"},{size: "24.5cm"},{size: "25cm"},{size: "25.5cm"},{size: "26cm"},{size: "26.5cm"},{size: "27cm"},{size: "27.5cm以上"},{size: "27.5cm"},{size: "28cm"},{size: "28.5cm"},{size: "29cm"},{size: "29.5cm"},{size: "30cm"},{size: "30.5cm"},{size: "31cm以上"},{size: "60cm"},{size: "70cm"},{size: "80cm"},{size: "90cm"},{size: "95cm"},{size: "100cm"},{size: "110cm"},{size: "120cm"},{size: "130cm"},{size: "140cm"},{size: "150cm"},{size: "160cm"},{size: "10.5cm以下"},{size: "11cm・11.5cm"},{size: "12cm・12.5cm"},{size: "13cm・13.5cm"},{size: "14cm・14.5cm"},{size: "15cm・15.5cm"},{size: "16cm・16.5cm"},{size: "17cm以上"},{size: "12インチ"},{size: "13インチ"},{size: "14インチ"},{size: "15インチ"},{size: "16インチ"},{size: "17インチ"},{size: "18インチ"},{size: "19インチ"},{size: "20インチ"},{size: "21インチ"},{size: "22インチ"},{size: "23インチ"},{size: "24インチ"},{size: "XSサイズ以下"},{size: "Sサイズ"},{size: "Mサイズ"},{size: "Lサイズ"},{size: "XLサイズ"},{size: "XXLサイズ以上"},{size: "フリーサイズ"},{size: "子ども用"}])
 
 
@@ -446,30 +439,28 @@ end
   category_size = CategorySize.create([{category_id: "#{number}", size_id: 56}, {category_id: "#{number}", size_id: 57}, {category_id: "#{number}", size_id: 58},{category_id: "#{number}", size_id: 59},{category_id: "#{number}", size_id: 60}, {category_id: "#{number}", size_id: 61}, {category_id: "#{number}", size_id: 62}, {category_id: "#{number}", size_id: 63}, {category_id: "#{number}", size_id: 64}, {category_id: "#{number}", size_id: 65}, {category_id: "#{number}", size_id: 66}, {category_id: "#{number}", size_id: 67}, {category_id: "#{number}", size_id: 68}])
 end
 
-
-
 category_size = CategorySize.create([{category_id: 844, size_id: 69}, {category_id: 844, size_id: 70}, {category_id: 844, size_id: 71},{category_id: 844, size_id: 72},{category_id: 844, size_id: 73}, {category_id: 844, size_id: 74}, {category_id: 844, size_id: 75}, {category_id: 844, size_id: 76}])
 
 evaluation = TradingEvaluation.create(evaluation: "1")
 user = User.create!(email: 'admin@example.com', password: 'password')
 
 product = Product.create([
-  { name: "セーター", description: "セーターです。", seller_id: "1", category_id: "1", size_id: "1", brand_id: "1", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_day_id: "1", price: "1500", trading_evaluation_id: "1"}, 
-  { name: "帽子", description: "帽子です。", seller_id: "1", category_id: "1", size_id: "1", brand_id: "593", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_day_id: "1", price: "1500", trading_evaluation_id: "1"}, 
-  { name: "ダウン", description: "ダウンです。", seller_id: "1", category_id: "1", size_id: "1", brand_id: "340", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_day_id: "1", price: "6200", trading_evaluation_id: "1"}, 
-  { name: "ジャケット", description: "ジャケットです。", seller_id: "1", category_id: "1", size_id: "1", brand_id: "58", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_day_id: "1", price: "16900", trading_evaluation_id: "1"}, 
-  { name: "Yシャツ", description: "Yシャツです。", seller_id: "1", category_id: "2", size_id: "1", brand_id: "1", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_day_id: "1", price: "12500", trading_evaluation_id: "1"}, 
-  { name: "ニット", description: "ニットです。", seller_id: "1", category_id: "2", size_id: "1", brand_id: "593", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_day_id: "1", price: "9500", trading_evaluation_id: "1"}, 
-  { name: "コート", description: "コートです。", seller_id: "1", category_id: "2", size_id: "1", brand_id: "340", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_day_id: "1", price: "8000", trading_evaluation_id: "1"}, 
-  { name: "靴", description: "靴です。", seller_id: "1", category_id: "2", size_id: "1", brand_id: "58", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_day_id: "1", price: "4000", trading_evaluation_id: "1"}, 
-  { name: "犬用の服", description: "犬用の服です。", seller_id: "1", category_id: "3", size_id: "1", brand_id: "1", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_day_id: "1", price: "580", trading_evaluation_id: "1"}, 
-  { name: "耳当て", description: "耳当てです。", seller_id: "1", category_id: "3", size_id: "1", brand_id: "593", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_day_id: "1", price: "2000", trading_evaluation_id: "1"}, 
-  { name: "ネクタイ", description: "ネクタイです。", seller_id: "1", category_id: "3", size_id: "1", brand_id: "340", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_day_id: "1", price: "1500", trading_evaluation_id: "1"}, 
-  { name: "トップス", description: "トップスです。", seller_id: "1", category_id: "3", size_id: "1", brand_id: "58", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_day_id: "1", price: "770", trading_evaluation_id: "1"}, 
-  { name: "カーディガン", description: "カーディガンです。", seller_id: "1", category_id: "7", size_id: "1", brand_id: "1", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_day_id: "1", price: "390", trading_evaluation_id: "1"}, 
-  { name: "カラフルシャツ", description: "カラフルシャツです。", seller_id: "1", category_id: "7", size_id: "1", brand_id: "593", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_day_id: "1", price: "1666", trading_evaluation_id: "1"}, 
-  { name: "手袋", description: "手袋です。", seller_id: "1", category_id: "7", size_id: "1", brand_id: "340", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_day_id: "1", price: "700", trading_evaluation_id: "1"}, 
-  { name: "ハンチング帽", description: "ハンチング帽です。", seller_id: "1", category_id: "7", size_id: "1", brand_id: "58", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_day_id: "1", price: "400", trading_evaluation_id: "1"}])
+  { name: "セーター", description: "セーターです。", seller_id: "1", category_id: "1", size_id: "1", brand_id: "1", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_fee_burden_id: "1",delivery_day_id: "1", price: "1500", trading_evaluation_id: "1"}, 
+  { name: "帽子", description: "帽子です。", seller_id: "1", category_id: "1", size_id: "1", brand_id: "593", condition_id: "1", delivery_method_id: "1", prefecture_id: "1",  delivery_fee_burden_id: "1",delivery_day_id: "1", price: "1500", trading_evaluation_id: "1"}, 
+  { name: "ダウン", description: "ダウンです。", seller_id: "1", category_id: "1", size_id: "1", brand_id: "340", condition_id: "1", delivery_method_id: "1", prefecture_id: "1",  delivery_fee_burden_id: "1",delivery_day_id: "1", price: "6200", trading_evaluation_id: "1"}, 
+  { name: "ジャケット", description: "ジャケットです。", seller_id: "1", category_id: "1", size_id: "1", brand_id: "58", condition_id: "1", delivery_method_id: "1", prefecture_id: "1",  delivery_fee_burden_id: "1",delivery_day_id: "1", price: "16900", trading_evaluation_id: "1"}, 
+  { name: "Yシャツ", description: "Yシャツです。", seller_id: "1", category_id: "2", size_id: "1", brand_id: "1", condition_id: "1", delivery_method_id: "1", prefecture_id: "1",  delivery_fee_burden_id: "1",delivery_day_id: "1", price: "12500", trading_evaluation_id: "1"}, 
+  { name: "ニット", description: "ニットです。", seller_id: "1", category_id: "2", size_id: "1", brand_id: "593", condition_id: "1", delivery_method_id: "1", prefecture_id: "1",  delivery_fee_burden_id: "1",delivery_day_id: "1", price: "9500", trading_evaluation_id: "1"}, 
+  { name: "コート", description: "コートです。", seller_id: "1", category_id: "2", size_id: "1", brand_id: "340", condition_id: "1", delivery_method_id: "1", prefecture_id: "1",  delivery_fee_burden_id: "1",delivery_day_id: "1", price: "8000", trading_evaluation_id: "1"}, 
+  { name: "靴", description: "靴です。", seller_id: "1", category_id: "2", size_id: "1", brand_id: "58", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_day_id: "1", delivery_fee_burden_id: "1", price: "4000", trading_evaluation_id: "1"}, 
+  { name: "犬用の服", description: "犬用の服です。", seller_id: "1", category_id: "3", size_id: "1", brand_id: "1", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_day_id: "1", delivery_fee_burden_id: "1", price: "580", trading_evaluation_id: "1"}, 
+  { name: "耳当て", description: "耳当てです。", seller_id: "1", category_id: "3", size_id: "1", brand_id: "593", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_day_id: "1", delivery_fee_burden_id: "1", price: "2000", trading_evaluation_id: "1"}, 
+  { name: "ネクタイ", description: "ネクタイです。", seller_id: "1", category_id: "3", size_id: "1", brand_id: "340", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_day_id: "1", delivery_fee_burden_id: "1", price: "1500", trading_evaluation_id: "1"}, 
+  { name: "トップス", description: "トップスです。", seller_id: "1", category_id: "3", size_id: "1", brand_id: "58", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_day_id: "1", delivery_fee_burden_id: "1", price: "770", trading_evaluation_id: "1"}, 
+  { name: "カーディガン", description: "カーディガンです。", seller_id: "1", category_id: "7", size_id: "1", brand_id: "1", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_day_id: "1", delivery_fee_burden_id: "1", price: "390", trading_evaluation_id: "1"}, 
+  { name: "カラフルシャツ", description: "カラフルシャツです。", seller_id: "1", category_id: "7", size_id: "1", brand_id: "593", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_day_id: "1", delivery_fee_burden_id: "1", price: "1666", trading_evaluation_id: "1"}, 
+  { name: "手袋", description: "手袋です。", seller_id: "1", category_id: "7", size_id: "1", brand_id: "340", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_day_id: "1", delivery_fee_burden_id: "1", price: "700", trading_evaluation_id: "1"}, 
+  { name: "ハンチング帽", description: "ハンチング帽です。", seller_id: "1", category_id: "7", size_id: "1", brand_id: "58", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_day_id: "1", delivery_fee_burden_id: "1", price: "400", trading_evaluation_id: "1"}])
 
   image = Image.create([
     { url: "https://d1f5hsy4d47upe.cloudfront.net/39/39d4934b752089a41ecb46e6800c9d4a_t.jpeg", product_id: 1, created_at: "2019-06-02 06:34:49", updated_at: "2019-06-02 06:34:49"},
@@ -7054,4 +7045,3 @@ product = Product.create([
     { brand: "7ユニオン"}, 
     { brand: "877*7(バナナセブン)"}, 
     { brand: "88ズ"}])
-  
