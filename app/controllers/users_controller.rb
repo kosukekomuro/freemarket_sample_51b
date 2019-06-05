@@ -17,4 +17,6 @@ class UsersController < ApplicationController
   end
   def show
   end
+  def myconfirmation
+  end
 end

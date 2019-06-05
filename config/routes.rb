@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       get 'address_registration'
       get 'card_registration'
       get 'registration_complete'
+      get 'myconfirmation'
     end
   end
 
