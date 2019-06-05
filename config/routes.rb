@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :users do
     collection do
       get 'login'
+      get 'logout'
       get 'signup'
       get 'user_registration'
       get 'sms_confirmation'
