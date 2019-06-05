@@ -9,4 +9,6 @@ class Product < ApplicationRecord
   belongs_to :prefecture
   belongs_to :delivery_day
   belongs_to :trading_evaluation
+
+  has_many :images
 end
