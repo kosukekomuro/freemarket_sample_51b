@@ -4,6 +4,8 @@
 @import 'config/common';
 @import 'mixin/main-header';
 @import 'mixin/button';
+@import 'mixin/text';
+@import 'mixin/products-show';
 @import 'modules/products';
 @import 'modules/cards';
 @import "font-awesome";
@@ -17,4 +19,9 @@
 @import "modules/signup-header";
 @import 'modules/product-create-link';
 @import 'modules/slick';
+@import 'modules/myprofile-edit';
+@import 'modules/logout';
 @import 'base/product/index';
+@import 'base/product/buy';
+@import 'base/product/show';
+

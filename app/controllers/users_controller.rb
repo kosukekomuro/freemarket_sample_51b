@@ -1,7 +1,13 @@
 class UsersController < ApplicationController
   before_action :require_sign_in, only: :registration_complete
 
+  def show
+  end
+
   def login
+  end
+
+  def logout
   end
 
   def sign_up

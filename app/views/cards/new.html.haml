@@ -1,0 +1,53 @@
+.header
+
+.wrapper
+  = render "/layouts/sidemenu"
+
+  .main-contents
+    %main.sign-up__main
+      %section.sign-up__main__container
+        %h2.sign-up__main__container__head クレジットカード情報入力
+        = form_with url: cards_path, method: "post" do |f|
+          .sign-up__main__container__body
+            .sign-up__main__container__body__form
+              .form-group
+                %label.form-label カード番号
+                %span.form-require 必須
+                = f.number_field :card_number, placeholder: "半角数字のみ", class: "input-default"
+                %ul.signup-card-list
+                  %li
+                    = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/visa.svg?3856598694", class: "signup-card-list__visa"
+                  %li
+                    = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/master-card.svg?3856598694", class: "signup-card-list__master-card"
+                  %li
+                    = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/saison-card.svg?3856598694", class: "signup-card-list__saison-card"
+                  %li
+                    = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/jcb.svg?3856598694", class: "signup-card-list__jcb"
+                  %li
+                    = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/american_express.svg?3856598694", class: "signup-card-list__american_express"
+                  %li
+                    = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/dinersclub.svg?3856598694", class: "signup-card-list__dinersclub"
+                  %li
+                    = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/discover.svg?3856598694", class: "signup-card-list__discover"
+              .form-group
+                %label.form-label 有効期限
+                %span.form-require 必須
+                %br
+                .select-wrap.year-month
+                  = f.select :valid_month, [ ["---", "---"], ["1", "1"], ["2", "2"]], {}, {class: "select-default"}
+                  %i.fa.fa-chevron-down
+                %span 月
+                %br
+                .select-wrap.year-month
+                  = f.select :valid_year, [ ["---", "---"], ["2020", "2020"], ["2019", "2019"], ["2018", "2018"]], {}, {class: "select-default"}
+                  %i.fa.fa-chevron-down
+                %span 年
+              .form-group
+                %label.form-label セキュリティコード
+                %span.form-require 必須
+                = f.number_field :security_code, placeholder: "カード背面4桁もしくは3桁の番号", class: "input-default"
+              .security-code-message
+                .security-code-message__text
+                  %span.security-code-message__text__question ?
+                  カード裏面の番号とは？
+              = f.submit "追加する", class: "btn-default btn-red", id: "card-registration__btn"
