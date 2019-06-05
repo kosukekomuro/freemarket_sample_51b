@@ -3,3 +3,13 @@
   background:$back-color;
   text-decoration: none;
 }
+
+@mixin hover-link($font-color, $text-decoration:underline){
+  color:$font-color;
+
+  &:hover{
+    color:$font-color;
+    opacity: 0.7;
+    text-decoration: $text-decoration;
+  }
+}

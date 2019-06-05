@@ -1,0 +1,368 @@
+// flex-boxでslickを使用するための記載
+* {
+  min-height:0;
+  min-width : 0;
+}
+
+.product-show-wrap{
+  padding: 40px 1px;
+}
+
+.product-showbox{
+  width: 680px;
+  margin: 0 auto;
+  padding: 24px 40px;
+  background-color: $background-white;
+  text-align: center;
+}
+
+.product-showbox-contents{
+  display: flex;
+  justify-content: space-between;
+  margin: 16px 0 0 0;
+  font-size: 14px;
+}
+
+.product-showbox-contents-slick{
+  max-width: 300px;
+
+  &__main-image{
+    &--size{
+      width: 300px;
+      height: 300px;
+    }
+  }
+
+  &__thumbnail-image{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    &--size{
+      width: 60px;
+      height: 60px;
+      opacity: 0.4;
+    }
+  }
+}
+
+// 画像スライドサムネイルの現在表示しているスライドの透明度を変更
+.thumbnail-current{
+  opacity: 1;
+}
+
+.product-showbox-contents-detail-seller{
+  @include product-show-contents;
+
+  &__contents{
+    &--name{
+      @include hover-link($button-blue);
+    }
+  }
+}
+
+.product-showbox-contents-detail-seller-evaluation{
+  &__icon-good{
+    color: #FF6699;
+  }
+
+  &__icon-normal{
+    color: #FF9900;
+  }
+
+  &__icon-bad{
+    color:#00CCFF;
+  }
+}
+
+.product-showbox-contents-detail-category{
+  @include product-show-contents;
+  border-top: 0 ;
+
+  &__contents{
+    &--link{
+      @include hover-link($button-blue);
+
+      &:first-child{
+        i{
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.product-showbox-contents-detail-brand{
+  @include product-show-contents;
+  border-top: 0 ;
+
+  &__contents{
+    &--link{
+      @include hover-link($button-blue);
+    }
+  }
+}
+
+.product-showbox-contents-detail-size{
+  @include product-show-contents;
+  border-top: 0 ;
+}
+
+.product-showbox-contents-detail-condition{
+  @include product-show-contents;
+  border-top: 0 ;
+}
+
+.product-showbox-contents-detail-delivery-fee{
+  @include product-show-contents;
+  border-top: 0 ;
+}
+
+.product-showbox-contents-detail-delivery-method{
+  @include product-show-contents;
+  border-top: 0 ;
+}
+
+.product-showbox-contents-detail-delivery-source-area{
+  @include product-show-contents;
+  border-top: 0 ;
+
+  &__contents{
+    &--link{
+      @include hover-link($button-blue, none);
+    }
+  }
+}
+
+.product-showbox-contents-detail-delivery-day{
+  @include product-show-contents;
+  border-top: 0 ;
+}
+
+.product-showbox-payment{
+  margin: 24px 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: bottom;
+
+  &__price{
+    @include text-format(50px);
+
+    &--option-left{
+      @include text-format(10px, normal, 400);
+    }
+
+    &--option-right{
+      @include text-format(16px, normal, 400);
+    }
+  }
+}
+
+.product-showbox-purchase{
+  margin: 16px 0 0;
+  display: block;
+  height: 60px;
+  @include text-format(24px);
+  line-height: 60px;
+  color: $text-white;
+  background-color: $button-red;
+
+    &:hover{
+      @include hover-button-color($text-white, $button-red);
+    }
+}
+
+.product-showbox-description{
+  margin: 32px 0 0;
+}
+
+.product-showbox-user-menu{
+  position: relative;
+  margin: 20px 0 0;
+  display: flex;
+  align-items: center;
+
+  &__likes{
+    padding: 8px 16px;
+    border-radius: 40px;
+    transition: all ease-out .3s;
+    border: 1px solid #f5f5f5;
+    background: #f5f5f5;
+
+    &:hover{
+      cursor : pointer;
+    }
+  }
+
+  &__improper-report{
+    padding: 8px 16px;
+    margin: 0 0 0 16px;
+    border-radius: 40px;
+    transition: all ease-out .3s;
+    border: 1px solid #f5f5f5;
+    background: #f5f5f5;
+
+    &:hover{
+      cursor : pointer;
+    }
+  }
+
+  &__initiatives{
+    position: absolute;
+    right: 0;
+    @include hover-link($button-blue, none);
+  }
+}
+
+.product-show-comment{
+  margin: 10px auto 0;
+  padding: 24px 40px;
+  width: 680px;
+  background-color: $background-white;
+}
+
+.product-show-comment-contents{
+  display: flex;
+  margin: 0 0 20px 0;
+
+  &__detail{
+    margin: 0 0 0 15px;
+
+    &--name{
+      @include text-format(16px);
+    }
+  }
+}
+
+.product-message{
+  padding: 16px;
+  background-color: #EEF0F4;
+  border-radius: 15px;
+  line-height: 1.5;
+  word-break: break-all;
+
+  &__sub-contents{
+    margin: 10px 0 0 0;
+    display:flex;
+    justify-content: space-between;
+    color: #AAA;
+
+    &--report{
+      &:hover{
+        cursor : pointer;
+      }
+    }
+  }
+}
+
+.product-show-comment-warning{
+  margin: 30px 0 0 0;
+  padding: 8px;
+  background-color: #FFF6DE;
+  font-size: 14px;
+}
+
+.product-show-comment-form{
+  margin: 8px 0 0;
+
+  &__input{
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-height: 104px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background: #fff;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  &__button{
+    width: 100%;
+    height: 50px;
+    margin: 8px 0 0;
+    text-align: center;
+    @include hover-button-color($text-white, #aaa);
+    border: 1px solid #aaa;
+  }
+}
+
+.product-show-other-product{
+  margin: 30px auto 30px;
+  width: 680px;
+  display: flex;
+  justify-content: space-between;
+
+  &__previous{
+    @include hover-link($button-blue);
+  }
+
+  &__next{
+    @include hover-link($button-blue);
+  }
+}
+
+.product-show-social-media{
+  margin: 30px auto 30px;
+  padding: 33px 0 24px;
+  width: 680px;
+  display: flex;
+  background-color: $background-white;
+  justify-content: center;
+}
+
+.show-other-product{
+  margin: 30px auto 30px;
+  padding: 33px 0 24px;
+  width: 680px;
+
+  &__head{
+    &--link{
+      @include hover-link($button-blue);
+    }
+  }
+}
+
+.show-other-product-item{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  &__link{
+    width: 213px;
+    background: #fff;
+
+    &:hover{
+      text-decoration: none;
+    }
+  }
+
+  &__img{
+    width: 213px;
+    height: 220px;
+  }
+
+  &__name{
+    margin: 15px 0 0 0;
+    padding: 0 16px;
+  }
+}
+
+.show-other-product-item-info-price{
+  margin: 30px 0 0 0;
+  padding: 0 16px;
+
+  &__main{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &--red{
+      color: #FF3399;
+    }
+  }
+
+  &__sub{
+    font-size: 10px;
+  }
+}

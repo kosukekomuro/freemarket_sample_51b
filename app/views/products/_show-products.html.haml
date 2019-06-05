@@ -1,0 +1,20 @@
+.show-other-product
+  %h2.show-other-product__head
+    = link_to "ふむさんのそのほかの出品", root_path, class: "show-other-product__head--link"
+  .show-other-product-item
+    -# サーバー再度実装時に変更
+    - 6.times do
+      = link_to root_path, class: "show-other-product-item__link" do
+        = image_tag ("https://i.gyazo.com/982ec6e1685d7458dbd5c0f372d30e73.png"), class: "show-other-product-item__img"
+        %p.show-other-product-item__name
+          Y&T／アースシェイカー
+        .show-other-product-item-info-price
+          %p.show-other-product-item-info-price__main
+            ¥ 1300
+            -# サーバーサイド実装時に変更(likes機能)
+            - if true
+              %span.show-other-product-item-info-price__main
+                %i.fa.fa-heart.show-other-product-item-info-price__main--red
+                = 1
+          %p.show-other-product-item-info-price__sub
+            (税込)
