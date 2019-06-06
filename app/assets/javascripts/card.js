@@ -22,7 +22,7 @@ $(function(){
           dataType: 'json',
         })
         .done(function(){
-          window.location.href = 'http://localhost:3000/cards';
+          window.location.href = location.href.replace( '/new', '' );
         })
         .fail(function(){
           alert('fail');

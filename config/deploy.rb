@@ -29,10 +29,14 @@ set :default_env, {
 
 set :linked_files, %w{ config/secrets.yml }
 
+set :unicorn_stop_sleep_time, 3
+
 after 'deploy:publishing', 'deploy:restart'
 namespace :deploy do
   task :restart do
-    invoke 'unicorn:restart'
+    invoke 'unicorn:stop'
+    execute :sleep, fetch(:unicorn_stop_sleep_time)
+    invoke 'unicorn:start'
   end
 
   desc 'upload secrets.yml'
