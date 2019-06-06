@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root "products#index"
   resources :products, only: [:index, :new, :create, :show] do
@@ -22,7 +21,7 @@ Rails.application.routes.draw do
     collection do
       get 'login'
       get 'logout'
-      get 'signup'
+      get 'sign_up'
       get 'user_registration'
       get 'sms_confirmation'
       get 'address_registration'
@@ -31,5 +30,7 @@ Rails.application.routes.draw do
       get 'myconfirmation'
     end
   end
+
+  resources :sessions, only: [:create, :destroy]
 
 end

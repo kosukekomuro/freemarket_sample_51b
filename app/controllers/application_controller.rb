@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
+  include SessionsHelper
   before_action :basic_auth, if: :production?
+  before_action :current_user
   protect_from_forgery with: :exception
 
   private

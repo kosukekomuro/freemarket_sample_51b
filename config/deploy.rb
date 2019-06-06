@@ -23,14 +23,20 @@ set :default_env, {
     AWS_SECRET_ACCESS_KEY: ENV["AWS_SECRET_ACCESS_KEY"],
     BASIC_AUTH_USER: ENV["BASIC_AUTH_USER"],
     BASIC_AUTH_PASSWORD: ENV["BASIC_AUTH_PASSWORD"]
+    PAYJP_PUBLIC_KEY: ENV["PAYJP_PUBLIC_KEY"],
+    PAYJP_SECRET_KEY: ENV["PAYJP_SECRET_KEY"]
   }
 
 set :linked_files, %w{ config/secrets.yml }
 
+set :unicorn_stop_sleep_time, 3
+
 after 'deploy:publishing', 'deploy:restart'
 namespace :deploy do
   task :restart do
-    invoke 'unicorn:restart'
+    invoke 'unicorn:stop'
+    execute :sleep, fetch(:unicorn_stop_sleep_time)
+    invoke 'unicorn:start'
   end
 
   desc 'upload secrets.yml'

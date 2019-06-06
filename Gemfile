@@ -27,7 +27,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
@@ -83,5 +83,5 @@ gem 'mini_magick'
 gem 'fog-aws'
 gem 'font-awesome-rails'
 gem 'ancestry', git: "https://github.com/stefankroes/ancestry.git"
-gem 'devise'
+gem 'active_hash'
 gem 'payjp'

@@ -1,5 +1,4 @@
 class CardsController < ApplicationController
-  require 'payjp'
 
   before_action :access_payjp, only: [:index, :create, :destroy]
   before_action :set_user, only: [:index, :create, :destroy]
@@ -53,6 +52,7 @@ class CardsController < ApplicationController
   end
 
   def access_payjp
+    require 'payjp'
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
   end
 
