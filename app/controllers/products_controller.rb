@@ -83,7 +83,6 @@ class ProductsController < ApplicationController
       redirect_to action: :index
   end
 
-  # private
   def set_pickup_category(first, second, third, fourth)
     @category_first = Category.find(first)
     @category_first_items = Product.where(category_id: first)
