@@ -1,5 +1,23 @@
 .categry-show-wrap{
   padding: 30px;
+
+  &__head{
+    width: 1020px;
+    margin: 0 auto;
+    padding-top: 20px;
+  }
+
+  &__foot{
+    width: 1020px;
+    margin: 0 auto;
+    text-align: center;
+
+    &--message{
+      padding:10px 0;
+      color: $text-white;
+      background-color: $button-red;
+    }
+  }
 }
 
 .show-category-listbox{
@@ -15,12 +33,6 @@
       @include hover-link($button-blue)
     }
   }
-}
-
-.show-category-box{
-  width: 1020px;
-  margin: 0 auto;
-  padding-top: 20px;
 }
 
 .show-category-item{
