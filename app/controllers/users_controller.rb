@@ -1,13 +1,11 @@
 class UsersController < ApplicationController
   before_action :require_sign_in, only: :registration_complete
+  layout 'users'
 
   def show
   end
 
   def login
-  end
-
-  def logout
   end
 
   def sign_up
@@ -75,4 +73,5 @@ class UsersController < ApplicationController
       ]
     )
   end
+
 end

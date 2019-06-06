@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    reset_session
+    session[:user_attributes] = nil
     @current_user = nil
     redirect_to login_users_path
   end
