@@ -12,6 +12,7 @@
       - 80.times do
         = link_to root_path, class: "show-category-item__link" do
           = image_tag ("https://i.gyazo.com/982ec6e1685d7458dbd5c0f372d30e73.png"), class: "show-category-item__img"
+          -# サーバサイド実装時に変更(売り切れ判定)
           - if (true)
             .show-category-item__sold
               .show-category-item__sold--msg
@@ -22,6 +23,7 @@
             .show-category-item-info-price
               %p.show-category-item-info-price__main
                 ¥ 5000
+                -# サーバサイド実装時に変更(いいね機能)
                 - if (true)
                   %span.show-category-item-info-price__main
                     %i.fa.fa-heart.show-category-item-info-price__main--icon-red

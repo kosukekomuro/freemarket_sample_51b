@@ -54,3 +54,15 @@
 .show-category-item-info-price{
   @include category-box-deteil-info-price;
 }
+
+.show-category-title{
+  width: 1020px;
+  margin: 0 auto;
+
+  text-align: center;
+  &__message{
+    padding:10px 0;
+    color: $text-white;
+    background-color: $button-red;
+  }
+}
