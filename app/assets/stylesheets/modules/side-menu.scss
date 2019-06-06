@@ -1,13 +1,13 @@
 .side-menu {
   float: left;
-  background-color: #FFF;
   width: 250px;
-  height: 686px;
   margin-top: 24px;
   margin-left: 210px;
   .mypage {
     padding-left: 0;
     list-style: none;
+    background-color: #FFF;
+    height: 686px;
     .item {
       height: 49px;
       line-height: 49px;

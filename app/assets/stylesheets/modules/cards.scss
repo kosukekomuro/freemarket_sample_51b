@@ -4,7 +4,7 @@ body {
 
 .wrapper {
   width: 100%;
-  .main-contents {
+  .card__main-contents {
     float: left;
     background-color: #FFF;
     width: 700px;
@@ -109,5 +109,8 @@ body {
         }
       }
     }
+  }
+  .clear {
+    clear: both;
   }
 }
