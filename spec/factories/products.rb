@@ -10,9 +10,10 @@ FactoryBot.define do
     size                  {create(:size)}
     condition_id          {"1"}
     delivery_method_id    {"1"}
-    prefecture            {create(:prefecture)}
+    prefecture_id         {"1"}
     delivery_day          {create(:delivery_day)}
     description           {"セーターです。"}
+    delivery_fee_burden_id{"1"}
   end
 
 end

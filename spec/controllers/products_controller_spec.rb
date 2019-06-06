@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 describe ProductsController do
+  categories = FactoryBot.create_list(:category, 13)
+  brands = FactoryBot.create_list(:brand, 6564)
+  products = FactoryBot.create(:product)
   describe 'GET #index' do
-    categories = FactoryBot.create_list(:category, 13)
-    brands = FactoryBot.create_list(:brand, 6564)
-    products = FactoryBot.create(:product)
     before do
       get :index
     end
@@ -34,6 +34,20 @@ describe ProductsController do
     end
     it "assigns the requested product to @category_first_fourth" do
       expect(assigns(:category_fourth_items)).to eq []
+    end
+  end
+  describe 'POST #pay' do
+    before do
+      post :pay
+    end
+    it "redirect to payjp" do
+      expect(response).to redirect_to('http://test.host/')
+    end
+    it "assigns the requested cards to @product" do
+      expect(assigns(:product)).to eq products
+    end
+    it "assigns the requested cards to @user" do
+      expect(assigns(:user)).to eq products.seller
     end
   end
 end
