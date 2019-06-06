@@ -54,11 +54,11 @@ ActiveRecord::Schema.define(version: 2019_06_04_045115) do
   end
 
   create_table "delivery_methods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "delivery_fee_burden_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "ancestry"
     t.string "name"
-    t.index ["ancestry"], name: "index_delivery_methods_on_ancestry"
+    t.index ["delivery_fee_burden_id"], name: "index_delivery_methods_on_delivery_fee_burden_id"
   end
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 2019_06_04_045115) do
     t.bigint "size_id"
     t.bigint "brand_id"
     t.bigint "condition_id", null: false
+    t.bigint "delivery_fee_burden_id", null: false
     t.bigint "delivery_method_id", null: false
     t.bigint "prefecture_id", null: false
     t.bigint "delivery_day_id", null: false
@@ -90,6 +91,7 @@ ActiveRecord::Schema.define(version: 2019_06_04_045115) do
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["condition_id"], name: "index_products_on_condition_id"
     t.index ["delivery_day_id"], name: "index_products_on_delivery_day_id"
+    t.index ["delivery_fee_burden_id"], name: "index_products_on_delivery_fee_burden_id"
     t.index ["delivery_method_id"], name: "index_products_on_delivery_method_id"
     t.index ["name"], name: "index_products_on_name"
     t.index ["prefecture_id"], name: "index_products_on_prefecture_id"

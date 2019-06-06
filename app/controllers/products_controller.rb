@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
     get_category_grandchildren if params[:category_ancestry]
     get_category_size if params[:category_size]
     @product = Product.new
-    render layout: 'product-new'
+    render :layout => 'product-new'
   end
 
   def create
