@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 
-  before_action :set_product, only: [:buy, :create]
-  before_action :set_user, only: [:create]
+  before_action :set_product, only: [:buy, :pay]
+  before_action :set_user, only: [:pay]
 
   def index
     set_pickup_category(1,2,3,7)
@@ -30,6 +30,16 @@ class ProductsController < ApplicationController
   end
     #商品の購入確認を行う
   def buy
+  end
+
+  def pay
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    charge = Payjp::Charge.create(
+      amount: @product.price,
+      customer: @user.card_id,
+      currency: 'jpy',
+    )
+    redirect_to action: :index
   end
 
   private
@@ -63,26 +73,6 @@ class ProductsController < ApplicationController
     respond_to do |format|
       format.json
     end
-  end
-
-  def create
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-    charge = Payjp::Charge.create(
-      amount: @product.price,
-      customer: @user.card_id,
-      currency: 'jpy',
-    )
-    redirect_to action: :index
-  end
-
-  def create
-      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-      charge = Payjp::Charge.create(
-        amount: @product.price,
-        customer: @user.card_id,
-        currency: 'jpy',
-      )
-      redirect_to action: :index
   end
 
   def set_pickup_category(first, second, third, fourth)

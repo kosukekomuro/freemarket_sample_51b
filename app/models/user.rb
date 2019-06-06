@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :prefecture
   has_secure_password
   has_one :user_detail
   has_one :user_address

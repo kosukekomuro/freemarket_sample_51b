@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     collection do
       get 'search'
       get 'buy'
+      post 'pay'
     end
   end
 
