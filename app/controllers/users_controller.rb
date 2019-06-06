@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_sign_in, only: :registration_complete
+  layout 'users'
 
   def show
   end
