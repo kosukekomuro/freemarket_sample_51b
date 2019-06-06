@@ -1,0 +1,53 @@
+= render "products/product-create-link"
+= render "products/main-header"
+.flex-wrapper
+  = render "/layouts/sidemenu"
+  .mycontents-myconf
+    %h2.myconf-title 本人情報の登録
+    = form_with model: @user, class: "form-myconf", local: true do |f|
+      .myconf-subtitle
+        %p
+          お客さまの本人情報をご登録ください。
+          %br 登録されたお名前・生年月日を変更する場合、本人確認書類の提出が必要になります。
+        .myconf-right-link
+          = link_to root_path, class: "link-brue-myconf" do
+            .display-frex-myconf
+              %h4 本人確認書類のアップロードについて
+              %i.fas.fa-chevron-right
+      .margin-myconf
+        = f.label :お名前, class: "myconf-bold"
+        %p 小室洸介
+      .form-group-myconf
+        = f.label :お名前カナ, class: "myconf-bold"
+        %p コムロコウスケ
+      .form-group-myconf
+        = f.label :生年月日, class: "myconf-bold"
+        %p 1996/11/3
+      .form-group-myconf
+        = f.label :郵便番号, class: "myconf-bold"
+        %span.arbitrary-form 任意
+        = f.text_field :adress, placeholder: "例）1234567", class: "input-myconf-default"
+      .form-group-myconf.myconf-relative
+        = f.label :都道府県, class: "myconf-bold"
+        %span.arbitrary-form 任意
+        = f.collection_select(:prefecture_id, Prefecture.all, :id, :prefecture, { prompt: "---" } , { class: "select-myconf-default"} )
+        %i.fas.fa-chevron-down.myconf-absolute
+      .form-group-myconf
+        = f.label :市町村, class: "myconf-bold"
+        %span.arbitrary-form 任意
+        = f.text_field :adress, placeholder: "例)横浜市緑区", class: "input-myconf-default"
+      .form-group-myconf
+        = f.label :番地, class: "myconf-bold"
+        %span.arbitrary-form 任意
+        = f.text_field :adress, placeholder: "例）青山1-1-1", class: "input-myconf-default"
+      .form-group-myconf
+        = f.label :建物名, class: "myconf-bold"
+        %span.arbitrary-form 任意
+        = f.text_field :adress, placeholder: "例）柳ビル103", class: "input-myconf-default"
+      = f.submit "登録する", class: "btn-myconf-default"
+      .myconf-right-link.myconf-link-setting
+        = link_to root_path, class: "link-brue-myconf" do
+          .display-frex-myconf
+            %h4 本人情報の登録について
+            %i.fas.fa-chevron-right
+= render "products/main-footer"
