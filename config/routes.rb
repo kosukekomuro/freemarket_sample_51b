@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   resources :cards, only: [:index, :new, :create, :destroy] do
   end
 
-  resources :users do
+  resources :users, only: [:show, :create] do
     collection do
       get 'login'
       get 'logout'
