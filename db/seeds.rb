@@ -276,10 +276,6 @@ toy_art.children.create([{name: "陶芸"},{name: "ガラス"},{name: "金属芸"
 toy_artgoods.children.create([{name: "画材"},{name: "額縁"},{name: "その他"}])
 toy_other.children.create([{name: "トランプ"},{name: "UNO"},{name: "ダーツ"},{name: "その他"}])
 
-
-
-
-
 cosmetics_base.children.create([{name: "ファンデーション"},{name: "化粧下地"},{name: "コントロールカラー"},{name: "その他"}])
 cosmetics_make.children.create([{name: "アイシャドウ"},{name: "口紅"},{name: "リップクロス"},{name: "その他"}])
 cosmetics_nail.children.create([{name: "ネイルカラー"},{name: "カラージェル"},{name: "ネイルベースコート"},{name: "その他"}])
@@ -292,7 +288,6 @@ cosmetics_relux.children.create([{name: "エッセンシャルオイル"},{name:
 cosmetics_diet.children.create([{name: "ダイエット食品"},{name: "エクササイズ食品"},{name: "体重計"},{name: "その他"}])
 cosmetics_other.children.create([{name: "健康用品"},{name: "看護/介護用品"},{name: "救護/衛生用品"},{name: "その他"}])
 
-
 electronics_smartphone.children.create([{name: "スマートフォン本体"},{name: "バッテリー/充電器"},{name: "携帯電話本体"},{name: "その他"}])
 electronics_accessory.children.create([{name: "Android用ケース"},{name: "iphone用ケース"},{name: "カバー"},{name: "その他"}])
 electronics_pc.children.create([{name: "タブレット"},{name: "ノートPC"},{name: "デスクトップPC"},{name: "その他"}])
@@ -302,7 +297,6 @@ electronics_audio.children.create([{name: "ポータブルプレーヤー"},{nam
 electronics_beauty.children.create([{name: "ヘアドライヤー"},{name: "ヘアアイコン"},{name: "美容機器"},{name: "その他"}])
 electronics_cooler.children.create([{name: "エアコン"},{name: "空気清浄機"},{name: "加湿器"},{name: "その他"}])
 electronics_lifestyle.children.create([{name: "冷蔵庫"},{name: "洗濯機"},{name: "炊飯器"},{name: "その他"}])
-
 
 sport_golf.children.create([{name: "クラブ"},{name: "バッグ"},{name: "アクセサリー"},{name: "その他"}])
 sport_fish.children.create([{name: "ロッド"},{name: "リール"},{name: "ルアー用品"},{name: "その他"}])
@@ -357,13 +351,11 @@ other_antique.children.create([{name: "雑貨"},{name: "工芸品"},{name: "家�
 other_stationery.children.create([{name: "筆記具"},{name: "ノート/メモ帳"},{name: "テープ/マスキングテープ"},{name: "その他"}])
 other_office.children.create([{name: "オフィス用品一途"},{name: "オフィス家具"},{name: "店舗用品"},{name: "その他"}])
 
-
-prefecture = Prefecture.create([{ prefecture: "北海道"}, { prefecture: "青森"}, { prefecture: "岩手"},  {prefecture: "宮城"}, {prefecture: "秋田"}, { prefecture: "山形"}, { prefecture: "福島"}, { prefecture: "茨城"}, { prefecture: "栃木"}, { prefecture: "群馬"}, { prefecture: "埼玉"}, { prefecture: "千葉"}, { prefecture: "東京"},  { prefecture: "神奈川"}, { prefecture: "新潟"}, {prefecture: "富山"}, { prefecture: "石川"}, { prefecture: "福井"}, {prefecture: "山梨"}, { prefecture: "長野"}, { prefecture: "岐阜"}, { prefecture: "静岡"}, { prefecture: "愛知"}, { prefecture: "三重"}, { prefecture: "滋賀"}, { prefecture: "京都"}, { prefecture: "大阪"}, { prefecture: "兵庫"}, { prefecture: "奈良"}, { prefecture: "和歌山"}, { prefecture: "鳥取"},{ prefecture: "島根"}, { prefecture: "岡山"}, { prefecture: "広島"}, { prefecture: "山口"}, { prefecture: "徳島"}, { prefecture: "香川"}, { prefecture: "愛媛"}, { prefecture: "高知"}, { prefecture: "福岡"}, { prefecture: "佐賀"}, { prefecture: "大分"}, { prefecture: "宮崎"}, { prefecture: "長崎"}, { prefecture: "熊本"} , { prefecture: "鹿児島"}, { prefecture: "沖縄"}, {prefecture: "その他"}])
-condition = Condition.create([{ condition: "新品、未使用"}, { condition: "未使用に近い"}, { condition: "目立った傷や汚れなし"}, { condition: "やや傷や汚れあり"}, { condition: "傷や汚れあり"}, { condition: "全体的に状態が悪い"}])
-delivery_day = DeliveryDay.create([{ day: "1~2日で発送"}, { day: "2~3日で発送"}, { day: "4~7日で発送"}])
-
 size = Size.create([{size: "XXS以下"},{size: "XS(SS以下)"},{size: "S"},{size: "M"},{size: "L"},{size: "XL(LL)"},{size: "2XL(3L)"},{size: "3XL(4L)"},{size: "4XL(5L)以上"},{size: "FREE SIZE"},{size: "20cm以下"},{size: "20.5cm"},{size: "21cm"},{size: "21.5cm"},{size: "22cm"},{size: "22.5cm"},{size: "23cm"},{size: "23.5cm"},{size: "23.5cm以下"},{size: "24cm"},{size: "24.5cm"},{size: "25cm"},{size: "25.5cm"},{size: "26cm"},{size: "26.5cm"},{size: "27cm"},{size: "27.5cm以上"},{size: "27.5cm"},{size: "28cm"},{size: "28.5cm"},{size: "29cm"},{size: "29.5cm"},{size: "30cm"},{size: "30.5cm"},{size: "31cm以上"},{size: "60cm"},{size: "70cm"},{size: "80cm"},{size: "90cm"},{size: "95cm"},{size: "100cm"},{size: "110cm"},{size: "120cm"},{size: "130cm"},{size: "140cm"},{size: "150cm"},{size: "160cm"},{size: "10.5cm以下"},{size: "11cm・11.5cm"},{size: "12cm・12.5cm"},{size: "13cm・13.5cm"},{size: "14cm・14.5cm"},{size: "15cm・15.5cm"},{size: "16cm・16.5cm"},{size: "17cm以上"},{size: "12インチ"},{size: "13インチ"},{size: "14インチ"},{size: "15インチ"},{size: "16インチ"},{size: "17インチ"},{size: "18インチ"},{size: "19インチ"},{size: "20インチ"},{size: "21インチ"},{size: "22インチ"},{size: "23インチ"},{size: "24インチ"},{size: "XSサイズ以下"},{size: "Sサイズ"},{size: "Mサイズ"},{size: "Lサイズ"},{size: "XLサイズ"},{size: "XXLサイズ以上"},{size: "フリーサイズ"},{size: "子ども用"}])
 
+condition = Condition.create([{ condition: "新品、未使用"}, { condition: "未使用に近い"}, { condition: "目立った傷や汚れなし"}, { condition: "やや傷や汚れあり"}, { condition: "傷や汚れあり"}, { condition: "全体的に状態が悪い"}])
+
+delivery_day = DeliveryDay.create([{ day: "1~2日で発送"}, { day: "2~3日で発送"}, { day: "4~7日で発送"}])
 
 (158..174).each do |number|
   category_size = CategorySize.create([{category_id: "#{number}", size_id: 1}, {category_id: "#{number}", size_id: 2}, {category_id: "#{number}", size_id: 3},{category_id: "#{number}", size_id: 4},{category_id: "#{number}", size_id: 5}, {category_id: "#{number}", size_id: 6}, {category_id: "#{number}", size_id: 7}, {category_id: "#{number}", size_id: 8}, {category_id: "#{number}", size_id: 9}, {category_id: "#{number}", size_id: 10}])
@@ -399,14 +391,13 @@ end
   category_size = CategorySize.create([{category_id: "#{number}", size_id: 1}, {category_id: "#{number}", size_id: 2}, {category_id: "#{number}", size_id: 3},{category_id: "#{number}", size_id: 4},{category_id: "#{number}", size_id: 5}, {category_id: "#{number}", size_id: 6}, {category_id: "#{number}", size_id: 7}, {category_id: "#{number}", size_id: 8}, {category_id: "#{number}", size_id: 9}, {category_id: "#{number}", size_id: 10}])
 end
 
-
 (218..226).each do |number|
   category_size = CategorySize.create([{category_id: "#{number}", size_id: 11}, {category_id: "#{number}", size_id: 12}, {category_id: "#{number}", size_id: 13},{category_id: "#{number}", size_id: 14},{category_id: "#{number}", size_id: 15}, {category_id: "#{number}", size_id: 16}, {category_id: "#{number}", size_id: 17}, {category_id: "#{number}", size_id: 18}, {category_id: "#{number}", size_id: 20}, {category_id: "#{number}", size_id: 21}, {category_id: "#{number}", size_id: 22}, {category_id: "#{number}", size_id: 23}, {category_id: "#{number}", size_id: 24}, {category_id: "#{number}", size_id: 25}, {category_id: "#{number}", size_id: 26}, {category_id: "#{number}", size_id: 27}])
 end
+
 (379..386).each do |number|
   category_size = CategorySize.create([{category_id: "#{number}", size_id: 19}, {category_id: "#{number}", size_id: 20}, {category_id: "#{number}", size_id: 21},{category_id: "#{number}", size_id: 22},{category_id: "#{number}", size_id: 23}, {category_id: "#{number}", size_id: 24}, {category_id: "#{number}", size_id: 25}, {category_id: "#{number}", size_id: 26}, {category_id: "#{number}", size_id: 28}, {category_id: "#{number}", size_id: 29}, {category_id: "#{number}", size_id: 30}, {category_id: "#{number}", size_id: 31}, {category_id: "#{number}", size_id: 32}, {category_id: "#{number}", size_id: 33}, {category_id: "#{number}", size_id: 34}, {category_id: "#{number}", size_id: 35}])
 end
-
 
 (469..471).each do |number|
   category_size = CategorySize.create([{category_id: "#{number}", size_id: 36}, {category_id: "#{number}", size_id: 37}, {category_id: "#{number}", size_id: 38},{category_id: "#{number}", size_id: 39},{category_id: "#{number}", size_id: 40}])
