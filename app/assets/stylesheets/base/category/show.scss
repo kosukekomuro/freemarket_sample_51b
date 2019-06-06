@@ -1,0 +1,44 @@
+.categry-show-wrap{
+  padding: 30px;
+}
+
+.show-category-listbox{
+  display: flex;
+  width: 1020px;
+  margin: 0 auto;
+
+  &__list{
+    margin-right: 20px;
+
+    &--button{
+      font-size: 14px;
+      @include hover-link($button-blue)
+    }
+  }
+}
+
+.show-category-box{
+  width: 1020px;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+.show-category-item{
+  @include one-product(188px, 15px);
+  width: 1020px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  
+
+  &__link{
+    margin: 0 16px 30px 0;
+  }
+}
+
+.show-category-item-info{
+  @include category-box-deteil-info;
+}
+
+.show-category-item-info-price{
+  @include category-box-deteil-info-price;
+}

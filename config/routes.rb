@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :categories, only: [:show]
+
   resource :mypages, only: [:show] do
     collection do
       get 'index'

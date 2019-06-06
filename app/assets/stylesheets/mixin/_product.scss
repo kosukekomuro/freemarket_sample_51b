@@ -1,0 +1,111 @@
+@mixin one-product($width, $sold-font-size:20px ,$sold-figure-width: $width - 113px){
+  display: flex;
+  justify-content: space-between;
+  margin: 15px auto;
+  
+  &__link{
+    position: relative;
+    width: $width;
+    background: #fff;
+
+    &:hover{
+      text-decoration: none;
+    }
+  }
+
+  &__img{
+    width: $width;
+    height: $width;
+  }
+
+  &__sold{
+    z-index: 2;
+    width: $sold-figure-width;
+    height: $sold-figure-width;
+    position: absolute;
+    top: 0; 
+
+    &:after{
+      border-width: $sold-figure-width $sold-figure-width 0 0;
+      border-color: #ea352d transparent transparent transparent;
+      display: block;
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-style: solid;
+    }
+
+    &--msg{
+      font-size: $sold-font-size ; 
+      position: absolute;
+      top: 15px;
+      left: 0;
+      z-index: 1;
+      color: #fff;
+      transform: rotate(-45deg);
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+  }
+}
+
+@mixin category-box-deteil-info{
+  height: 110px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@mixin category-box-deteil-info-price{
+  &__main{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600;
+
+    &--icon-red{
+      color: #FFCCFF;
+      margin-right: 5px;
+    }
+
+    &--evaluation{
+      font-weight: 400;
+    }
+  }
+
+  &__sub{
+    font-size: 10px;
+  }
+}
+
+.main-fake-footer{
+  margin-top: 20px;
+}
+
+@mixin product-show-contents{
+  display:flex;
+  text-align: left;
+  border: 1px solid #f5f5f5;
+
+  &__title{
+    width: 117px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding:8px;
+    background-color: #fafafa;
+    border-collapse: collapse;
+    border-right: 1px solid #f5f5f5;
+  }
+
+  &__contents{
+    width: 172px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding:8px;
+  }
+}
