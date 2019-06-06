@@ -15,7 +15,7 @@
     %script{src: "https://js.pay.jp/", type: "text/javascript"}
   %body
     = render "shared/sell-product-create-link"
-    = render "shared/main-header"
+    = render "shared/main-header" , header_category_parents: @header_category_parents
     - if (breadcrumbs != [])
       .breadwrap
         = breadcrumbs separator: " &rsaquo; ", style: :ul, class: "breadwrap__ul"
