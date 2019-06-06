@@ -30,7 +30,7 @@
       .form-group-myconf.myconf-relative
         = f.label :都道府県, class: "myconf-bold"
         %span.arbitrary-form 任意
-        = f.collection_select(:prefecture_id, Prefecture.all, :id, :prefecture, { prompt: "---" } , { class: "select-myconf-default"} )
+        = f.collection_select(:prefecture_id, Prefecture.all, :id, :name, { prompt: "---" } , { class: "select-myconf-default"} )
         %i.fas.fa-chevron-down.myconf-absolute
       .form-group-myconf
         = f.label :市町村, class: "myconf-bold"
