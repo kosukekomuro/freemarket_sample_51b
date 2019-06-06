@@ -2,7 +2,7 @@
 .wrapper
   = render "/layouts/sidemenu"
 
-  .main-contents
+  .card__main-contents
     .content__head
       支払い方法
     .content__body
@@ -23,3 +23,4 @@
       = link_to '/', class: "payment" do
         %span 支払い方法について
         = fa_icon "angle-right"
+  .clear
