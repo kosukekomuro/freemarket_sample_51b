@@ -76,4 +76,8 @@ class UsersController < ApplicationController
       ]
     )
   end
+
+  def myconfirmation
+  end
+
 end

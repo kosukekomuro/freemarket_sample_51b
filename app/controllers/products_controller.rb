@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
     get_category_grandchildren if params[:category_ancestry]
     get_category_size if params[:category_size]
     @product = Product.new
-    render layout: 'product-new'
+    render :layout => 'product-new'
   end
 
   def create
@@ -74,20 +74,19 @@ class ProductsController < ApplicationController
     redirect_to action: :index
   end
 
-    def create
-        Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-        charge = Payjp::Charge.create(
-          amount: @product.price,
-          customer: @user.card_id,
-          currency: 'jpy',
-        )
-        redirect_to action: :index
-    end
+  def create
+      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+      charge = Payjp::Charge.create(
+        amount: @product.price,
+        customer: @user.card_id,
+        currency: 'jpy',
+      )
+      redirect_to action: :index
+  end
 
-    private
-    def set_pickup_category(first, second, third, fourth)
-        @category_first = Category.find(first)
-        @category_first_items = Product.where(category_id: first)
+  def set_pickup_category(first, second, third, fourth)
+    @category_first = Category.find(first)
+    @category_first_items = Product.where(category_id: first)
 
     @category_second = Category.find(second)
     @category_second_items = Product.where(category_id: second)
