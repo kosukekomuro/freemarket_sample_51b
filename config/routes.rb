@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   resource :mypages, only: [:show] do
     collection do
       get 'index'
+      get 'logout'
+      get 'myconfirmation'
     end
   end
 
@@ -20,14 +22,12 @@ Rails.application.routes.draw do
   resources :users do
     collection do
       get 'login'
-      get 'logout'
       get 'sign_up'
       get 'user_registration'
       get 'sms_confirmation'
       get 'address_registration'
       get 'card_registration'
       get 'registration_complete'
-      get 'myconfirmation'
     end
   end
 

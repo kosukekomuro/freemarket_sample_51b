@@ -8,9 +8,6 @@ class UsersController < ApplicationController
   def login
   end
 
-  def logout
-  end
-
   def sign_up
   end
 
@@ -75,9 +72,6 @@ class UsersController < ApplicationController
         :building_name
       ]
     )
-  end
-
-  def myconfirmation
   end
 
 end
