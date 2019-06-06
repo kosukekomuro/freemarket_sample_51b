@@ -5,7 +5,7 @@
 @import 'mixin/main-header';
 @import 'mixin/button';
 @import 'mixin/text';
-@import 'mixin/products-show';
+@import 'mixin/product';
 @import 'modules/products';
 @import 'modules/cards';
 @import "font-awesome";
@@ -25,5 +25,5 @@
 @import 'modules/my-confirmation';
 @import 'base/product/index';
 @import 'base/product/buy';
-@import 'base/product/show';
+@import 'base/category/show';
 

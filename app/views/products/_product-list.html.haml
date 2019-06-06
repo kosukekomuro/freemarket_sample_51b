@@ -9,16 +9,17 @@
           .pick-up-category-item__sold
             .pick-up-category-item__sold--msg
               SOLD
-        %p.pick-up-category-item__name
-          = item.name
         .pick-up-category-item-info
+          .pick-up-category-item-info__name
+            = item.name
           .pick-up-category-item-info-price
             %p.pick-up-category-item-info-price__main
               ¥ #{item.price}
               - if (item.trading_evaluation_id)
                 %span.pick-up-category-item-info-price__main
-                  %i.fa.fa-heart.pick-up-category-item-info-price__main--red
-                  = item.trading_evaluation.evaluation
+                  %i.fa.fa-heart.pick-up-category-item-info-price__main--icon-red
+                  %span.pick-up-category-item-info-price__main--evaluation
+                    = item.trading_evaluation.evaluation
             %p.pick-up-category-item-info-price__sub
               (税込)
   = link_to root_path, class: "pick-up-category__see-all" do
