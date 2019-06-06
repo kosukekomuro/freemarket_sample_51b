@@ -3,7 +3,7 @@
 .flex-wrapper
   = render "/layouts/sidemenu"
   .mycontents-logout
-    = link_to destroy_user_session_path, { method: :delete } do
+    = link_to session_path(@current_user.id), method: :delete do
       .logout-btn
         ログアウト
 = render "products/main-footer"
