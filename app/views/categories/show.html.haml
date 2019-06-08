@@ -1,36 +1,32 @@
 .categry-show-wrap
   %ul.show-category-listbox
-    -# サーバサイド実装時に変更(カテゴリ機能)
-    - 3.times do
+    - @category_children.each do |category| 
       %li.show-category-listbox__list
-        = link_to "レディース", root_path, class: "show-category-listbox__list--button"
+        = link_to "#{category.name}", category_path(category.id), class: "show-category-listbox__list--button"
   .categry-show-wrap__head
     %h2
-      レディースの商品一覧 (2 ページ目)
-      -# サーバサイド実装時に変更(カテゴリ機能)
+      #{@category_parent.name}の商品一覧
     .show-category-item
-      - 80.times do
+      - @products.each do |product|
         = link_to root_path, class: "show-category-item__link" do
-          = image_tag ("https://i.gyazo.com/982ec6e1685d7458dbd5c0f372d30e73.png"), class: "show-category-item__img"
-          -# サーバサイド実装時に変更(売り切れ判定)
-          - if (true)
+          = image_tag ("#{product.images[0].url}"), class: "show-category-item__img"
+          - if (product.buyer_id)
             .show-category-item__sold
               .show-category-item__sold--msg
                 SOLD
           .show-category-item-info
             .show-category-item-info__name
-              CD
+              = product.name
             .show-category-item-info-price
               %p.show-category-item-info-price__main
-                ¥ 5000
-                -# サーバサイド実装時に変更(いいね機能)
-                - if (true)
+                ¥ #{product.price}
+                - if (product.trading_evaluation_id)
                   %span.show-category-item-info-price__main
                     %i.fa.fa-heart.show-category-item-info-price__main--icon-red
                     %span.show-category-item-info-price__main--evaluation
-                      1
+                      = product.trading_evaluation.evaluation
               %p.show-category-item-info-price__sub
                 (税込)
   .categry-show-wrap__foot
     %h2.categry-show-wrap__foot--message
-      レディース
+      #{@category_parent.name}

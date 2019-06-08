@@ -9,7 +9,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :categories, only: [:show]
+  resources :categories, only: [:show] do
+    collection do
+      get 'get_category_list'
+    end
+  end
 
   resource :mypages, only: [:show] do
     collection do

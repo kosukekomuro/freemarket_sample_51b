@@ -71,4 +71,9 @@ class UsersController < ApplicationController
     )
   end
 
+  # 条件チェック用のアクション
+  # application_controllerのアクションをオーバーライド
+  def use_search_header_category?
+    false
+  end
 end

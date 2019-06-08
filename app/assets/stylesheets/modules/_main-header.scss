@@ -103,11 +103,7 @@
       line-height: 44px;
       padding: 0 16px;
       display: block;
-      font-size: 16px;
-
-      &:hover{
-        @include hover-button-color(#fff, #ea352d);
-      }
+      font-size: 12px;
     }
   }
 }
@@ -116,9 +112,8 @@
   @include hamburger-menu(0, 224px);
   box-shadow: 0 1px 1px 0 rgba(0,0,0,0.24);
 
+  
   &__list{
-    background: #fff;
-
     &:hover{
       .header-product-nav-grand-child{
         display: block;
@@ -131,11 +126,7 @@
       line-height: 30px;
       padding: 0 16px;
       display: block;
-      font-size: 10px;
-
-      &:hover{
-        @include hover-button-color(#333, #EEE);
-      }
+      font-size: 14px;
     }
   }
 }
@@ -153,10 +144,9 @@
       line-height: 30px;
       padding: 0 16px;
       display: block;
-      font-size: 10px;
+      font-size: 12px;
 
       &:hover{
-        @include hover-button-color(#333, #EEE);
         .header-child-nav-parent{
           display: block;
         }
@@ -164,61 +154,6 @@
     }
   }
 }
-
-.header-product-nav-child{
-  @include hamburger-menu(0, 224px);
-  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.24);
-
-  &__list{
-    background: #fff;
-
-    &:hover{
-      .header-product-nav-grand-child{
-        display: block;
-      }
-    }
-
-    &--button{
-      width: 224px;
-      height: 30px;
-      line-height: 30px;
-      padding: 0 16px;
-      display: block;
-      font: 10px;
-
-      &:hover{
-        @include hover-button-color(#333, #EEE);
-      }
-    }
-  }
-}
-
-.header-product-nav-grand-child{
-  @include hamburger-menu(0, 224px);
-  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.24);
-
-  &__list{
-    background: #fff;
-
-    &--button{
-      width: 320px;
-      height: 30px;
-      line-height: 30px;
-      padding: 0 16px;
-      display: block;
-      font: 10px;
-
-      &:hover{
-        @include hover-button-color(#333, #EEE);
-        .header-child-nav-parent{
-          display:block;
-        }
-      }
-    }
-  }
-}
-
-
 
 .header-user-nav{
   @include header-product-nav(28px, 20px, #ccc, 14px,  #0099e8);

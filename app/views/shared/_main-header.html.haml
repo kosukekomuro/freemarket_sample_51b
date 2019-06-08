@@ -18,28 +18,11 @@
               %i.fa.fa-bars.header-product-nav__list--icon
               %span.header-product-nav__list--font
                 カテゴリーから探す
-            -# メガメニュー1（サーバサイド実装時に実装）
             %ul.header-product-nav-parent
-              %li.header-product-nav-parent__list
-                = link_to "レディース", root_path, class: "header-product-nav-parent__list--button"
-                -# メガメニュー2（サーバサイド実装時に実装）
-                %ul.header-product-nav-child
-                  %li.header-product-nav-child__list
-                    = link_to "トップス", root_path, class: "header-product-nav-child__list--button"
-                    -# メガメニュー3（サーバサイド実装時に実装）
-                    %ul.header-product-nav-grand-child
-                      %li.header-product-nav-grand-child__list
-                        = link_to "Tシャツ", root_path, class: "header-product-nav-grand-child__list--button"
-                      %li.header-product-nav-grand-child__list
-                        = link_to "シャツ", root_path, class: "header-product-nav-grand-child__list--button"
-                      %li.header-product-nav-grand-child__list
-                        = link_to "ポロシャツ", root_path, class: "header-product-nav-grand-child__list--button"
-                  %li.header-product-nav-child__list
-                    = link_to "ジャケット/アウター", root_path, class: "header-product-nav-child__list--button"
-                  %li.header-product-nav-child__list
-                    = link_to "パンツ", root_path, class: "header-product-nav-child__list--button"
-              %li.header-product-nav-parent__list
-                = link_to "メンズ", root_path, class: "header-product-nav-parent__list--button"
+              - header_category_parents.each do |category_parent|
+                %li.header-product-nav-parent__list
+                  = link_to "#{category_parent.name}", category_path(category_parent.id), class: "header-product-nav-parent__list--button", value: category_parent.id
+                  %ul.header-product-nav-child
           %li.header-product-nav__list
             = link_to root_path do
               %i.fa.fa-tag.header-product-nav__list--icon
