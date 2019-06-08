@@ -30,6 +30,7 @@ class ProductsController < ApplicationController
   end
     #商品の購入確認を行う
   def buy
+    render layout: "sellproduct"
   end
 
   def pay

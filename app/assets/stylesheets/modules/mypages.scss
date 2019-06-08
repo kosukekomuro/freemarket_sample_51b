@@ -4,7 +4,7 @@ body {
 
 .wrapper {
   width: 100%;
-  .main-contents {
+  .mypage__main-contents{
     float: left;
     margin-top: 24px;
     margin-left: 40px;
@@ -196,5 +196,8 @@ body {
         }
       }
     }
+  }
+  .clear {
+    clear: both;
   }
 }
