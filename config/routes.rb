@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :products, only: [:index, :new, :create, :show] do
     collection do
       get 'search'
+    end
+    member do
       get 'buy'
       post 'pay'
     end

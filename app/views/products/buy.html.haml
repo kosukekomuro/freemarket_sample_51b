@@ -19,7 +19,7 @@
           支払い金額
         %span.buy-contents__payment--price
           ¥ #{@product.price}
-      = link_to pay_products_path, method: "post", class: "buy-contents__purchase" do
+      = link_to pay_product_path(@product.id), method: "post", class: "buy-contents__purchase" do
         購入する
     .buybox-ship
       %h3.buybox-ship__title
