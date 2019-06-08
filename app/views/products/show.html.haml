@@ -1,34 +1,22 @@
 .product-show-wrap
   .product-showbox
     %h1.product-showbox__title
-      INDIVIパンツ
+      = @product.name
     .product-showbox-contents
       .product-showbox-contents-slick
         .product-showbox-contents-slick__main-image
-          -# サーバーサイド実装時に変更 each文で画像の数だけloop
-          = image_tag ("https://i.gyazo.com/982ec6e1685d7458dbd5c0f372d30e73.png"), class: "product-showbox-contents-slick__main-image--size"
-          = image_tag ("https://i.gyazo.com/2177b76eb21a5a5dde7d5b33ce35eca3.png"), class: "product-showbox-contents-slick__main-image--size"
-          = image_tag ("https://d1f5hsy4d47upe.cloudfront.net/61/61199500a910b429fa1eb5d2f0370d71_t.jpeg"), class: "product-showbox-contents-slick__main-image--size"
-          = image_tag ("https://d1f5hsy4d47upe.cloudfront.net/68/68ea6b750e03617d9549c16338833fa2_t.jpeg"), class: "product-showbox-contents-slick__main-image--size"
-          = image_tag ("https://d1f5hsy4d47upe.cloudfront.net/2c/2c0a6729e31cc7a7dabf980867bb058c_t.jpeg"), class: "product-showbox-contents-slick__main-image--size"
-          = image_tag ("https://d1f5hsy4d47upe.cloudfront.net/41/41c4214e0b49cf4409206153114ff3d4_t.jpeg"), class: "product-showbox-contents-slick__main-image--size"
-          = image_tag ("https://d1f5hsy4d47upe.cloudfront.net/03/034e3a78acb8c5483bca8b17c2a6e33a_t.jpeg"), class: "product-showbox-contents-slick__main-image--size"
+          - @product.images.each do |image|
+            = image_tag ("#{image.url}"), class: "product-showbox-contents-slick__main-image--size"
         .product-showbox-contents-slick__thumbnail-image
-          -# サーバーサイド実装時に変更 each文で画像の数だけloop
-          = image_tag ("https://i.gyazo.com/982ec6e1685d7458dbd5c0f372d30e73.png"), class: "product-showbox-contents-slick__thumbnail-image--size"
-          = image_tag ("https://i.gyazo.com/2177b76eb21a5a5dde7d5b33ce35eca3.png"), class: "product-showbox-contents-slick__thumbnail-image--size"
-          = image_tag ("https://d1f5hsy4d47upe.cloudfront.net/61/61199500a910b429fa1eb5d2f0370d71_t.jpeg"), class: "product-showbox-contents-slick__thumbnail-image--size"
-          = image_tag ("https://d1f5hsy4d47upe.cloudfront.net/68/68ea6b750e03617d9549c16338833fa2_t.jpeg"), class: "product-showbox-contents-slick__thumbnail-image--size"
-          = image_tag ("https://d1f5hsy4d47upe.cloudfront.net/2c/2c0a6729e31cc7a7dabf980867bb058c_t.jpeg"), class: "product-showbox-contents-slick__thumbnail-image--size"
-          = image_tag ("https://d1f5hsy4d47upe.cloudfront.net/41/41c4214e0b49cf4409206153114ff3d4_t.jpeg"), class: "product-showbox-contents-slick__thumbnail-image--size"
-          = image_tag ("https://d1f5hsy4d47upe.cloudfront.net/03/034e3a78acb8c5483bca8b17c2a6e33a_t.jpeg"), class: "product-showbox-contents-slick__thumbnail-image--size"
+          - @product.images.each do |image|
+            = image_tag ("#{image.url}"), class: "product-showbox-contents-slick__thumbnail-image--size"
       .product-showbox-contents-detail
         .product-showbox-contents-detail-seller
           .product-showbox-contents-detail-seller__title
             %span
               出品者
           .product-showbox-contents-detail-seller__contents
-            = link_to "username", root_path, class:"product-showbox-contents-detail-seller__contents--name"
+            = link_to "#{@product.seller.nickname}", root_path, class:"product-showbox-contents-detail-seller__contents--name"
             .product-showbox-contents-detail-seller-evaluation
               %i.fa.fa-smile-o.product-showbox-contents-detail-seller-evaluation__icon-good
               29
@@ -42,55 +30,60 @@
           .product-showbox-contents-detail-category__contents
             -# サーバサイド実装時に変更: 表示している商品のカテゴリーへのリンクを貼る
             -# each.do使えそう
-            -3.times do
-              =link_to root_path , class: "product-showbox-contents-detail-category__contents--link" do
-                %i.fa.fa-chevron-right
-                %span レディース
+            = link_to root_path , class: "product-showbox-contents-detail-category__contents--link" do
+              %i.fa.fa-chevron-right
+              %span #{@product.category.parent.parent.name}
+            = link_to root_path , class: "product-showbox-contents-detail-category__contents--link" do
+              %i.fa.fa-chevron-right
+              %span #{@product.category.parent.name}
+            = link_to root_path , class: "product-showbox-contents-detail-category__contents--link" do
+              %i.fa.fa-chevron-right
+              %span #{@product.category.name}
         .product-showbox-contents-detail-brand
           .product-showbox-contents-detail-brand__title
             ブランド
           .product-showbox-contents-detail-brand__contents
-            =link_to "シャネル", root_path , class: "product-showbox-contents-detail-brand__contents--link"
+            =link_to "#{@product.brand.brand}", root_path , class: "product-showbox-contents-detail-brand__contents--link"
         .product-showbox-contents-detail-size
           .product-showbox-contents-detail-size__title
             商品のサイズ
           .product-showbox-contents-detail-size__contents
-            S
+            = @product.size.size
         .product-showbox-contents-detail-condition
           .product-showbox-contents-detail-condition__title
             商品の状態
           .product-showbox-contents-detail-condition__contents
-            目立った傷や汚れなし
+            = @product.condition.condition
         .product-showbox-contents-detail-delivery-fee
           .product-showbox-contents-detail-delivery-fee__title
             配送料の負担
           .product-showbox-contents-detail-delivery-fee__contents
-            送料込み（出品者負担）
+            = @product.delivery_method.delivery_fee_burden.burden
         .product-showbox-contents-detail-delivery-method
           .product-showbox-contents-detail-delivery-method__title
             配送の方法
           .product-showbox-contents-detail-delivery-method__contents
-            ゆうゆうメルカリ便
+            = @product.delivery_method.name
         .product-showbox-contents-detail-delivery-source-area 
           .product-showbox-contents-detail-delivery-source-area__title
             配送元地域
           .product-showbox-contents-detail-delivery-source-area__contents
-            =link_to "東京都", root_path , class: "product-showbox-contents-detail-delivery-source-area__contents--link"
+            =link_to "#{@product.prefecture.name}", root_path , class: "product-showbox-contents-detail-delivery-source-area__contents--link"
         .product-showbox-contents-detail-delivery-day
           .product-showbox-contents-detail-delivery-day__title
             発送日の目安
           .product-showbox-contents-detail-delivery-day__contents
-            4~7日で発送
+            = @product.delivery_day.day
     .product-showbox-payment
       .product-showbox-payment__price
-        ¥555
+        ¥ #{@product.price}
         %span.product-showbox-payment__price--option-left
           (税込)
         %span.product-showbox-payment__price--option-right
           送料込み
-    = link_to "購入画面に進む", buy_products_path, class: "product-showbox-purchase"
+    = link_to "購入画面に進む", buy_product_path(@product.id), class: "product-showbox-purchase"
     .product-showbox-description
-      タグなしですが新品、未使用です
+      = @product.description
     .product-showbox-user-menu
       .product-showbox-user-menu__likes
         %i.fa.fa-heart.product-showbox-user-menu__likes--icon
@@ -126,18 +119,18 @@
       = f.text_area :keyword, class: "product-show-comment-form__input"
       = f.submit "コメントする", class: "product-show-comment-form__button"
   .product-show-other-product
-    =link_to root_path , class: "product-show-other-product__previous" do
-      %i.fa.fa-chevron-left
-      %span ミニー４点セット
-    =link_to root_path , class: "product-show-other-product__previous" do
-      %span ロクシタン ハンドクリーム ソープ ギフトセット
-      %i.fa.fa-chevron-right
+    - if @previous_product != nil
+      = link_to root_path , class: "product-show-other-product__previous" do
+        %i.fa.fa-chevron-left
+        %span #{@previous_product.name}
+    - if @next_product != nil
+      = link_to root_path , class: "product-show-other-product__previous" do
+        %span #{@next_product.name}
+        %i.fa.fa-chevron-right
   .product-show-social-media
     %ul.product-show-social-media-box
       -# 画像のみ実装
       = link_to root_path , class: "product-show-social-media-box__link" do
         = image_tag ("https://i.gyazo.com/de326c1cb08279c3c82071d60052438a.png"),class: "product-show-social-media-box__link--image"
   -# サーバサイド実装時に変更 販売者の他の商品を紹介
-  = render "show-products"
-  -# サーバサイド実装時に変更 同カテゴリまたは、同ブランドの他の商品を紹介
   = render "show-products"

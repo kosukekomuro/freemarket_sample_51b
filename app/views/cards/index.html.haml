@@ -7,7 +7,7 @@
       支払い方法
     .content__body
       %h3 クレジットカード一覧
-      - if @user.card_id.nil?
+      - if @current_user.card_id.nil?
         .card-registration
           = fa_icon "credit-card"
           .card-registration__btn

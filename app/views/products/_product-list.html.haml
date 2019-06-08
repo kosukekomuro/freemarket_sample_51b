@@ -3,7 +3,7 @@
     = link_to "#{pickup} 新着アイテム", root_path, class: "pick-up-category__link"
   .pick-up-category-item
     - items.each do |item|
-      = link_to root_path, class: "pick-up-category-item__link" do
+      = link_to product_path(item.id), class: "pick-up-category-item__link" do
         = image_tag ("#{item.images[0].url}"), class: "pick-up-category-item__img"
         - if (item.buyer_id)
           .pick-up-category-item__sold
