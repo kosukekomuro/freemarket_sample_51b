@@ -7,7 +7,7 @@ FactoryBot.define do
     email {Faker::Internet.free_email}
     password {password}
     password_confirmation {password}
-    card_id {"cus_77c7cd0733b4678367b3ae4d13fe"}
+    card_id {"cus_fccd338e19bc5e8c3dcf80cb003d"}
   end
 
 end

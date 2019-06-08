@@ -37,8 +37,10 @@ describe ProductsController do
     end
   end
   describe 'POST #pay' do
+    user = FactoryBot.create(:user)
     before do
-      post :pay
+      session[:user_id] = user.id
+      post :pay, params: { id: products.id }
     end
     it "redirect to payjp" do
       expect(response).to redirect_to('http://test.host/')
@@ -46,8 +48,25 @@ describe ProductsController do
     it "assigns the requested cards to @product" do
       expect(assigns(:product)).to eq products
     end
-    it "assigns the requested cards to @user" do
-      expect(assigns(:user)).to eq products.seller
+  end
+  describe 'GET #show' do
+    before do
+      get :show, params: { id: products.id }
+    end
+    it "renders the :show template" do
+      expect(response).to render_template :show
+    end
+    it "assigns the requested cards to @user_products" do
+      expect(assigns(:user_products)).to eq []
+    end
+    it "assigns the requested cards to @brand_category_products" do
+      expect(assigns(:brand_category_products)).to eq []
+    end
+    it "assigns the requested cards to @previous_product" do
+      expect(assigns(:previous_product)).to eq nil
+    end
+    it "assigns the requested cards to @next_product" do
+      expect(assigns(:next_product)).to eq nil
     end
   end
 end
