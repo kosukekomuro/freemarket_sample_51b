@@ -20,7 +20,6 @@ describe CardsController do
       delete :destroy , params: { id: user.id }
     end
     it "redirect to payjp" do
-      
       expect(response).to redirect_to('http://test.host/cards')
     end
   end
