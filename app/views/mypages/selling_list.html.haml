@@ -1,0 +1,28 @@
+- breadcrumb :mypages
+.wrapper
+  = render "/layouts/sidemenu"
+  .mypage__main-contents
+    .seller-product
+      .seller-product__head
+        %h2 出品した商品
+      .seller-product__tab
+        .seller-product__tab__selling
+          %h3 出品中
+        .seller-product__tab__trading
+          %h3 取引中
+        .seller-product__tab__sold
+          %h3 売却済み
+      .seller-product__contents
+        - @products.each do |product|
+          = link_to seller_product_mypages_path(product.id) do
+            .item
+              = image_tag "#{product.images[0].url}", class: "product__image"
+              .product
+                .product__title
+                  = product.name
+                = fa_icon "heart", class: "heart" 
+                .product__likes 0
+                = fa_icon "comment-alt", class: "comment"
+                .product__comments 0
+              = fa_icon "angle-right"
+  .clear

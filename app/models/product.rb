@@ -11,5 +11,5 @@ class Product < ApplicationRecord
   belongs_to :delivery_day
   belongs_to :trading_evaluation
 
-  has_many :images
+  has_many :images, dependent: :destroy
 end

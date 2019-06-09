@@ -1,0 +1,116 @@
+.product-show-wrap{ data: { product_id: @product.id } }
+  .product-showbox
+    %h1.product-showbox__title
+      = @product.name
+    .product-showbox-contents
+      .product-showbox-contents-slick
+        .product-showbox-contents-slick__main-image
+          - @product.images.each do |image|
+            = image_tag ("#{image.url}"), class: "product-showbox-contents-slick__main-image--size"
+        .product-showbox-contents-slick__thumbnail-image
+          - @product.images.each do |image|
+            = image_tag ("#{image.url}"), class: "product-showbox-contents-slick__thumbnail-image--size"
+      .product-showbox-contents-detail
+        .product-showbox-contents-detail-seller
+          .product-showbox-contents-detail-seller__title
+            %span
+              出品者
+          .product-showbox-contents-detail-seller__contents
+            = link_to "#{@product.seller.nickname}", root_path, class:"product-showbox-contents-detail-seller__contents--name"
+            .product-showbox-contents-detail-seller-evaluation
+              %i.fa.fa-smile-o.product-showbox-contents-detail-seller-evaluation__icon-good
+              29
+              %i.fa.fa-meh-o.product-showbox-contents-detail-seller-evaluation__icon-normal
+              1
+              %i.fa.fa-frown-o.product-showbox-contents-detail-seller-evaluation__icon-bad
+              0
+        .product-showbox-contents-detail-category
+          .product-showbox-contents-detail-category__title
+            カテゴリー
+          .product-showbox-contents-detail-category__contents
+            -# サーバサイド実装時に変更: 表示している商品のカテゴリーへのリンクを貼る
+            -# each.do使えそう
+            = link_to root_path , class: "product-showbox-contents-detail-category__contents--link" do
+              %i.fa.fa-chevron-right
+              %span #{@product.category.parent.parent.name}
+            = link_to root_path , class: "product-showbox-contents-detail-category__contents--link" do
+              %i.fa.fa-chevron-right
+              %span #{@product.category.parent.name}
+            = link_to root_path , class: "product-showbox-contents-detail-category__contents--link" do
+              %i.fa.fa-chevron-right
+              %span #{@product.category.name}
+        .product-showbox-contents-detail-brand
+          .product-showbox-contents-detail-brand__title
+            ブランド
+          .product-showbox-contents-detail-brand__contents
+            =link_to "#{@product.brand.brand}", root_path , class: "product-showbox-contents-detail-brand__contents--link"
+        .product-showbox-contents-detail-size
+          .product-showbox-contents-detail-size__title
+            商品のサイズ
+          .product-showbox-contents-detail-size__contents
+            = @product.size.size
+        .product-showbox-contents-detail-condition
+          .product-showbox-contents-detail-condition__title
+            商品の状態
+          .product-showbox-contents-detail-condition__contents
+            = @product.condition.condition
+        .product-showbox-contents-detail-delivery-fee
+          .product-showbox-contents-detail-delivery-fee__title
+            配送料の負担
+          .product-showbox-contents-detail-delivery-fee__contents
+            = @product.delivery_method.delivery_fee_burden.burden
+        .product-showbox-contents-detail-delivery-method
+          .product-showbox-contents-detail-delivery-method__title
+            配送の方法
+          .product-showbox-contents-detail-delivery-method__contents
+            = @product.delivery_method.name
+        .product-showbox-contents-detail-delivery-source-area 
+          .product-showbox-contents-detail-delivery-source-area__title
+            配送元地域
+          .product-showbox-contents-detail-delivery-source-area__contents
+            =link_to "#{@product.prefecture.name}", root_path , class: "product-showbox-contents-detail-delivery-source-area__contents--link"
+        .product-showbox-contents-detail-delivery-day
+          .product-showbox-contents-detail-delivery-day__title
+            発送日の目安
+          .product-showbox-contents-detail-delivery-day__contents
+            = @product.delivery_day.day
+    .product-showbox-payment
+      .product-showbox-payment__price
+        ¥ #{@product.price}
+        %span.product-showbox-payment__price--option-left
+          (税込)
+        %span.product-showbox-payment__price--option-right
+          送料込み
+    .product-showbox-description
+      = @product.description
+  .product-show-btn
+    = link_to "商品の編集", root_path, class: "product-showbox-edit"
+    .product-show-btn__text
+      or
+    = link_to "出品を再開する", root_path, class: "product-showbox-edit"
+    .product-showbox-delete
+      この商品を削除する
+  .product-show-comment
+    -# コメント機能実装時に変更
+    - if true
+      - 2.times do
+        .product-show-comment-contents
+          %i.fa.fa-user
+          .product-show-comment-contents__detail
+            .product-show-comment-contents__detail--name
+              小室洸介
+            .product-message
+              .product-message__main-contents
+                文字盤のサイズを教えてください。また、ベルトは穴にさすタイプですか？ベルト閉めたところも写真載せていただけると助かります。
+              .product-message__sub-contents
+                .product-message__sub-contents--time
+                  %i.fa.fa-clock-o
+                  %span 10時間前
+                .product-message__sub-contents--report
+                  %i.fa.fa-flag
+    .product-show-comment-warning
+      相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります
+    -# コメント機能実装時に変更
+    = form_with url: search_products_path, method: :get, class: :"product-show-comment-form", local: true do |f|
+      = f.text_area :keyword, class: "product-show-comment-form__input"
+      = f.submit "コメントする", class: "product-show-comment-form__button"

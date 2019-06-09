@@ -8,4 +8,13 @@ class MypagesController < ApplicationController
 
   def show
   end
+
+  def selling_list
+    @products = Product.where('(seller_id = ?)', @current_user.id)
+  end
+
+  def seller_product
+    @product = Product.find(params[:format])
+  end
+
 end

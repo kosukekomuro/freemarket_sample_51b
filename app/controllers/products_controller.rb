@@ -49,6 +49,15 @@ class ProductsController < ApplicationController
     @next_product = Product.where('(id > ?)', @product.id).order("id ASC").first
   end
 
+  def destroy
+    respond_to do |format|
+      format.json{
+        product = Product.find(params[:product_id])
+        product.delete
+      }
+    end
+  end
+
   private
 
   def product_params
