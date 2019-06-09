@@ -50,7 +50,6 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    # binding.pry
     respond_to do |format|
       format.json{
         product = Product.find(params[:product_id])
