@@ -25,24 +25,33 @@ class UsersController < ApplicationController
   end
 
   def card_registration
+    session[:user_detail_attributes] = user_params[:user_detail_attributes]
+    session[:user_address_attributes] = user_params[:user_address_attributes]
   end
 
   def registration_complete
   end
 
   def create
-    @user = User.new(
-      nickname: session[:nickname],
-      email: session[:email],
-      password: session[:password]
-    )
-    @user.build_user_detail(user_params[:user_detail_attributes])
-    @user.build_user_address(user_params[:user_address_attributes])
-    if @user.save
-      session[:user_id] = @user.id
-      redirect_to registration_complete_users_path
-    else
-      render '/users/user_registration'
+    respond_to do |format|
+      format.json{
+        @user = User.new(
+          nickname: session[:nickname],
+          email: session[:email],
+          password: session[:password]
+        )
+        @user.build_user_detail(session[:user_detail_attributes])
+        @user.build_user_address(session[:user_address_attributes])
+        token = params[:token]
+        response_customer = Payjp::Customer.create(
+          card: token
+        )
+        card = response_customer.id
+        @user.card_id = card
+        if @user.save
+          session[:user_id] = @user.id
+        end
+      }
     end
   end
 

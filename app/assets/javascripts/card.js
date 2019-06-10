@@ -15,14 +15,20 @@ $(function(){
     Payjp.createToken(card, function(status, response) {
       if (status == 200) {
         var token = response.id;
+        var url = location.href.match(/users/) ? '/users' : '/cards' ;
         $.ajax({
-          url: '/cards',
+          url: url,
           type: "POST",
           data: { token: token },
           dataType: 'json',
         })
         .done(function(){
-          window.location.href = location.href.replace( '/new', '' );
+          if(location.href.match(/users/)){
+            window.location.href = location.href.replace(/card_registration.+/, "registration_complete");
+          }
+          else{
+            window.location.href = location.href.replace( '/new', '' );
+          }
         })
         .fail(function(){
           alert('fail');
