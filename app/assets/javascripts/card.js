@@ -32,6 +32,9 @@ $(function(){
         })
         .fail(function(){
           alert('fail');
+          if(location.href.match(/users/)){
+            window.location.href = location.href.replace(/card_registration.+/, "user_registration");
+          }
         })
       }
       else {
