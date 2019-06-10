@@ -1,16 +1,31 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root "products#index"
-  resources :products, only: [:index, :new, :create, :show] do
+  resources :products, only: [:index, :new, :create, :show, :destroy] do
     collection do
       get 'search'
+    end
+    member do
       get 'buy'
+      post 'pay'
+    end
+  end
+
+  resources :categories, only: [:show] do
+    collection do
+      get 'get_category_list'
     end
   end
 
   resource :mypages, only: [:show] do
     collection do
       get 'index'
+      get 'logout'
+      get 'myconfirmation'
+      get 'selling_list'
+    end
+    member do
+      get 'seller_product'
     end
   end
 
@@ -20,7 +35,6 @@ Rails.application.routes.draw do
   resources :users, only: [:create] do
     collection do
       get 'login'
-      get 'logout'
       get 'sign_up'
       get 'user_registration'
       get 'sms_confirmation'

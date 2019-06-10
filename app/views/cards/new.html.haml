@@ -1,9 +1,8 @@
-.header
-
+- breadcrumb :cards_new
 .wrapper
   = render "/layouts/sidemenu"
 
-  .main-contents
+  .card__main-contents
     %main.sign-up__main
       %section.sign-up__main__container
         %h2.sign-up__main__container__head クレジットカード情報入力
@@ -51,3 +50,4 @@
                   %span.security-code-message__text__question ?
                   カード裏面の番号とは？
               = f.submit "追加する", class: "btn-default btn-red", id: "card-registration__btn"
+  .clear

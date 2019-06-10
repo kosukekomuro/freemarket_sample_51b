@@ -1,4 +1,4 @@
-.main-contents{
+.top-contents{
   padding: 20px 0;
   z-index: 1;
 
@@ -41,82 +41,20 @@
 }
 
 .pick-up-category-item{
-  display: flex;
-  justify-content: space-between;
-  margin: 15px auto;
-  // width: 940px;
-  position: relative;
-  
-  &__link{
-    width: 213px;
-    background: #fff;
+  @include one-product(213px);
+}
 
-    &:hover{
-      text-decoration: none;
-    }
-  }
-
-  &__img{
-    width: 213px;
-    height: 213px;;
-  }
-
-  &__sold{
-    z-index: 2;
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    top: 0; 
-
-    &:after{
-      border-width: 100px 100px 0 0;
-      border-color: #ea352d transparent transparent transparent;
-      display: block;
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      border-style: solid;
-    }
-
-    &--msg{
-      font-size: 20px; 
-      position: absolute;
-      top: 15px;
-      left: 0;
-      z-index: 1;
-      color: #fff;
-      transform: rotate(-45deg);
-      letter-spacing: 1px;
-      font-weight: 600;
-    }
-  }
-
-  &__name{
-    margin-top: 10px;
-  }
+.pick-up-category-item-info{
+  @include category-box-deteil-info;
 }
 
 .pick-up-category-item-info-price{
-  margin-top: 10px;
-
-  &__main{
-    padding: 0 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    &--red{
-      color: #FFCCFF;
-      margin-right: 5px;
-    }
-  }
-
-  &__sub{
-    font-size: 13px;
-  }
+  @include category-box-deteil-info-price;
 }
 
 .main-fake-footer{
   margin-top: 20px;
+  &__img{
+    width: 100vw;
+  }
 }

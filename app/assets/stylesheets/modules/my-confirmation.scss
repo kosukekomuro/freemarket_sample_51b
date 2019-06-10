@@ -1,0 +1,111 @@
+.mycontents-myconf {
+    background-color: $text-white;
+    width: 735px;
+    height: 1200px;
+    margin-top: 24px;
+    margin-left: 40px;
+  .myconf-title {
+    font-size: 24px;
+    padding: 8px 24px;
+    border-bottom: 2px solid #f5f5f5;
+    text-align: center;
+  }
+  .myconf-subtitle {
+    margin: 8px 0 0;
+    line-height: 1.5;
+    font-size: 14px;
+  }
+  .myconf-right-link {
+    float: right;
+    margin-top: 10px;
+    a {
+      color: $sell-link;
+      &:hover {
+        color: rgba(0, 153, 232, 0.7);
+      }
+    }
+    .display-frex-myconf {
+      display: flex;
+    }
+    .fas {
+      margin: 3px 0 0 2px;
+    }
+  }
+  .margin-myconf {
+    margin-top: 65px;
+    font-size: 14px;
+    .myconf-bold {
+      font-weight: bold;
+    }
+  }
+  .form-myconf {
+    padding: 64px;
+  }
+  .form-group-myconf {
+    margin: 40px 0 0;
+    font-size: 14px;
+    .myconf-bold {
+      font-weight: bold;
+    }
+    .arbitrary-form {
+      margin: 0 0 0 8px;
+      padding: 2px 4px;
+      border-radius: 2px;
+      color: #fff;
+      font-size: 12px;
+      vertical-align: top;
+      background: #ccc;
+    }
+  }
+  .input-myconf-default {
+    width: 100%;
+    margin: 8px 0 0;
+    height: 48px;
+    padding: 10px 16px 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background: #fff;
+    line-height: 1.5;
+    font-size: 16px;
+  }
+  .select-myconf-default {
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    height: 48px;
+    padding: 0 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    cursor: pointer;
+    margin-top: 7px;
+  }
+  .myconf-relative {
+    position: relative;
+    .myconf-absolute {
+      position: absolute;
+      font-size: 20px;
+      color: gray;
+      top: 45px;
+      right: 20px;
+    }
+  }
+  .btn-myconf-default {
+    display: block;
+    width: 100%;
+    line-height: 48px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    background: $button-red;
+    border: 1px solid $button-red;
+    color: $text-white;
+    margin-top: 37px;
+  }
+  .myconf-link-setting {
+    margin-top: 20px;
+    font-size: 14px;
+  }
+}

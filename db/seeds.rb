@@ -357,12 +357,10 @@ other_antique.children.create([{name: "雑貨"},{name: "工芸品"},{name: "家�
 other_stationery.children.create([{name: "筆記具"},{name: "ノート/メモ帳"},{name: "テープ/マスキングテープ"},{name: "その他"}])
 other_office.children.create([{name: "オフィス用品一途"},{name: "オフィス家具"},{name: "店舗用品"},{name: "その他"}])
 
-
 condition = Condition.create([{ condition: "新品、未使用"}, { condition: "未使用に近い"}, { condition: "目立った傷や汚れなし"}, { condition: "やや傷や汚れあり"}, { condition: "傷や汚れあり"}, { condition: "全体的に状態が悪い"}])
 delivery_day = DeliveryDay.create([{ day: "1~2日で発送"}, { day: "2~3日で発送"}, { day: "4~7日で発送"}])
 
 size = Size.create([{size: "XXS以下"},{size: "XS(SS以下)"},{size: "S"},{size: "M"},{size: "L"},{size: "XL(LL)"},{size: "2XL(3L)"},{size: "3XL(4L)"},{size: "4XL(5L)以上"},{size: "FREE SIZE"},{size: "20cm以下"},{size: "20.5cm"},{size: "21cm"},{size: "21.5cm"},{size: "22cm"},{size: "22.5cm"},{size: "23cm"},{size: "23.5cm"},{size: "23.5cm以下"},{size: "24cm"},{size: "24.5cm"},{size: "25cm"},{size: "25.5cm"},{size: "26cm"},{size: "26.5cm"},{size: "27cm"},{size: "27.5cm以上"},{size: "27.5cm"},{size: "28cm"},{size: "28.5cm"},{size: "29cm"},{size: "29.5cm"},{size: "30cm"},{size: "30.5cm"},{size: "31cm以上"},{size: "60cm"},{size: "70cm"},{size: "80cm"},{size: "90cm"},{size: "95cm"},{size: "100cm"},{size: "110cm"},{size: "120cm"},{size: "130cm"},{size: "140cm"},{size: "150cm"},{size: "160cm"},{size: "10.5cm以下"},{size: "11cm・11.5cm"},{size: "12cm・12.5cm"},{size: "13cm・13.5cm"},{size: "14cm・14.5cm"},{size: "15cm・15.5cm"},{size: "16cm・16.5cm"},{size: "17cm以上"},{size: "12インチ"},{size: "13インチ"},{size: "14インチ"},{size: "15インチ"},{size: "16インチ"},{size: "17インチ"},{size: "18インチ"},{size: "19インチ"},{size: "20インチ"},{size: "21インチ"},{size: "22インチ"},{size: "23インチ"},{size: "24インチ"},{size: "XSサイズ以下"},{size: "Sサイズ"},{size: "Mサイズ"},{size: "Lサイズ"},{size: "XLサイズ"},{size: "XXLサイズ以上"},{size: "フリーサイズ"},{size: "子ども用"}])
-
 
 (158..174).each do |number|
   category_size = CategorySize.create([{category_id: "#{number}", size_id: 1}, {category_id: "#{number}", size_id: 2}, {category_id: "#{number}", size_id: 3},{category_id: "#{number}", size_id: 4},{category_id: "#{number}", size_id: 5}, {category_id: "#{number}", size_id: 6}, {category_id: "#{number}", size_id: 7}, {category_id: "#{number}", size_id: 8}, {category_id: "#{number}", size_id: 9}, {category_id: "#{number}", size_id: 10}])
@@ -441,43 +439,73 @@ end
 category_size = CategorySize.create([{category_id: 844, size_id: 69}, {category_id: 844, size_id: 70}, {category_id: 844, size_id: 71},{category_id: 844, size_id: 72},{category_id: 844, size_id: 73}, {category_id: 844, size_id: 74}, {category_id: 844, size_id: 75}, {category_id: 844, size_id: 76}])
 
 evaluation = TradingEvaluation.create(evaluation: "1")
-user = User.create!(email: 'admin@example.com', password: 'password')
+user = User.create!(nickname: 'komuro', email: 'admin@example.com', password: 'password')
+
+delivery_fee_burdens = DeliveryFeeBurden.create([
+  { burden: "未定"}, { burden: "らくらくメルカリ"}, { burden: "ゆうメール"}, 
+  { burden: "レターパック"}, { burden: "普通郵便(定型、定型外)"}, { burden: "クロネコヤマト"}, 
+  { burden: "ゆうパック"}, { burden: "クリップポスト"}, { burden: "ゆうパケット"}, 
+  { burden: "未定"}, { burden: "クロネコヤマト"}, { burden: "ゆうパック"}, 
+  { burden: "ゆうメール"}])
+
+delivery_methods = DeliveryMethod.create([
+  { name: "送料込み(出品者負担)", delivery_fee_burden_id: 1}, { name: "送料込み(出品者負担)", delivery_fee_burden_id: 2}, { name: "送料込み(出品者負担)", delivery_fee_burden_id: 3}, 
+  { name: "送料込み(出品者負担)", delivery_fee_burden_id: 4}, { name: "送料込み(出品者負担)", delivery_fee_burden_id: 5}, { name: "送料込み(出品者負担)", delivery_fee_burden_id: 6}, 
+  { name: "送料込み(出品者負担)", delivery_fee_burden_id: 7}, { name: "送料込み(出品者負担)", delivery_fee_burden_id: 8}, { name: "送料込み(出品者負担)", delivery_fee_burden_id: 9}, 
+  { name: "着払い(購入者負担)", delivery_fee_burden_id: 10}, { name: "着払い(購入者負担)", delivery_fee_burden_id: 11},
+  { name: "着払い(購入者負担)", delivery_fee_burden_id: 12}, { name: "着払い(購入者負担)", delivery_fee_burden_id: 13}])
 
 product = Product.create([
-  { name: "セーター", description: "セーターです。", seller_id: "1", category_id: "1", size_id: "1", brand_id: "1", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_fee_burden_id: "1",delivery_day_id: "1", price: "1500", trading_evaluation_id: "1"}, 
-  { name: "帽子", description: "帽子です。", seller_id: "1", category_id: "1", size_id: "1", brand_id: "593", condition_id: "1", delivery_method_id: "1", prefecture_id: "1",  delivery_fee_burden_id: "1",delivery_day_id: "1", price: "1500", trading_evaluation_id: "1"}, 
-  { name: "ダウン", description: "ダウンです。", seller_id: "1", category_id: "1", size_id: "1", brand_id: "340", condition_id: "1", delivery_method_id: "1", prefecture_id: "1",  delivery_fee_burden_id: "1",delivery_day_id: "1", price: "6200", trading_evaluation_id: "1"}, 
-  { name: "ジャケット", description: "ジャケットです。", seller_id: "1", category_id: "1", size_id: "1", brand_id: "58", condition_id: "1", delivery_method_id: "1", prefecture_id: "1",  delivery_fee_burden_id: "1",delivery_day_id: "1", price: "16900", trading_evaluation_id: "1"}, 
-  { name: "Yシャツ", description: "Yシャツです。", seller_id: "1", category_id: "2", size_id: "1", brand_id: "1", condition_id: "1", delivery_method_id: "1", prefecture_id: "1",  delivery_fee_burden_id: "1",delivery_day_id: "1", price: "12500", trading_evaluation_id: "1"}, 
-  { name: "ニット", description: "ニットです。", seller_id: "1", category_id: "2", size_id: "1", brand_id: "593", condition_id: "1", delivery_method_id: "1", prefecture_id: "1",  delivery_fee_burden_id: "1",delivery_day_id: "1", price: "9500", trading_evaluation_id: "1"}, 
-  { name: "コート", description: "コートです。", seller_id: "1", category_id: "2", size_id: "1", brand_id: "340", condition_id: "1", delivery_method_id: "1", prefecture_id: "1",  delivery_fee_burden_id: "1",delivery_day_id: "1", price: "8000", trading_evaluation_id: "1"}, 
-  { name: "靴", description: "靴です。", seller_id: "1", category_id: "2", size_id: "1", brand_id: "58", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_day_id: "1", delivery_fee_burden_id: "1", price: "4000", trading_evaluation_id: "1"}, 
-  { name: "犬用の服", description: "犬用の服です。", seller_id: "1", category_id: "3", size_id: "1", brand_id: "1", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_day_id: "1", delivery_fee_burden_id: "1", price: "580", trading_evaluation_id: "1"}, 
-  { name: "耳当て", description: "耳当てです。", seller_id: "1", category_id: "3", size_id: "1", brand_id: "593", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_day_id: "1", delivery_fee_burden_id: "1", price: "2000", trading_evaluation_id: "1"}, 
-  { name: "ネクタイ", description: "ネクタイです。", seller_id: "1", category_id: "3", size_id: "1", brand_id: "340", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_day_id: "1", delivery_fee_burden_id: "1", price: "1500", trading_evaluation_id: "1"}, 
-  { name: "トップス", description: "トップスです。", seller_id: "1", category_id: "3", size_id: "1", brand_id: "58", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_day_id: "1", delivery_fee_burden_id: "1", price: "770", trading_evaluation_id: "1"}, 
-  { name: "カーディガン", description: "カーディガンです。", seller_id: "1", category_id: "7", size_id: "1", brand_id: "1", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_day_id: "1", delivery_fee_burden_id: "1", price: "390", trading_evaluation_id: "1"}, 
-  { name: "カラフルシャツ", description: "カラフルシャツです。", seller_id: "1", category_id: "7", size_id: "1", brand_id: "593", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_day_id: "1", delivery_fee_burden_id: "1", price: "1666", trading_evaluation_id: "1"}, 
-  { name: "手袋", description: "手袋です。", seller_id: "1", category_id: "7", size_id: "1", brand_id: "340", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_day_id: "1", delivery_fee_burden_id: "1", price: "700", trading_evaluation_id: "1"}, 
-  { name: "ハンチング帽", description: "ハンチング帽です。", seller_id: "1", category_id: "7", size_id: "1", brand_id: "58", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_day_id: "1", delivery_fee_burden_id: "1", price: "400", trading_evaluation_id: "1"}])
+  { name: "セーター", description: "セーターです。", seller_id: "1", category_id: "161", size_id: "1", brand_id: "1", condition_id: "1", delivery_method_id: "1", prefecture_id: "1", delivery_fee_burden_id: "1",delivery_day_id: "1", price: "1500", trading_evaluation_id: "1"}, 
+  { name: "帽子", description: "帽子です。", seller_id: "1", category_id: "162", size_id: "2", brand_id: "593", condition_id: "2", delivery_method_id: "2", prefecture_id: "3",  delivery_fee_burden_id: "2",delivery_day_id: "2", price: "1500", trading_evaluation_id: "1"}, 
+  { name: "ダウン", description: "ダウンです。", seller_id: "1", category_id: "296", size_id: "3", brand_id: "340", condition_id: "3", delivery_method_id: "3", prefecture_id: "5",  delivery_fee_burden_id: "3",delivery_day_id: "3", price: "6200", trading_evaluation_id: "1"}, 
+  { name: "ジャケット", description: "ジャケットです。", seller_id: "1", category_id: "302", size_id: "4", brand_id: "58", condition_id: "4", delivery_method_id: "4", prefecture_id: "7",  delivery_fee_burden_id: "4",delivery_day_id: "1", price: "16900", trading_evaluation_id: "1"}, 
+  { name: "Yシャツ", description: "Yシャツです。", seller_id: "1", category_id: "357", size_id: "5", brand_id: "1", condition_id: "5", delivery_method_id: "5", prefecture_id: "8",  delivery_fee_burden_id: "5",delivery_day_id: "2", price: "12500", trading_evaluation_id: "1"}, 
+  { name: "ニット", description: "ニットです。", seller_id: "1", category_id: "368", size_id: "6", brand_id: "593", condition_id: "6", delivery_method_id: "6", prefecture_id: "10",  delivery_fee_burden_id: "6",delivery_day_id: "3", price: "9500", trading_evaluation_id: "1"}, 
+  { name: "コート", description: "コートです。", seller_id: "1", category_id: "389", size_id: "7", brand_id: "340", condition_id: "1", delivery_method_id: "7", prefecture_id: "15",  delivery_fee_burden_id: "7",delivery_day_id: "1", price: "8000", trading_evaluation_id: "1"}, 
+  { name: "靴", description: "靴です。", seller_id: "1", category_id: "390", size_id: "8", brand_id: "58", condition_id: "2", delivery_method_id: "8", prefecture_id: "17", delivery_day_id: "2", delivery_fee_burden_id: "8", price: "4000", trading_evaluation_id: "1"}, 
+  { name: "犬用の服", description: "犬用の服です。", seller_id: "1", category_id: "503", size_id: "9", brand_id: "1", condition_id: "3", delivery_method_id: "9", prefecture_id: "19", delivery_day_id: "3", delivery_fee_burden_id: "9", price: "580", trading_evaluation_id: "1"}, 
+  { name: "耳当て", description: "耳当てです。", seller_id: "1", category_id: "512", size_id: "10", brand_id: "593", condition_id: "4", delivery_method_id: "10", prefecture_id: "21", delivery_day_id: "1", delivery_fee_burden_id: "10", price: "2000", trading_evaluation_id: "1"}, 
+  { name: "ネクタイ", description: "ネクタイです。", seller_id: "1", category_id: "522", size_id: "11", brand_id: "340", condition_id: "5", delivery_method_id: "11", prefecture_id: "31", delivery_day_id: "2", delivery_fee_burden_id: "11", price: "1500", trading_evaluation_id: "1"}, 
+  { name: "トップス", description: "トップスです。", seller_id: "1", category_id: "524", size_id: "12", brand_id: "58", condition_id: "6", delivery_method_id: "12", prefecture_id: "32", delivery_day_id: "3", delivery_fee_burden_id: "12", price: "770", trading_evaluation_id: "1"}, 
+  { name: "カーディガン", description: "カーディガンです。", seller_id: "1", category_id: "671", size_id: "13", brand_id: "1", condition_id: "1", delivery_method_id: "13", prefecture_id: "33", delivery_day_id: "1", delivery_fee_burden_id: "13", price: "390", trading_evaluation_id: "1"}, 
+  { name: "カラフルシャツ", description: "カラフルシャツです。", seller_id: "1", category_id: "674", size_id: "14", brand_id: "593", condition_id: "2", delivery_method_id: "1", prefecture_id: "37", delivery_day_id: "2", delivery_fee_burden_id: "1", price: "1666", trading_evaluation_id: "1"}, 
+  { name: "手袋", description: "手袋です。", seller_id: "1", category_id: "685", size_id: "15", brand_id: "340", condition_id: "3", delivery_method_id: "2", prefecture_id: "38", delivery_day_id: "3", delivery_fee_burden_id: "2", price: "700", trading_evaluation_id: "1"}, 
+  { name: "ハンチング帽", description: "ハンチング帽です。", seller_id: "1", category_id: "686", size_id: "16", brand_id: "58", condition_id: "4", delivery_method_id: "3", prefecture_id: "45", delivery_day_id: "1", delivery_fee_burden_id: "3", price: "400", trading_evaluation_id: "1"}])
 
   image = Image.create([
-    { url: "https://d1f5hsy4d47upe.cloudfront.net/39/39d4934b752089a41ecb46e6800c9d4a_t.jpeg", product_id: 1, created_at: "2019-06-02 06:34:49", updated_at: "2019-06-02 06:34:49"},
-    { url: "https://d1f5hsy4d47upe.cloudfront.net/39/390518b4e3169410c0b9e0ed914b30da_t.jpeg", product_id: 2, created_at: "2019-06-02 06:34:49", updated_at: "2019-06-02 06:34:49"},
-    { url: "https://d1f5hsy4d47upe.cloudfront.net/61/612ccaeb6b1f0d25324f9a290f31d054_t.jpeg", product_id: 3, created_at: "2019-06-02 06:34:49", updated_at: "2019-06-02 06:34:49"},
-    { url: "https://d1f5hsy4d47upe.cloudfront.net/46/46860cfc0e68a961c101b49c05a635f0_t.jpeg", product_id: 4, created_at: "2019-06-02 06:34:49", updated_at: "2019-06-02 06:34:49"},
-    { url: "https://d1f5hsy4d47upe.cloudfront.net/58/585af06148d9ebf78ada7a6b35b1f47e_t.jpeg", product_id: 5, created_at: "2019-06-02 06:34:49", updated_at: "2019-06-02 06:34:49"},
-    { url: "https://d1f5hsy4d47upe.cloudfront.net/7a/7a376adc7d9e9cf7958aeacdb847188a_t.jpeg", product_id: 6, created_at: "2019-06-02 06:34:49", updated_at: "2019-06-02 06:34:49"},
-    { url: "https://d1f5hsy4d47upe.cloudfront.net/24/24e93a26e8f9a6e214746bf0f741fae2_t.jpeg", product_id: 7, created_at: "2019-06-02 06:34:49", updated_at: "2019-06-02 06:34:49"},
-    { url: "https://d1f5hsy4d47upe.cloudfront.net/19/19b4cab0cbd63d0339f2c2a21922c192_t.jpeg", product_id: 8, created_at: "2019-06-02 06:34:49", updated_at: "2019-06-02 06:34:49"},
-    { url: "https://d1f5hsy4d47upe.cloudfront.net/2a/2ae8455e3b767915e035a82bce5b1a4c_t.jpeg", product_id: 9, created_at: "2019-06-02 06:34:49", updated_at: "2019-06-02 06:34:49"},
-    { url: "https://d1f5hsy4d47upe.cloudfront.net/0b/0b55c3b87f85bcd4f3a95056b2f8d6fa_t.jpeg", product_id: 10, created_at: "2019-06-02 06:34:49", updated_at: "2019-06-02 06:34:49"},
-    { url: "https://d1f5hsy4d47upe.cloudfront.net/16/1675628cc0858d1322d65573ff964621_t.jpeg", product_id: 11, created_at: "2019-06-02 06:34:49", updated_at: "2019-06-02 06:34:49"},
-    { url: "https://d1f5hsy4d47upe.cloudfront.net/d5/d503d4e75908cc8e6cd823436b0274f3_t.jpeg", product_id: 12, created_at: "2019-06-02 06:34:49", updated_at: "2019-06-02 06:34:49"},
-    { url: "https://d1f5hsy4d47upe.cloudfront.net/3a/3a747c8ea6646ef556dbd3fbcbe1079a_t.jpeg", product_id: 13, created_at: "2019-06-02 06:34:49", updated_at: "2019-06-02 06:34:49"},
-    { url: "https://d1f5hsy4d47upe.cloudfront.net/8e/8ede20c158a6e0f15898e223ea979b48_t.jpeg", product_id: 14, created_at: "2019-06-02 06:34:49", updated_at: "2019-06-02 06:34:49"},
-    { url: "https://d1f5hsy4d47upe.cloudfront.net/4d/4ddf967b59779455ab77535f79296a71_t.jpeg", product_id: 15, created_at: "2019-06-02 06:34:49", updated_at: "2019-06-02 06:34:49"},
-    { url: "https://d1f5hsy4d47upe.cloudfront.net/4e/4e7aff5ab9974b475f877b72fe9e72b1_t.jpeg", product_id: 16, created_at: "2019-06-02 06:34:49", updated_at: "2019-06-02 06:34:49"}])
+    { url: "https://d1f5hsy4d47upe.cloudfront.net/39/39d4934b752089a41ecb46e6800c9d4a_t.jpeg", product_id: 1},
+    { url: "https://d1f5hsy4d47upe.cloudfront.net/39/390518b4e3169410c0b9e0ed914b30da_t.jpeg", product_id: 2},
+    { url: "https://d1f5hsy4d47upe.cloudfront.net/61/612ccaeb6b1f0d25324f9a290f31d054_t.jpeg", product_id: 3},
+    { url: "https://d1f5hsy4d47upe.cloudfront.net/46/46860cfc0e68a961c101b49c05a635f0_t.jpeg", product_id: 4},
+    { url: "https://d1f5hsy4d47upe.cloudfront.net/58/585af06148d9ebf78ada7a6b35b1f47e_t.jpeg", product_id: 5},
+    { url: "https://d1f5hsy4d47upe.cloudfront.net/7a/7a376adc7d9e9cf7958aeacdb847188a_t.jpeg", product_id: 6},
+    { url: "https://d1f5hsy4d47upe.cloudfront.net/24/24e93a26e8f9a6e214746bf0f741fae2_t.jpeg", product_id: 7},
+    { url: "https://d1f5hsy4d47upe.cloudfront.net/19/19b4cab0cbd63d0339f2c2a21922c192_t.jpeg", product_id: 8},
+    { url: "https://d1f5hsy4d47upe.cloudfront.net/2a/2ae8455e3b767915e035a82bce5b1a4c_t.jpeg", product_id: 9},
+    { url: "https://d1f5hsy4d47upe.cloudfront.net/0b/0b55c3b87f85bcd4f3a95056b2f8d6fa_t.jpeg", product_id: 10},
+    { url: "https://d1f5hsy4d47upe.cloudfront.net/16/1675628cc0858d1322d65573ff964621_t.jpeg", product_id: 11},
+    { url: "https://d1f5hsy4d47upe.cloudfront.net/d5/d503d4e75908cc8e6cd823436b0274f3_t.jpeg", product_id: 12},
+    { url: "https://d1f5hsy4d47upe.cloudfront.net/3a/3a747c8ea6646ef556dbd3fbcbe1079a_t.jpeg", product_id: 13},
+    { url: "https://d1f5hsy4d47upe.cloudfront.net/8e/8ede20c158a6e0f15898e223ea979b48_t.jpeg", product_id: 14},
+    { url: "https://d1f5hsy4d47upe.cloudfront.net/4d/4ddf967b59779455ab77535f79296a71_t.jpeg", product_id: 15},
+    { url: "https://d1f5hsy4d47upe.cloudfront.net/4e/4e7aff5ab9974b475f877b72fe9e72b1_t.jpeg", product_id: 16},
+    { url: "https://d1f5hsy4d47upe.cloudfront.net/39/39d4934b752089a41ecb46e6800c9d4a_t.jpeg", product_id: 1},
+    { url: "https://d1f5hsy4d47upe.cloudfront.net/39/390518b4e3169410c0b9e0ed914b30da_t.jpeg", product_id: 2},
+    { url: "https://d1f5hsy4d47upe.cloudfront.net/61/612ccaeb6b1f0d25324f9a290f31d054_t.jpeg", product_id: 3},
+    { url: "https://d1f5hsy4d47upe.cloudfront.net/46/46860cfc0e68a961c101b49c05a635f0_t.jpeg", product_id: 4},
+    { url: "https://d1f5hsy4d47upe.cloudfront.net/58/585af06148d9ebf78ada7a6b35b1f47e_t.jpeg", product_id: 5},
+    { url: "https://d1f5hsy4d47upe.cloudfront.net/7a/7a376adc7d9e9cf7958aeacdb847188a_t.jpeg", product_id: 6},
+    { url: "https://d1f5hsy4d47upe.cloudfront.net/24/24e93a26e8f9a6e214746bf0f741fae2_t.jpeg", product_id: 7},
+    { url: "https://d1f5hsy4d47upe.cloudfront.net/19/19b4cab0cbd63d0339f2c2a21922c192_t.jpeg", product_id: 8},
+    { url: "https://d1f5hsy4d47upe.cloudfront.net/2a/2ae8455e3b767915e035a82bce5b1a4c_t.jpeg", product_id: 9},
+    { url: "https://d1f5hsy4d47upe.cloudfront.net/0b/0b55c3b87f85bcd4f3a95056b2f8d6fa_t.jpeg", product_id: 10},
+    { url: "https://d1f5hsy4d47upe.cloudfront.net/16/1675628cc0858d1322d65573ff964621_t.jpeg", product_id: 11},
+    { url: "https://d1f5hsy4d47upe.cloudfront.net/d5/d503d4e75908cc8e6cd823436b0274f3_t.jpeg", product_id: 12},
+    { url: "https://d1f5hsy4d47upe.cloudfront.net/3a/3a747c8ea6646ef556dbd3fbcbe1079a_t.jpeg", product_id: 13},
+    { url: "https://d1f5hsy4d47upe.cloudfront.net/8e/8ede20c158a6e0f15898e223ea979b48_t.jpeg", product_id: 14},
+    { url: "https://d1f5hsy4d47upe.cloudfront.net/4d/4ddf967b59779455ab77535f79296a71_t.jpeg", product_id: 15},
+    { url: "https://d1f5hsy4d47upe.cloudfront.net/4e/4e7aff5ab9974b475f877b72fe9e72b1_t.jpeg", product_id: 16}])
 
   brand = Brand.create([
     { brand: "アー ヴェ ヴェ"}, 

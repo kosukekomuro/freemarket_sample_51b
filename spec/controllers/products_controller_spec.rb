@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 describe ProductsController do
+  categories = FactoryBot.create_list(:category, 13)
+  brands = FactoryBot.create_list(:brand, 6564)
+  products = FactoryBot.create(:product)
   describe 'GET #index' do
-    categories = FactoryBot.create_list(:category, 13)
-    brands = FactoryBot.create_list(:brand, 6564)
-    products = FactoryBot.create(:product)
     before do
       get :index
     end
@@ -34,6 +34,39 @@ describe ProductsController do
     end
     it "assigns the requested product to @category_first_fourth" do
       expect(assigns(:category_fourth_items)).to eq []
+    end
+  end
+  describe 'POST #pay' do
+    user = FactoryBot.create(:user)
+    before do
+      session[:user_id] = user.id
+      post :pay, params: { id: products.id }
+    end
+    it "redirect to payjp" do
+      expect(response).to redirect_to('http://test.host/')
+    end
+    it "assigns the requested cards to @product" do
+      expect(assigns(:product)).to eq products
+    end
+  end
+  describe 'GET #show' do
+    before do
+      get :show, params: { id: products.id }
+    end
+    it "renders the :show template" do
+      expect(response).to render_template :show
+    end
+    it "assigns the requested cards to @user_products" do
+      expect(assigns(:user_products)).to eq []
+    end
+    it "assigns the requested cards to @brand_category_products" do
+      expect(assigns(:brand_category_products)).to eq []
+    end
+    it "assigns the requested cards to @previous_product" do
+      expect(assigns(:previous_product)).to eq nil
+    end
+    it "assigns the requested cards to @next_product" do
+      expect(assigns(:next_product)).to eq nil
     end
   end
 end

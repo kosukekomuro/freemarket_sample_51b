@@ -1,23 +1,19 @@
-= render "product-create-link"
-= render "main-header"
-.main-contents
-  %h2.main-contents__head
+.main-slick-image
+  = image_tag ("https://gyazo.com/8fe39d2d633d5047602ea7325047ab8b.jpg"), class: "main-slick-image__img"
+  = image_tag ("https://i.gyazo.com/d377b6ccaecfd13c4e01fe86f25cdbba.jpg"), class: "main-slick-image__img"
+  = image_tag ("https://gyazo.com/6b0b4d3e5608d50cf6b8b8d184914b5e.jpg"), class: "main-slick-image__img"
+.top-contents
+  %h2.top-contents__head
     ピックアップカテゴリー
   = render "product-list", pickup: @category_first.name, items: @category_first_items
   = render "product-list", pickup: @category_second.name, items: @category_second_items
   = render "product-list", pickup: @category_third.name, items: @category_third_items
   = render "product-list", pickup: @category_fourth.name, items: @category_fourth_items
   
-  %h2.main-contents__head
+  %h2.top-contents__head
     ピックアップブランド
   = render "product-list", pickup: @brand_first.brand, items: @brand_first_items
   = render "product-list", pickup: @brand_second.brand, items: @brand_second_items
   = render "product-list", pickup: @brand_third.brand, items: @brand_third_items
   = render "product-list", pickup: @brand_fourth.brand, items: @brand_fourth_items
-  
-.main-slick-image
-  = image_tag ("https://gyazo.com/8fe39d2d633d5047602ea7325047ab8b.jpg"), class: "main-slick-image__img"
-  = image_tag ("https://i.gyazo.com/d377b6ccaecfd13c4e01fe86f25cdbba.jpg"), class: "main-slick-image__img"
-  = image_tag ("https://gyazo.com/6b0b4d3e5608d50cf6b8b8d184914b5e.jpg"), class: "main-slick-image__img"
-= render "main-footer"
 

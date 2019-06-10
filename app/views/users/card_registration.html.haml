@@ -1,3 +1,6 @@
+%head
+  %script{src: "https://js.pay.jp/", type: "text/javascript"}
+
 %body
   .sign-up
     %header.sign-up__header
@@ -25,7 +28,7 @@
     %main.sign-up__main
       %section.sign-up__main__container
         %h2.sign-up__main__container__head 支払い方法
-        = form_with url: cards_path, method: "post" do |f|
+        = form_with url: users_path, method: "post" do |f|
           .sign-up__main__container__body
             .sign-up__main__container__body__form
               .form-group

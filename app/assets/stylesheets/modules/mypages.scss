@@ -1,19 +1,10 @@
-.header {
-  background-color: #FFF;
-  height: 149px;
-  text-align: center;
-  line-height: 100px;
-  color: #000;
-  border-bottom: 3px solid #eee;
-}
-
 body {
   background-color: #F5F5F5;
 }
 
 .wrapper {
   width: 100%;
-  .main-contents {
+  .mypage__main-contents{
     float: left;
     margin-top: 24px;
     margin-left: 40px;
@@ -205,5 +196,134 @@ body {
         }
       }
     }
+  }
+  .seller-product {
+    width: 700px;
+    border-bottom: 1px solid #eee;
+    background-color: #FFF;
+    &__head {
+      height: 72px;
+      width: 700px;
+      background-color: #FAFAFA;
+      h2 {
+        font-size: 16px;
+        line-height: 72px;
+        padding-left: 16px;
+      }
+    }
+    &__tab {
+      height: 74px;
+      width: 700px;
+      background-color: red;
+      &__selling {
+        float: left;
+        height: 72px;
+        width: 33%;
+        margin-top: 2px;
+        background-color: #FFF;
+        h3 {
+          font-size: 16px;
+          line-height: 74px;
+          text-align: center;
+        }
+      }
+      &__trading {
+        float: left;
+        height: 74px;
+        width: 34%;
+        background-color: #eee;
+        h3 {
+          font-size: 16px;
+          line-height: 74px;
+          text-align: center;
+        }
+      }
+      &__sold {
+        float: left;
+        height: 74px;
+        width: 33%;
+        background-color: #eee;
+        h3 {
+          font-size: 16px;
+          line-height: 74px;
+          text-align: center;
+        }
+      }
+    }
+    &__contents {
+      img {
+        height: 160px;
+        width: 120px;
+        display: block;
+        margin: auto;
+      }
+      h2 {
+        color: #CCC;
+        text-align: center;
+        font-size: 16px;
+        display: block;
+        margin: auto;
+      }
+      .item {
+        height: 80px;
+        line-height: 79px;
+        border-bottom: 1px solid #eee;
+        .product__image {
+          float: left;
+          height: 48px;
+          width: 48px;
+          margin: 16px;
+        }
+        .product {
+          float: left;
+          height: 80px;
+          position: relative;
+          &__title {
+            height: 21px;
+            line-height: 21px;
+            width: 560px;
+            font-size: 14px;
+            margin-top: 16px;
+          }
+          &__likes {
+            position: absolute;
+            top: 38px;
+            left: 25px;
+            height: 21px;
+            line-height: 21px;
+            font-size: 14px;
+          }
+          &__comments {
+            position: absolute;
+            top: 38px;
+            left: 75px;
+            height: 21px;
+            line-height: 21px;
+            font-size: 14px;
+          }
+          .heart {
+            position: absolute;
+            top: 7px;
+            font-size: 16px;
+          }
+          .comment {
+            position: absolute;
+            top: 7px;
+            left: 50px;
+            font-size: 16px;
+          }
+        }
+        i {
+          float: right;
+          font-size: 24px;
+          line-height: 80px;
+          padding-right: 10px;
+          color: #bbb;
+        }
+      }
+    }
+  }
+  .clear {
+    clear: both;
   }
 }

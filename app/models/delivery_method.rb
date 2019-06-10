@@ -1,4 +1,4 @@
 class DeliveryMethod < ApplicationRecord
   has_many :products
-  has_ancestry
+  belongs_to :delivery_fee_burden
 end

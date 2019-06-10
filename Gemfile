@@ -86,3 +86,4 @@ gem 'ancestry', git: "https://github.com/stefankroes/ancestry.git"
 gem 'active_hash'
 gem 'payjp'
 gem 'rails-i18n'
+gem 'gretel'

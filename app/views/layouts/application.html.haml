@@ -14,4 +14,10 @@
     %script{ type:"text/javascript", src: "//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"}
     %script{src: "https://js.pay.jp/", type: "text/javascript"}
   %body
+    = render "shared/sell-product-create-link"
+    = render "shared/main-header" , header_category_parents: @header_category_parents
+    - if (breadcrumbs != [])
+      .breadwrap
+        = breadcrumbs separator: " &rsaquo; ", style: :ul, class: "breadwrap__ul"
     = yield
+    = render "shared/main-footer"

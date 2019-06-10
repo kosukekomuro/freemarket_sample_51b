@@ -1,4 +1,3 @@
-= render "shared/sell-header"
 .buy-main
   .buybox
     .buybox__title
@@ -20,7 +19,7 @@
           支払い金額
         %span.buy-contents__payment--price
           ¥ #{@product.price}
-      = link_to products_path, method: "post", class: "buy-contents__purchase" do
+      = link_to pay_product_path(@product.id), method: "post", class: "buy-contents__purchase" do
         購入する
     .buybox-ship
       %h3.buybox-ship__title
@@ -47,5 +46,4 @@
       = link_to root_path, class: "buybox-payment_method__change" do
         変更する
         %i.fa.fa-chevron-right.buybox-payment_method__change--icon
-= render "shared/sell-footer"
 

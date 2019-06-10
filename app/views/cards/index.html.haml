@@ -1,14 +1,13 @@
-.header
-
+- breadcrumb :cards_index
 .wrapper
   = render "/layouts/sidemenu"
 
-  .main-contents
+  .card__main-contents
     .content__head
       支払い方法
     .content__body
       %h3 クレジットカード一覧
-      - if @user.card_id.nil?
+      - if @current_user.card_id.nil?
         .card-registration
           = fa_icon "credit-card"
           .card-registration__btn
@@ -24,3 +23,4 @@
       = link_to '/', class: "payment" do
         %span 支払い方法について
         = fa_icon "angle-right"
+  .clear

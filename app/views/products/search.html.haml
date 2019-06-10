@@ -1,0 +1,144 @@
+.default-container 
+  %main.product-search-wrap
+    .product-detail-search
+      = form_with url: search_products_path, class: ".product-detail-search-form" do |f|
+        .product-detail-search-form-sort
+          = select_tag "product_sort", options_for_select(product_sort), class: "product-detail-search-form-sort__select"
+          %i.fas.fa-chevron-down.product-detail-search-form-sort__icon
+        .product-detail-search-form-value
+          %h3.product-detail-search-form-value__title
+            詳細検索
+          .product-detail-search-form-value-keyword
+            %label.product-detail-search-form-value-keyword-label
+              %i.fas.fa-plus.product-detail-search-form-value-keyword-label__icon
+              %span.product-detail-search-form-value-keyword-label__title
+                キーワードを追加する
+            = f.text_field "keyword", class: "product-detail-search-form-value-keyword__input", placeholder: "例) 値下げ"
+          .product-detail-search-form-value-category
+            %label.product-detail-search-form-value-category-label
+              %i.fas.fa-bars.product-detail-search-form-value-category-label__icon
+              %span.product-detail-search-form-value-category-label__title
+                カテゴリーを選択する
+            = select_tag "product_sort", options_for_select(["全て"]), class: "product-detail-search-form-value-category__select"
+            %i.fas.fa-chevron-down.product-detail-search-form-value-category__icon
+          .product-detail-search-form-value-brand
+            %label.product-detail-search-form-value-brand-label
+              %i.fas.fa-tags.product-detail-search-form-value-brand-label__icon
+              %span.product-detail-search-form-value-brand-label__title
+                ブランド名から探す
+            = f.text_field "keyword", class: "product-detail-search-form-value-brand__input", placeholder: "例) シャネル"
+          .product-detail-search-form-value-size
+            %label.product-detail-search-form-value-size-label
+              %i.fas.fa-expand.product-detail-search-form-value-size-label__icon
+              %span.product-detail-search-form-value-size-label__title
+                サイズを指定する
+            = select_tag "product_sort", options_for_select(["全て"]), class: "product-detail-search-form-value-size__select"
+            %i.fas.fa-chevron-down.product-detail-search-form-value-size__icon
+          .product-detail-search-form-value-price
+            %label.product-detail-search-form-value-price-label
+              %i.fas.fa-dollar-sign.product-detail-search-form-value-price-label__icon
+              %span.product-detail-search-form-value-price-label__title
+                価格
+            = select_tag "product_sort", options_for_select(["全て"]), class: "product-detail-search-form-value-price__select"
+            %i.fas.fa-chevron-down.product-detail-search-form-value-price__icon
+          = f.text_field "praice-min", class: "product-detail-search-form-value-price-min", type:"number", placeholder: "¥ Min"
+          %span ~
+          = f.text_field "praice_max", class: "product-detail-search-form-value-price-max", type:"number", placeholder: "¥ Max"
+          .product-detail-search-form-value-condition
+            %label.product-detail-search-form-value-condition-label
+              %i.fas.fa-star.product-detail-search-form-value-condition-label__icon
+              %span.product-detail-search-form-value-condition-label__title
+                商品の状態
+            .product-search-condition-select-container
+              .product-search-condition-select
+                = check_box_tag "condition_all", 1, {}, class: "product-search-condition-select__check-box", checked: false
+                = label_tag "condition_all" ,"全て", class: "product-search-condition-select__label", for: "condition_all"
+              -#Todo サーバーサイド実装時チェックボックスの表示値をDBから取ってくる様に変更、クラス名の変更
+              .product-search-condition-select
+                = check_box_tag "sample1", 1, {}, class: "product-search-condition-select__check-box", checked: false
+                = label_tag "sample1", "新品,未使用", class: "product-search-condition-select__label", for: "sample1"
+              .product-search-condition-select
+                = check_box_tag "sample2", 1, {}, class: "product-search-condition-select__check-box", checked: false
+                = label_tag "sample2", "未使用に近い", class: "product-search-condition-select__label", for: "sample2"
+              .product-search-condition-select
+                = check_box_tag "sample3", 1, {}, class: "product-search-condition-select__check-box", checked: false
+                = label_tag "sample3", "目立った傷や汚れ無し", class: "product-search-condition-select__label", for: "sample3"
+              .product-search-condition-select
+                = check_box_tag "sample4", 1, {}, class: "product-search-condition-select__check-box", checked: false
+                = label_tag "sample4", "やや傷や汚れあり", class: "product-search-condition-select__label", for: "sample4"
+              .product-search-condition-select
+                = check_box_tag "sample5", 1, {}, class: "product-search-condition-select__check-box", checked: false
+                = label_tag "sample5", "傷や汚れあり", class: "product-search-condition-select__label", for: "sample5"
+              .product-search-condition-select
+                = check_box_tag "sample6", 1, {}, class: "product-search-condition-select__check-box", checked: false
+                = label_tag "sample6", "全体的に状態が悪い", class: "product-search-condition-select__label", for: "sample6"
+          .product-detail-search-form-value-delivery-burden
+            %label.product-detail-search-form-value-delivery-burden-label
+              %i.fas.fa-truck-moving.product-detail-search-form-value-delivery-burden-label__icon
+              %span.product-detail-search-form-value-delivery-burden__title
+                配送料の負担
+            .product-search-delivery-burden-select-container
+              .product-search-delivery-burden-select
+                = check_box_tag "delivery-burden_all", 1, {}, class: "product-search-delivery-burden-select__check-box", checked: false
+                = label_tag "delivery-burden_all" ,"全て", class: "product-search-delivery-burden-select__label", for: "delivery-burden_all"
+              -#Todo サーバーサイド実装時チェックボックスの表示値をDBから取ってくる様に変更、クラス名の変更
+              .product-search-delivery-burden-select
+                = check_box_tag "burden1", 1, {}, class: "product-search-delivery-burden-select__check-box", checked: false
+                = label_tag "burden1", "着払い(購入者負担)", class: "product-search-delivery-burden-select__label", for: "burden1"
+              .product-search-delivery-burden-select
+                = check_box_tag "burden2", 1, {}, class: "product-search-delivery-burden-select__check-box", checked: false
+                = label_tag "burden2", "送料込み(出品者負担)", class: "product-search-delivery-burden-select__label", for: "burden2"
+          .product-detail-search-form-value-sales-status
+            %label.product-detail-search-form-value-sales-status-label
+              %i.fas.fa-truck-moving.product-detail-search-form-value-sales-status-label__icon
+              %span.product-detail-search-form-value-sales-status__title
+                配送料の負担
+            .product-search-sales-status-select-container
+              .product-search-sales-status-select
+                = check_box_tag "sales-status_all", 1, {}, class: "product-search-sales-status-select__check-box", checked: false
+                = label_tag "sales-status_all" ,"全て", class: "product-search-sales-status-select__label", for: "sales-status_all"
+              -#Todo サーバーサイド実装時チェックボックスの表示値をDBから取ってくる様に変更、クラス名の変更
+              .product-search-sales-status-select
+                = check_box_tag "sales-status1", 1, {}, class: "product-search-sales-status-select__check-box", checked: false
+                = label_tag "sales-status1", "着払い(購入者負担)", class: "product-search-sales-status-select__label", for: "sales-status1"
+              .product-search-sales-status-select
+                = check_box_tag "sales-status2", 1, {}, class: "product-search-sales-status-select__check-box", checked: false
+                = label_tag "sales-status2", "送料込み(出品者負担)", class: "product-search-sales-status-select__label", for: "sales-status2"
+          .product-detail-search-form-btn
+            .product-detail-search-form-btn__clear
+              クリア
+            .product-detail-search-form-btn__execution
+              完了
+    .product-search-result
+      %h2.product-search-result__title
+        検索結果
+      %p.product-search-result__count
+        1 - 48件表示
+      -# Todo サーバサイド実装時に編集
+      -# 検索結果の表示
+      .product-search-result-item
+        - 48.times do
+          = link_to root_path, class: "product-search-result-item__link" do
+            = image_tag ("https://i.gyazo.com/bb08cb19258df552117029575260c039.png"), class: "product-search-result-item__img"
+            -# Todo サーバサイド実装時に編集
+            -# 売り切れ機能
+            - if (true)
+              .product-search-result-item__sold
+                .product-search-result-item__sold--msg
+                  SOLD
+            .product-search-result-item-info
+              .product-search-result-item-info__name
+                パーカー
+              .product-search-result-item-info-price
+                %p.product-search-result-item-info-price__main
+                  ¥ 3000
+                  -# Todo サーバサイド実装時に編集
+                  -# お気に入り機能
+                  - if (true)
+                    %span.product-search-result-item-info-price__main
+                      %i.fa.fa-heart.product-search-result-item-info-price__main--icon-red
+                      %span.product-search-result-item-info-price__main--evaluation
+                        10
+                %p.product-search-result-item-info-price__sub
+                  (税込)
+
