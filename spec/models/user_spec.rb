@@ -31,10 +31,5 @@ describe User do
       user.valid?
       expect(user[:email]).to match(/\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/)
     end
-
-    it "is check if regular expression of password matches" do
-      user = build(:user)
-      expect(user[:password]).to match(/\A[a-zA-Z0-9]+\z/)
-    end
   end
 end

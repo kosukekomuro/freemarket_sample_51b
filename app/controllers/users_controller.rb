@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_sign_in, only: :registration_complete
+  before_action :save_to_session, only: :address_registration
 
   def show
   end
@@ -21,12 +22,23 @@ class UsersController < ApplicationController
   end
 
   def address_registration
-    session[:nickname] = user_params[:nickname]
-    session[:email] = user_params[:email]
-    session[:password] = user_params[:password]
     @user = User.new
     @user.build_user_detail
     @user.build_user_address
+  end
+
+  def save_to_session
+    session[:nickname] = user_params[:nickname]
+    session[:email] = user_params[:email]
+    session[:password] = user_params[:password]
+    session[:password_confirmation] = user_params[:password_confirmation]
+    @user = User.new(
+      nickname: user_params[:nickname],
+      email: user_params[:email],
+      password: user_params[:password],
+      password_confirmation: user_params[:password_confirmation]
+    )
+    render '/users/user_registration' unless @user.valid?
   end
 
   def card_registration
@@ -39,7 +51,8 @@ class UsersController < ApplicationController
     @user = User.new(
       nickname: session[:nickname],
       email: session[:email],
-      password: session[:password]
+      password: session[:password],
+      password_confirmation: session[:password_confirmation]
     )
     @user.build_user_detail(user_params[:user_detail_attributes])
     @user.build_user_address(user_params[:user_address_attributes])
@@ -47,7 +60,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to registration_complete_users_path
     else
-      render '/users/user_registration'
+      render '/users/address_registration'
     end
   end
 
@@ -58,6 +71,7 @@ class UsersController < ApplicationController
       :nickname,
       :email,
       :password,
+      :password_confirmation,
       user_detail_attributes: [
         :id,
         :last_name,
