@@ -1,0 +1,209 @@
+.product-search-wrap{
+  display: flex;
+  width: 1020px;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+.product-detail-search{
+  height: 500px;
+  width: 280px;
+  margin: 0 40px 0 0;
+}
+
+.product-detail-search-form-sort{
+  background: $background-white;
+  @include product-select-defalut;
+}
+
+.product-detail-search-form-value{
+  margin-top: 40px;
+  padding: 16px;
+  background-color: $background-white;
+}
+
+.product-detail-search-form-value-keyword{
+  margin-top: 24px;
+
+  &__input{
+    @include product-input-defalut;
+  }
+}
+
+.product-detail-search-form-value-keyword-label{
+  @include product-form-label;
+}
+
+.product-detail-search-form-value-category{
+  margin-top: 40px;
+  @include product-select-defalut(75%);
+
+  &__select{
+    margin-top: 8px;
+  }
+}
+
+.product-detail-search-form-value-category-label{
+  @include product-form-label;
+}
+
+.product-detail-search-form-value-brand{
+  margin-top: 40px;
+
+  &__input{
+    @include product-input-defalut;
+  }
+}
+
+.product-detail-search-form-value-brand-label{
+  @include product-form-label;
+}
+
+.product-detail-search-form-value-size{
+  margin-top: 40px;
+  @include product-select-defalut(75%);
+
+  &__select{
+    margin-top: 8px;
+  }
+}
+
+.product-detail-search-form-value-size-label{
+  @include product-form-label;
+}
+
+.product-detail-search-form-value-price{
+  margin-top: 40px;
+  @include product-select-defalut(75%);
+
+  &__select{
+    margin-top: 8px;
+  }
+}
+
+.product-detail-search-form-value-price-label{
+  @include product-form-label;
+}
+
+.product-detail-search-form-value-price-min{
+  @include product-input-defalut;
+  width: 45%;
+  touch-action: manipulation;
+}
+
+.product-detail-search-form-value-price-max{
+  @include product-input-defalut;
+  width: 45%;
+}
+
+.product-detail-search-form-value-condition{
+  margin-top: 40px;
+}
+
+.product-detail-search-form-value-condition-label{
+  @include product-form-label;
+}
+
+.product-search-condition-select-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.product-search-condition-select{
+  @include product-check-box-defalut;
+}
+
+.product-detail-search-form-value-delivery-burden{
+  margin-top: 40px;
+}
+
+.product-detail-search-form-value-delivery-burden-label{
+  @include product-form-label;
+}
+
+.product-search-delivery-burden-select-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.product-search-delivery-burden-select{
+  @include product-check-box-defalut;
+}
+
+.product-detail-search-form-value-sales-status{
+  margin-top: 40px;
+}
+
+.product-detail-search-form-value-sales-status-label{
+  @include product-form-label;
+}
+
+.product-search-sales-status-select-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.product-search-sales-status-select{
+  @include product-check-box-defalut;
+}
+
+.product-detail-search-form-btn{
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+
+  &__clear{
+    @include hover-button-color($text-white, $background-gray);
+    line-height: 48px;
+    font-size: 14px;
+    text-align: center;
+    width: 45%;
+    cursor: pointer;
+  }
+  
+  &__execution{
+    @include hover-button-color($text-white, $background-red);
+    line-height: 48px;
+    font-size: 14px;
+    text-align: center;
+    width: 45%;
+    cursor: pointer;
+  }
+}
+
+
+
+.product-search-result{
+  width: 700px;
+
+  &__title{
+    font-size: 22px;
+  }
+
+  &__count{
+    margin: 16px 0 0 0;
+    font-size: 12px;
+    color: #888;
+  }
+}
+
+.product-search-result-item{
+  @include one-product(160px, 10px, 10px);
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  &__link{
+    margin: 0 0 20px 0;
+  }
+}
+
+.product-search-result-item-info{
+  @include category-box-deteil-info;
+}
+
+.product-search-result-item-info-price{
+  @include category-box-deteil-info-price;
+}
