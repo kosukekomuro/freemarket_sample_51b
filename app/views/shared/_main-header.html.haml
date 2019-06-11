@@ -79,7 +79,7 @@
             .header-user-nav-mypage
               = image_tag ("//gyazo.com/626572e7da5f53aae3cfca8eec28170d.png"), size: "300x100", class: "header-user-nav-mypage__img"
               %p.header-user-nav-mypage__user-name
-                user.name
+                = @current_user.name
               .header-user-nav-mypage__user-action
                 = link_to "評価数:0" ,root_path, class: "header-user-nav-mypage__user-action--link" 
                 = link_to "出品数:0", root_path, class: "header-user-nav-mypage__user-action--link"
