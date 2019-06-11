@@ -37,7 +37,7 @@
                 = link_to "ルイヴィトン", root_path, class: "header-product-nav-parent__list--button"
       .main-header-nav-right
       -# ログイン機能実装後に実装
-      - if true
+      - if user_signed_in?
         %ul.header-user-nav
           %li.header-user-nav__list.info-list
             = link_to root_path, class:"header-user-nav__list--color" do
@@ -122,7 +122,7 @@
       - else
         %ul.header-login-nav
           %li.header-login-nav__signup
-            = link_to "新規会員登録", root_path, class: "header-login-nav__signup--button"
+            = link_to "新規会員登録", sign_up_users_path, class: "header-login-nav__signup--button"
           %li.header-login-nav__login
-            = link_to "ログイン", root_path, class: "header-login-nav__login--button"
+            = link_to "ログイン", login_users_path, class: "header-login-nav__login--button"
 
