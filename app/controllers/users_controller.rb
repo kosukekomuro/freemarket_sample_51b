@@ -113,7 +113,6 @@ class UsersController < ApplicationController
   end
 
   def google_sign_up
-    binding.pry
     google_info = request.env['omniauth.auth']['info'] rescue nil
     if google_info
       @google_name = request.env['omniauth.auth']['info']['name'] rescue nil
