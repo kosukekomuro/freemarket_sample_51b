@@ -8,10 +8,10 @@
       .login__main__container__body__login-btn
         %button.btn-default.btn-sns.btn-sns-facebook
           %i.fab.fa-facebook-square
-          Facebookで登録
-        %button.btn-default.btn-sns.btn-sns-google
+          Facebookでログイン
+        = link_to "/auth/google_oauth2", class: "btn-default btn-sns btn-sns-google" do
           = image_tag "https://img.icons8.com/color/50/000000/google-logo.png", class: "google-icon"
-          Googleで登録
+          Googleでログイン
     = form_for :session, url: sessions_path do |f|
       .login__main__container__bottom
         .form-group

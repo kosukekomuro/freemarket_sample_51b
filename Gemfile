@@ -87,3 +87,5 @@ gem 'active_hash'
 gem 'payjp'
 gem 'rails-i18n'
 gem 'gretel'
+gem 'omniauth-google-oauth2'
+
