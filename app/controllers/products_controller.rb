@@ -25,7 +25,7 @@ class ProductsController < ApplicationController
   end
 
   def search
-    @products = Product.where("name LIKE ?", "%#{params[:keyword]}%").limit(4800)
+    # @products = Product.where("name LIKE ?", "%#{params[:keyword]}%").limit(4800)
   end
 
   def buy
