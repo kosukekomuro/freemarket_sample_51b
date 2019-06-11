@@ -69,30 +69,30 @@ describe ProductsController do
       expect(assigns(:next_product)).to eq nil
     end
   end
-  # describe 'GET #search' do
-  #   it "search products with input keyword fullwidth" do
-  #     get :search, params: {keyword: "せーたー"}
-  #     expect(response).to render_template :search
-  #   end
-  #   it "search products with input keyword 全角カナ" do
-  #     get :search, params: {keyword: "セーター"}
-  #     expect(response).to render_template :search
-  #   end
-  #   it "search products with input keyword 半角カナ" do
-  #     get :search, params: {keyword: "ﾎﾞｳｼ"}
-  #     expect(response).to render_template :search
-  #   end
-  #   it "search products with input keyword environmental_dependency_character" do
-  #     get :search, params: {keyword: "㌶Ⅲ⑳㏾☎㈱髙﨑"}
-  #     expect(response).to render_template :search
-  #   end
-  #   it "search products with input keyword surrogate_pair" do
-  #     get :search, params: {keyword: "𠀋𡈽𡌛𡑮𡢽𠮟𡚴𡸴𣇄𣗄"}
-  #     expect(response).to render_template :search
-  #   end
-  #   it "search products with input keyword pictograph" do
-  #     get :search, params: {keyword: "😀🐱🚗"}
-  #     expect(response).to render_template :search
-  #   end
-  # end
+  describe 'GET #search' do
+    it "search products with input keyword fullwidth" do
+      get :search, params: {keyword: "せーたー"}
+      expect(response).to render_template :search
+    end
+    it "search products with input keyword 全角カナ" do
+      get :search, params: {keyword: "セーター"}
+      expect(response).to render_template :search
+    end
+    it "search products with input keyword 半角カナ" do
+      get :search, params: {keyword: "ﾎﾞｳｼ"}
+      expect(response).to render_template :search
+    end
+    it "search products with input keyword environmental_dependency_character" do
+      get :search, params: {keyword: "㌶Ⅲ⑳㏾☎㈱髙﨑"}
+      expect(response).to render_template :search
+    end
+    it "search products with input keyword surrogate_pair" do
+      get :search, params: {keyword: "𠀋𡈽𡌛𡑮𡢽𠮟𡚴𡸴𣇄𣗄"}
+      expect(response).to render_template :search
+    end
+    it "search products with input keyword pictograph" do
+      get :search, params: {keyword: "😀🐱🚗"}
+      expect(response).to render_template :search
+    end
+  end
 end
