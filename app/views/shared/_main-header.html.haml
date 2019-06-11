@@ -8,7 +8,7 @@
       .main-header-main-right
         = form_with url: search_products_path, method: :get, class: :"main-header-main-right__form", local: true do |f|
           = f.text_field :keyword, placeholder: "何かお探しですか？", class: "main-header-main-right__form--input"
-          %i.main-header-main-right__form--icon
+          = button_tag type: 'submit', class: "main-header-main-right__form--icon" do
             %i.fa.fa-search
     .main-header-nav
       .main-header-nav-left

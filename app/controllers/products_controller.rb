@@ -24,10 +24,10 @@ class ProductsController < ApplicationController
     redirect_to root_path
   end
 
-    #商品の簡易検索を行う
   def search
+    @products = Product.where("name LIKE ?", "%#{params[:keyword]}%").limit(4800)
   end
-    #商品の購入確認を行う
+
   def buy
     render layout: "sellproduct"
   end

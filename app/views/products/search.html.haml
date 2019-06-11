@@ -114,31 +114,25 @@
         検索結果
       %p.product-search-result__count
         1 - 48件表示
-      -# Todo サーバサイド実装時に編集
-      -# 検索結果の表示
       .product-search-result-item
-        - 48.times do
-          = link_to root_path, class: "product-search-result-item__link" do
-            = image_tag ("https://i.gyazo.com/bb08cb19258df552117029575260c039.png"), class: "product-search-result-item__img"
-            -# Todo サーバサイド実装時に編集
-            -# 売り切れ機能
-            - if (true)
+        - @products.each do |product|
+          = link_to product_path(product.id), class: "product-search-result-item__link" do
+            = image_tag ("#{product.images[0].url}"), class: "product-search-result-item__img"
+            - if (product.buyer_id)
               .product-search-result-item__sold
                 .product-search-result-item__sold--msg
                   SOLD
             .product-search-result-item-info
               .product-search-result-item-info__name
-                パーカー
+                = product.name
               .product-search-result-item-info-price
                 %p.product-search-result-item-info-price__main
-                  ¥ 3000
-                  -# Todo サーバサイド実装時に編集
-                  -# お気に入り機能
-                  - if (true)
+                  ¥ #{product.price}
+                  - if (product.trading_evaluation_id)
                     %span.product-search-result-item-info-price__main
                       %i.fa.fa-heart.product-search-result-item-info-price__main--icon-red
                       %span.product-search-result-item-info-price__main--evaluation
-                        10
+                        = product.trading_evaluation.evaluation
                 %p.product-search-result-item-info-price__sub
                   (税込)
 
