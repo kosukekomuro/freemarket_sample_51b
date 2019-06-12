@@ -12,13 +12,6 @@ class UsersController < ApplicationController
 
   def user_registration
     @user = User.new
-    if @sns_email
-      @sns_name
-      @sns_email
-    else
-      @sns_name = ""
-      @sns_email = ""
-    end
   end
 
   def sms_confirmation
@@ -58,20 +51,14 @@ class UsersController < ApplicationController
         if @user.save
           session[:user_id] = @user.id
         end
+        if session[:uid]
+          SnsCredential.create(
+            user_id: @user.id,
+            provider: session[:provider],
+            uid: session[:uid]
+          )
+        end
       }
-    end
-  end
-
-  def sns_login
-    sns_email = request.env['omniauth.auth']['info']['email'] rescue nil
-    return false unless sns_email
-    user = User.find_by(email: sns_email)
-    if user
-      session[:user_id] = user.id
-      redirect_to root_path
-    else
-      @sns_name = request.env['omniauth.auth']['info']['name'] rescue nil
-      @sns_email = request.env['omniauth.auth']['info']['email'] rescue nil
     end
   end
 
@@ -119,5 +106,22 @@ class UsersController < ApplicationController
       password_confirmation: user_params[:password_confirmation]
     )
     render '/users/user_registration' unless @user.valid?
+  end
+
+  def sns_login
+    sns_email = request.env['omniauth.auth']['info']['email'] rescue nil
+    return false unless sns_email # メアドのみで新規作成
+    sns_uid = request.env['omniauth.auth']['uid'] rescue nil
+    sns_info = SnsCredential.find_by(uid: sns_uid)
+    user = User.find_by(email: sns_email)
+    if user && sns_info
+      session[:user_id] = user.id
+      redirect_to root_path
+    else
+      @sns_name = request.env['omniauth.auth']['info']['name'] rescue nil
+      @sns_email = request.env['omniauth.auth']['info']['email'] rescue nil
+      session[:provider] = request.env['omniauth.auth']['provider'] rescue nil
+      session[:uid] = request.env['omniauth.auth']['uid'] rescue nil
+    end
   end
 end
