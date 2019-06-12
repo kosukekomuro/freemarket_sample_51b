@@ -110,7 +110,7 @@ class UsersController < ApplicationController
 
   def sns_login
     sns_email = request.env['omniauth.auth']['info']['email'] rescue nil
-    return false unless sns_email # メアドのみで新規作成
+    return false unless sns_email
     sns_uid = request.env['omniauth.auth']['uid'] rescue nil
     sns_info = SnsCredential.find_by(uid: sns_uid)
     user = User.find_by(email: sns_email)
