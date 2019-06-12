@@ -12,4 +12,6 @@ class Product < ApplicationRecord
   belongs_to :trading_evaluation
 
   has_many :images, dependent: :destroy
+  has_many :likes
+  has_many :users, through: :likes
 end

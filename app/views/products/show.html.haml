@@ -85,9 +85,14 @@
     .product-showbox-description
       = @product.description
     .product-showbox-user-menu
-      .product-showbox-user-menu__likes
-        %i.fa.fa-heart.product-showbox-user-menu__likes--icon
-        %span いいね！
+      - if ((@product.likes & @current_user.likes).size > 0)
+        .product-showbox-user-menu__already-likes{id: @product.id}
+          %i.fa.fa-heart.product-showbox-user-menu__already-likes--icon
+          %span いいね！ #{@product.likes.length}
+      - else
+        .product-showbox-user-menu__likes{id: @product.id}
+          %i.fa.fa-heart.product-showbox-user-menu__likes--icon
+          %span いいね！ #{@product.likes.length}
       .product-showbox-user-menu__improper-report
         %i.fa.fa-flag.product-showbox-user-menu__improper-report--icon
         %span 不適切な商品の報告

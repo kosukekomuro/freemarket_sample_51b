@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :require_sign_in, only: :registration_complete
   before_action :save_to_session, only: :address_registration
+  before_action :access_payjp, only: [:create]
   layout 'users'
 
   def login
@@ -98,5 +99,10 @@ class UsersController < ApplicationController
   # application_controllerのアクションをオーバーライド
   def use_search_header_category?
     false
+  end
+
+  def access_payjp
+    require 'payjp'
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
   end
 end

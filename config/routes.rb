@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       get 'logout'
       get 'myconfirmation'
       get 'selling_list'
+      get 'likes_list'
     end
     member do
       get 'seller_product'
@@ -45,5 +46,7 @@ Rails.application.routes.draw do
   end
 
   resources :sessions, only: [:create, :destroy]
+
+  resources :likes, only: [:create, :destroy]
 
 end
