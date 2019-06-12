@@ -88,4 +88,5 @@ gem 'payjp'
 gem 'rails-i18n'
 gem 'gretel'
 gem 'omniauth-google-oauth2'
-
+gem 'omniauth'
+gem 'omniauth-facebook'
