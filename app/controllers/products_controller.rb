@@ -43,10 +43,14 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @user_products = Product.where('(seller_id = ?) AND (id != ?)', @product.seller_id, @product.id).limit(6)
-    @brand_category_products = Product.where('(brand_id = ?) AND (category_id = ?) AND (id != ?)', @product.brand_id, @product.category_id, @product.id).limit(6)
-    @previous_product = Product.where('(id < ?)', @product.id).order("id DESC").first
-    @next_product = Product.where('(id > ?)', @product.id).order("id ASC").first
+    if @product.seller_id == current_user.id
+      redirect_to seller_product_mypages_path(format: params[:id])
+    else
+      @user_products = Product.users(@product.seller_id, @product.id)
+      @brand_category_products = Product.brands(@product.brand_id, @product.category_id, @product.id)
+      @previous_product = Product.previous(@product.id)
+      @next_product = Product.next(@product.id)
+    end
   end
 
   def destroy

@@ -12,4 +12,11 @@ class Product < ApplicationRecord
   belongs_to :trading_evaluation
 
   has_many :images, dependent: :destroy
+  has_many :likes
+  has_many :users, through: :likes
+
+  scope :users, -> (seller_id, product_id){ where('(seller_id = ?) AND (id != ?)', seller_id, product_id).limit(6) }
+  scope :brands, -> (brand_id, category_id, product_id){ where('(brand_id = ?) AND (category_id = ?) AND (id != ?)', brand_id, category_id, product_id).limit(6) }
+  scope :previous, -> (product_id){ where('(id < ?)', product_id).order("id DESC").first }
+  scope :next, -> (product_id){ where('(id > ?)', product_id).order("id ASC").first }
 end
