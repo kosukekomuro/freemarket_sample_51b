@@ -111,28 +111,54 @@
               完了
     .product-search-result
       %h2.product-search-result__title
-        検索結果
-      %p.product-search-result__count
-        1 - 48件表示
-      .product-search-result-item
-        - @products.each do |product|
-          = link_to product_path(product.id), class: "product-search-result-item__link" do
-            = image_tag ("#{product.images[0].url}"), class: "product-search-result-item__img"
-            - if (product.buyer_id)
-              .product-search-result-item__sold
-                .product-search-result-item__sold--msg
-                  SOLD
-            .product-search-result-item-info
-              .product-search-result-item-info__name
-                = product.name
-              .product-search-result-item-info-price
-                %p.product-search-result-item-info-price__main
-                  ¥ #{product.price}
-                  - if (product.trading_evaluation_id)
-                    %span.product-search-result-item-info-price__main
-                      %i.fa.fa-heart.product-search-result-item-info-price__main--icon-red
-                      %span.product-search-result-item-info-price__main--evaluation
-                        = product.trading_evaluation.evaluation
-                %p.product-search-result-item-info-price__sub
-                  (税込)
-
+        = @keyword + "の検索結果"
+      - if @products.length != 0
+        %p.product-search-result__count
+          1 - 48件表示
+        .product-search-result-item
+          - @products.each do |product|
+            = link_to product_path(product.id), class: "product-search-result-item__link" do
+              = image_tag ("#{product.images[0].url}"), class: "product-search-result-item__img"
+              - if (product.buyer_id)
+                .product-search-result-item__sold
+                  .product-search-result-item__sold--msg
+                    SOLD
+              .product-search-result-item-info
+                .product-search-result-item-info__name
+                  = product.name
+                .product-search-result-item-info-price
+                  %p.product-search-result-item-info-price__main
+                    ¥ #{product.price}
+                    - if (product.trading_evaluation_id)
+                      %span.product-search-result-item-info-price__main
+                        %i.fa.fa-heart.product-search-result-item-info-price__main--icon-red
+                        %span.product-search-result-item-info-price__main--evaluation
+                          = product.trading_evaluation.evaluation
+                  %p.product-search-result-item-info-price__sub
+                    (税込)
+      - else
+        %p.product-search-result__count
+          該当する商品が見つかりません。条件を変えて再度お試しください。
+        %h2.product-search-result__subtitle
+          新着商品
+        .product-search-result-item
+          - @new_products.each do |product|
+            = link_to product_path(product.id), class: "product-search-result-item__link" do
+              = image_tag ("#{product.images[0].url}"), class: "product-search-result-item__img"
+              - if (product.buyer_id)
+                .product-search-result-item__sold
+                  .product-search-result-item__sold--msg
+                    SOLD
+              .product-search-result-item-info
+                .product-search-result-item-info__name
+                  = product.name
+                .product-search-result-item-info-price
+                  %p.product-search-result-item-info-price__main
+                    ¥ #{product.price}
+                    - if (product.trading_evaluation_id)
+                      %span.product-search-result-item-info-price__main
+                        %i.fa.fa-heart.product-search-result-item-info-price__main--icon-red
+                        %span.product-search-result-item-info-price__main--evaluation
+                          = product.trading_evaluation.evaluation
+                  %p.product-search-result-item-info-price__sub
+                    (税込)
