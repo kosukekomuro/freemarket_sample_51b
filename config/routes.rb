@@ -46,6 +46,7 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:create, :destroy]
 
-  get 'auth/:provider/callback', to: 'users#google_login'
+  get 'auth/:provider/callback', to: 'users#user_registration'
+  get 'auth/failure', to: 'users#login'
 
 end

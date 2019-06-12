@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :require_sign_in, only: :registration_complete
   before_action :save_to_session, only: :address_registration
-  before_action :google_sign_up, only: :user_registration
+  before_action :sns_login, only: :user_registration
   layout 'users'
 
   def login
@@ -51,18 +51,14 @@ class UsersController < ApplicationController
         if @user.save
           session[:user_id] = @user.id
         end
+        if session[:uid]
+          SnsCredential.create(
+            user_id: @user.id,
+            provider: session[:provider],
+            uid: session[:uid]
+          )
+        end
       }
-    end
-  end
-
-  def google_login
-    google_email = request.env['omniauth.auth']['info']['email'] rescue nil
-    @user = User.find_by(email: google_email)
-    if @user
-      session[:user_id] = @user.id
-      redirect_to root_path
-    else
-      redirect_to user_registration_users_path
     end
   end
 
@@ -112,14 +108,20 @@ class UsersController < ApplicationController
     render '/users/user_registration' unless @user.valid?
   end
 
-  def google_sign_up
-    google_info = request.env['omniauth.auth']['info'] rescue nil
-    if google_info
-      @google_name = request.env['omniauth.auth']['info']['name'] rescue nil
-      @google_email = request.env['omniauth.auth']['info']['email'] rescue nil
+  def sns_login
+    sns_email = request.env['omniauth.auth']['info']['email'] rescue nil
+    return false unless sns_email
+    sns_uid = request.env['omniauth.auth']['uid'] rescue nil
+    sns_info = SnsCredential.find_by(uid: sns_uid)
+    user = User.find_by(email: sns_email)
+    if user && sns_info
+      session[:user_id] = user.id
+      redirect_to root_path
     else
-      @google_name = ""
-      @google_email = ""
+      @sns_name = request.env['omniauth.auth']['info']['name'] rescue nil
+      @sns_email = request.env['omniauth.auth']['info']['email'] rescue nil
+      session[:provider] = request.env['omniauth.auth']['provider'] rescue nil
+      session[:uid] = request.env['omniauth.auth']['uid'] rescue nil
     end
   end
 end

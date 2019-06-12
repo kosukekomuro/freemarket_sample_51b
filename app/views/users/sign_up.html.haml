@@ -7,7 +7,7 @@
         = link_to user_registration_users_path, class: "btn-default btn-mail" do
           %i.material-icons mail_outline
           メールアドレスで登録
-        %button.btn-default.btn-sns.btn-sns-facebook
+        = link_to "/auth/facebook", class: "btn-default btn-sns btn-sns-facebook" do
           %i.fab.fa-facebook-square
           Facebookで登録
         = link_to "/auth/google_oauth2", class: "btn-default btn-sns btn-sns-google" do
