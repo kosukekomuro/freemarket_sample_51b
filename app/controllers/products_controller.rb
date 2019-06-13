@@ -121,7 +121,7 @@ class ProductsController < ApplicationController
         @category_id << grand_child.id
       end
     end
-    @category_first_items = Product.where(category_id: @category_id)
+    @category_first_items = Product.where(category_id: @category_id).order("id DESC").limit(4)
 
     @category_id = []
     @category_second = Category.find(second)
@@ -132,7 +132,7 @@ class ProductsController < ApplicationController
         @category_id << grand_child.id
       end
     end
-    @category_second_items = Product.where(category_id: @category_id)
+    @category_second_items = Product.where(category_id: @category_id).order("id DESC").limit(4)
 
     @category_id = []
     @category_third = Category.find(third)
@@ -143,7 +143,7 @@ class ProductsController < ApplicationController
         @category_id << grand_child.id
       end
     end
-    @category_third_items = Product.where(category_id: @category_id)
+    @category_third_items = Product.where(category_id: @category_id).order("id DESC").limit(4)
 
     @category_id = []
     @category_fourth = Category.find(fourth)
@@ -154,21 +154,21 @@ class ProductsController < ApplicationController
         @category_id << grand_child.id
       end
     end
-    @category_fourth_items = Product.where(category_id: @category_id)
+    @category_fourth_items = Product.where(category_id: @category_id).order("id DESC").limit(4)
   end
 
   def set_pickup_brand(first, second, third, fourth)
     @brand_first = Brand.find(first)
-    @brand_first_items = Product.where(brand_id: first)
+    @brand_first_items = Product.where(brand_id: first).order("id DESC").limit(4)
 
     @brand_second = Brand.find(second)
-    @brand_second_items = Product.where(brand_id: second)
+    @brand_second_items = Product.where(brand_id: second).order("id DESC").limit(4)
 
     @brand_third = Brand.find(third)
-    @brand_third_items = Product.where(brand_id: third)
+    @brand_third_items = Product.where(brand_id: third).order("id DESC").limit(4)
 
     @brand_fourth = Brand.find(fourth)
-    @brand_fourth_items = Product.where(brand_id: fourth)
+    @brand_fourth_items = Product.where(brand_id: fourth).order("id DESC").limit(4)
   end
 
   def set_product
