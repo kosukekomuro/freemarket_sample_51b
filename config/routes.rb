@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       get 'logout'
       get 'myconfirmation'
       get 'selling_list'
+      get 'likes_list'
     end
     member do
       get 'seller_product'
@@ -47,6 +48,9 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:create, :destroy]
 
-  get 'auth/:provider/callback', to: 'users#google_login'
+  resources :likes, only: [:create, :destroy]
+
+  get 'auth/:provider/callback', to: 'users#user_registration'
+  get 'auth/failure', to: 'users#login'
 
 end
