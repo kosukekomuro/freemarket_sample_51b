@@ -12,19 +12,24 @@
       height: 49px;
       line-height: 49px;
       border-bottom: 1px solid #eee;
-      span {
-        font-size: 14px;
-        padding-left: 10px;
-      }
-      i {
-        float: right;
-        font-size: 24px;
-        line-height: 49px;
-        padding-right: 10px;
-        color: #bbb;
+      a {
+        text-decoration: none;
+        color: #333333;
+        span {
+          font-size: 14px;
+          padding-left: 10px;
+        }
+        i {
+          float: right;
+          font-size: 24px;
+          line-height: 49px;
+          padding-right: 10px;
+          color: #bbb;
+        }
       }
     }
     .item:hover {
+      background-color: #eee;
       i {
         padding-right: 8px;
         color: black;

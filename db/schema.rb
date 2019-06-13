@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_11_012007) do
+ActiveRecord::Schema.define(version: 2019_06_12_035442) do
+
 
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "brand", null: false
@@ -63,6 +64,13 @@ ActiveRecord::Schema.define(version: 2019_06_11_012007) do
     t.index ["product_id"], name: "index_images_on_product_id"
   end
 
+  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "user_id"
+    t.string "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.text "description", null: false
@@ -99,6 +107,15 @@ ActiveRecord::Schema.define(version: 2019_06_11_012007) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "sns_credentials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "provider"
+    t.string "uid"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sns_credentials_on_user_id"
+  end
+
   create_table "trading_evaluations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "evaluation", null: false
     t.datetime "created_at", null: false
@@ -129,19 +146,20 @@ ActiveRecord::Schema.define(version: 2019_06_11_012007) do
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "nickname"
-    t.string "email"
-    t.string "password_digest"
     t.text "introduce"
     t.string "phone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "card_id"
+    t.string "nickname", null: false
+    t.string "email", null: false
+    t.string "password_digest", null: false
   end
 
   add_foreign_key "category_sizes", "categories"
   add_foreign_key "category_sizes", "sizes"
-  add_foreign_key "images", "products"
+  add_foreign_key "images", "products", on_delete: :cascade
+  add_foreign_key "sns_credentials", "users"
   add_foreign_key "user_addresses", "users"
   add_foreign_key "user_details", "users"
 end

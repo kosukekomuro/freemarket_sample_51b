@@ -183,6 +183,7 @@
 
 .header-user-nav-information{
   @include hamburger-menu;
+  min-height: auto;
 
   &__list{
     z-index: 0;
@@ -225,6 +226,7 @@
 
 .header-user-nav-todo{
   @include hamburger-menu(auto, -50px);
+  min-height: auto;
 
   &__list{
     z-index: 0;
@@ -247,8 +249,8 @@
 }
 
 .header-user-nav-mypage{
-
   @include hamburger-menu(auto, -190px);
+  min-height: auto;
   background: #FFF;
   text-align: center;
   box-shadow: 1px rgba(0,0,0,0.24);

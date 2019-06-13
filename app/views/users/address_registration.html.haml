@@ -26,8 +26,11 @@
       %section.sign-up__main__container
         %h2.sign-up__main__container__head 住所入力
         .sign-up__main__container__body
+          - if @user.errors.any?
+            - @user.errors.full_messages.each do |message|
+              = message
           .sign-up__main__container__body__form
-            = form_for @user, url: users_path do |f|
+            = form_for @user, url: card_registration_users_path, method: :get do |f|
               = f.fields_for :user_detail do |d|
                 .form-group
                   %label.form-label お名前

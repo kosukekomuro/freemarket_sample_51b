@@ -19,7 +19,7 @@
                 %span.pick-up-category-item-info-price__main
                   %i.fa.fa-heart.pick-up-category-item-info-price__main--icon-red
                   %span.pick-up-category-item-info-price__main--evaluation
-                    = item.trading_evaluation.evaluation
+                    = item.likes.length
             %p.pick-up-category-item-info-price__sub
               (税込)
   = link_to root_path, class: "pick-up-category__see-all" do

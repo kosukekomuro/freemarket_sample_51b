@@ -192,6 +192,24 @@
     &:hover{
       cursor : pointer;
     }
+    &--icon {
+      font-size: 16px;
+    }
+  }
+
+  &__already-likes{
+    padding: 8px 16px;
+    border-radius: 40px;
+    transition: all ease-out .3s;
+    border: 1px solid red;
+    color: red;
+
+    &:hover{
+      cursor : pointer;
+    }
+    &--icon {
+      font-size: 16px;
+    }
   }
 
   &__improper-report{
@@ -366,4 +384,40 @@
   &__sub{
     font-size: 10px;
   }
+}
+
+.product-show-btn{
+  margin: 10px auto 0;
+  padding: 24px 40px;
+  width: 680px;
+  background-color: $background-white;
+  &__text {
+    font-size: 16px;
+    text-align: center;
+  }
+}
+
+.product-showbox-edit{
+  margin: 16px 0;
+  display: block;
+  height: 50px;
+  line-height: 50px;
+  color: $text-white;
+  background-color: $button-red;
+  font-size: 14px;
+  text-align: center;
+    &:hover{
+      @include hover-button-color($text-white, $button-red);
+    }
+}
+
+.product-showbox-delete{
+  margin: 16px 0;
+  display: block;
+  height: 50px;
+  line-height: 50px;
+  color: $text-white;
+  background-color: #aaaaaa;
+  font-size: 14px;
+  text-align: center;
 }

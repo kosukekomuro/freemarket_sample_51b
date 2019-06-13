@@ -7,10 +7,10 @@
         = link_to user_registration_users_path, class: "btn-default btn-mail" do
           %i.material-icons mail_outline
           メールアドレスで登録
-        %button.btn-default.btn-sns.btn-sns-facebook
+        = link_to "/auth/facebook", class: "btn-default btn-sns btn-sns-facebook" do
           %i.fab.fa-facebook-square
           Facebookで登録
-        %button.btn-default.btn-sns.btn-sns-google
+        = link_to "/auth/google_oauth2", class: "btn-default btn-sns btn-sns-google" do
           = image_tag "https://img.icons8.com/color/50/000000/google-logo.png", class: "google-icon"
           Googleで登録
 = render "shared/sell-footer"
