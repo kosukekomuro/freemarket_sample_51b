@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :products, only: [:index, :new, :create, :show, :destroy] do
     collection do
       get 'search'
+      get 'detail_search'
     end
     member do
       get 'buy'

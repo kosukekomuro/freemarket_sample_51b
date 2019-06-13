@@ -12,6 +12,23 @@ class Product < ApplicationRecord
   belongs_to :trading_evaluation
 
   has_many :images, dependent: :destroy
+
+  def self.product_sort_condition(condition)
+    case condition
+    when 1 then
+      return "updated_at DESC"
+    when 2 then
+      return "price ASC"
+    when 3 then
+      return "price DESC"
+    when 4 then
+      return "updated_at ASC"
+    when 5 then
+      return "updated_at DESC"
+    when 6 then
+      # Todo いいねの数 ソート機能 後に実装
+    end
+  end
   has_many :likes
   has_many :users, through: :likes
 

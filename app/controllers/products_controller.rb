@@ -25,7 +25,23 @@ class ProductsController < ApplicationController
   end
 
   def search
+    @keyword = params[:keyword]
     @products = Product.where("name LIKE ?", "%#{params[:keyword]}%").limit(4800)
+    @new_products = Product.all.order(id: "DESC").limit(36) if @products.length == 0
+  end
+
+  def detail_search
+    @keyword = params[:search_keyword]
+    @products =  Product
+                  .where("name LIKE ?", "%#{@keyword}%")
+                  .order(Product.product_sort_condition(params[:selected_sort].to_i))
+
+    @result_count = @products.length
+    @products = Product.all.order(id: "DESC").limit(36) if @result_count == 0
+
+    respond_to do |format|
+      format.json
+    end
   end
 
   def buy
@@ -158,5 +174,4 @@ class ProductsController < ApplicationController
   def set_product
     @product = Product.find(params[:id])
   end
-
 end
