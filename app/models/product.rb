@@ -26,7 +26,7 @@ class Product < ApplicationRecord
     when 5 then
       return "updated_at DESC"
     when 6 then
-      # Todo いいね機能実装後に実装
+      # Todo いいねの数 ソート機能 後に実装
     end
   end
 end

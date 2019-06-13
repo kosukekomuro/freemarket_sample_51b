@@ -41,7 +41,7 @@ $(document).on("turbolinks:load", function() {
     $('.header-product-nav-child').empty();
     $('.header-product-nav-parent__list--button').css({'color':'#333', 'background-color':'white'});
 
-    $(this).css({'color':'#fff', 'background-color':'#ea352d'})
+    $(this).css({'color':'#fff', 'background-color':'#ea352d'});
     const data = $(this).attr('value');
     
     $.ajax({
@@ -79,12 +79,12 @@ $(document).on("turbolinks:load", function() {
       $('.header-product-nav-grand-child').append(html);
     })
     .fail(function(){
-      alert('通信に失敗しました。再度読み込んでください')
+      alert('通信に失敗しました。再度読み込んでください');
     })
   })
   $(document).on("mouseover", ".header-product-nav-grand-child__list--button", function () {
     $('.header-product-nav-grand-child__list--button').css({'color':'#333', 'background-color':'white'})
 
-    $(this).css({'background-color':'#eee'})
+    $(this).css({'background-color':'#eee'});
   });
 });
