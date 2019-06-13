@@ -18,7 +18,7 @@ class CategoriesController < ApplicationController
   def get_category_children(parent_id)
     @category_children = Category.search_category_children(parent_id)
     respond_to do |format|
-      format.json { render json: @category_children ,layout: "api/application.jaon.jbuilder"}
+      format.json { render json: @category_children ,layout: "api/application.json.jbuilder"}
     end
   end
 end

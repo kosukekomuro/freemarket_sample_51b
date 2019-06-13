@@ -30,6 +30,20 @@ class ProductsController < ApplicationController
     @new_products = Product.all.order(id: "DESC").limit(36) if @products.length == 0
   end
 
+  def detail_search
+    @keyword = params[:search_keyword]
+    @products =  Product
+                  .where("name LIKE ?", "%#{@keyword}%")
+                  .order(Product.product_sort_condition(params[:selected_sort].to_i))
+
+    @result_count = @products.length
+    @products = Product.all.order(id: "DESC").limit(36) if @result_count == 0
+
+    respond_to do |format|
+      format.json
+    end
+  end
+
   def buy
     render layout: "sellproduct"
   end
@@ -156,5 +170,4 @@ class ProductsController < ApplicationController
   def set_product
     @product = Product.find(params[:id])
   end
-
 end
