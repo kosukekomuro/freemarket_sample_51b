@@ -10,13 +10,13 @@ $(function() {
 
   const productShowSlider = ".product-showbox-contents-slick__main-image"; // スライダー
   const productShowthumbnailItem = ".product-showbox-contents-slick__thumbnail-image--size"; // サムネイル画像アイテム
-  
+
   // サムネイル画像アイテムに data-index でindex番号を付与
   $(productShowthumbnailItem).each(function(){
    let index = $(productShowthumbnailItem).index(this);
    $(this).attr("data-index",index);
   });
-  
+
   // スライダー初期化後、カレントのサムネイル画像にクラス「thumbnail-current」を付ける
   // 「slickスライダー作成」の前にこの記述を書く
   $(productShowSlider).on('init',function(slick){
@@ -33,7 +33,7 @@ $(function() {
 
   //初期遷移時、index=0のサムネイルにクラス名(thumbnail-current)を追加
   $(productShowthumbnailItem+'[data-index="'+ 0 +'"]').addClass("thumbnail-current");
-  
+
   //サムネイル画像アイテムをクリックしたときにスライダー切り替え
   $(productShowthumbnailItem).on('mouseover',function(){
     let index = $(this).attr("data-index");

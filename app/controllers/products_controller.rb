@@ -13,20 +13,32 @@ class ProductsController < ApplicationController
     get_category_children if params[:category]
     get_category_grandchildren if params[:category_ancestry]
     get_category_size if params[:category_size]
+    delivery_parents = DeliveryMethod.roots
+    @delivery_parents = delivery_parents.map{|delivery| [delivery.name]}
+    get_delivery_children if params[:delivery]
+    get_brand_list if params[:brand]
     @product = Product.new
-
     render layout: "sellproduct"
   end
 
   def create
-    product = Product.new(product_params)
-    product.save
-    redirect_to root_path
+    @product = Product.new(product_params)
+    @product_brand = Brand.find_or_create_by(brand: params[:product][:brand])
+    @product.brand_id = @product_brand.id
+    if @product.save!
+      params[:images]['url'].map do |a|
+        @image = @product.images.create!(url: a)
+      end
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
     #商品の簡易検索を行う
   def search
   end
+
     #商品の購入確認を行う
   def buy
     render layout: "sellproduct"
@@ -52,7 +64,7 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :price, :description, :category_id, :condition_id, :brand_id, :size_id, :prefecture_id, :delivery_fee_burden_id, :delivery_method_id, :delivery_day_id)
+    params.require(:product).permit(:name, :price, :description, :category_id, :condition_id, :size_id, :brand_id, :prefecture_id, :delivery_method_id, :delivery_day_id).merge(seller_id: @current_user.id, trading_evaluation_id: 1, status_id: 1)
   end
 
   def get_category_children
@@ -77,6 +89,22 @@ class ProductsController < ApplicationController
     category = params[:category_size]
     category_sizes = Category.find_by(id: category)
     @category_sizes = category_sizes.sizes
+    respond_to do |format|
+      format.json
+    end
+  end
+
+  def get_delivery_children
+    delivery = params[:delivery]
+    delivery_parents = DeliveryMethod.find_by(name: delivery)
+    @delivery_children = delivery_parents.children
+    respond_to do |format|
+      format.json
+    end
+  end
+
+  def get_brand_list
+    @brand_names = Brand.where('brand LIKE(?)', "%#{params[:brand]}%")
     respond_to do |format|
       format.json
     end

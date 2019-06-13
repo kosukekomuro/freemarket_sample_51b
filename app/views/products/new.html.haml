@@ -7,12 +7,26 @@
           出品画像
           %span.require-form 必須
         %p 最大10枚までアップロードできます
-        .sell-dropbox
-          .sell-dropbox__upload
-            = f.file_field 'image', style: "display: none"
-            %pre.sell-dropbox__text
-              ドラッグアンドドロップ
-              またはクリックしてファイルをアップロード
+        .sell-drop-display
+          #preview
+            %ul.sell-image-display
+          .dropzone#dropzone_top
+            = f.label :url, id: 'image_file_filed',class: 'drop_area', for: "upload-image" do
+              .sell-dropbox__upload
+                %p.sell-dropbox__text.sell-dropbox__text-top
+                  ドラックアンドドロップ
+                  %br またはクリックしてファイルをアップロード
+                  = f.file_field :url , name: "images[url][]", class: 'sell-item_image upload-image', id: "upload-image", multiple: true
+        .sell-drop-display
+          #preview2
+            %ul.sell-image-display2
+          .dropzone#dropzone_bottom
+            = f.label :url, id: 'image_file_filed',class: 'drop_area', for: "upload-image" do
+              .sell-dropbox__upload
+                %p.sell-dropbox__text
+                  ドラックアンドドロップ
+                  %br またはクリックしてファイルをアップロード
+                  = f.file_field "", name: "images[url][]", class: 'sell-item_image upload-image', id: "upload-image", multiple: true
       .sell-content
         .sell-form-group
           %h3
@@ -34,6 +48,7 @@
             .sell-select-wrapper.sell-category-select
               = select_tag "category", options_for_select(@category_parents), id: "sell-parent-category", class: "sell-select-default", include_blank: '---'
               = f.hidden_field :category_id, value: "", class: "category"
+              = f.hidden_field :size_id, value: "", class: "sell-size"
               %i.fas.fa-chevron-down
           .sell-size-brand
             .sell-form-group.sell-product-margin.sell-size-select
@@ -42,13 +57,14 @@
                 ブランド
                 %span.arbitrary-form 任意
               .none-box
-                = f.text_field "name", class: "sell-input-default", placeholder: "例) シャネル"
+                = f.text_field :brand, class: "sell-input-default sell-brand-input", placeholder: "例) シャネル"
+            .brand-find-box
           .sell-form-group.sell-product-margin
             %h3
               商品の状態
               %span.require-form 必須
             .sell-select-wrapper
-              = f.collection_select( :condition_id, Condition.all, :id, :condition, { prompt: "---"}, {class: "sell-select-default"} )
+              = f.collection_select( :condition_id, Condition.all, :id, :condition, { prompt: "---" }, {class: "sell-select-default"} )
               %i.fas.fa-chevron-down
       .sell-content.sell-flex
         .sell-box-subtilte-flex
@@ -60,30 +76,16 @@
               配送料の負担
               %span.require-form 必須
             .sell-select-wrapper
-              = f.select :delivery_fee_burden_id, [["送料込み(出品者負担)"], ["着払い(購入者負担)"]], {include_blank: '---'}, {id: "sell-delivery-burden", class: "sell-select-default"}
+              = select_tag "delivery", options_for_select(@delivery_parents), include_blank: '---', id: "sell-delivery-burden", class: "sell-select-default"
+              = f.hidden_field :delivery_method_id, value: "", class: "delivery-method"
               %i.fas.fa-chevron-down
-          .sell-form-group.sell-product-margin.sell-delivery#seller-burden
-            .sell-form-group
-            %h3
-              配送方法
-              %span.require-form 必須
-            .sell-select-wrapper
-              = f.select :name, [["未定"], ["らくらくメルカリ便"], ["ゆうパケット"], ["ゆうパック"], ["ゆうメール"], ["レターパック"], ["普通郵便(定形、定形外)"], ["クロネコヤマト"], ["クリップポスト"]], {include_blank: '---'}, {id: "sell-delivery-method", class: "sell-select-default"}
-              %i.fas.fa-chevron-down
-          .sell-form-group.sell-product-margin.sell-delivery#buyer-burden
-            .sell-form-group
-            %h3
-              配送方法
-              %span.require-form 必須
-            .sell-select-wrapper
-              = f.select :name, [["未定"], ["ゆうパック"], ["ゆうメール"], ["クロネコヤマト"]], {include_blank: '---'}, {id: "sell-delivery-method", class: "sell-select-default"}
-              %i.fas.fa-chevron-down
+          .sell-form-group.sell-product-margin.sell-delivery
           .sell-form-group.sell-product-margin
             %h3
               発送元の地域
               %span.require-form 必須
             .sell-select-wrapper
-              = f.collection_select(:prefecture_id, Prefecture.all, :id, :name, { prompt: "---" } , { class: "sell-select-default"} )
+              = f.collection_select(:prefecture_id, Prefecture.all, :id, :name, { prompt: "---" }, { class: "sell-select-default"} )
               %i.fas.fa-chevron-down
           .sell-form-group.sell-product-margin
             %h3
@@ -128,5 +130,5 @@
             また、出品をもちまして
             = link_to "加盟店規約", root_path, class: "sell-link-blue"
             に同意したことになります。
-        = f.submit "出品する", class: "sell-btn-default"
+        = f.submit "出品する", class: "sell-btn-default sell-btn-conf"
         = link_to "もどる", root_path, class: "sell-btn-back"

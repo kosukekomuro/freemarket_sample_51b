@@ -6,10 +6,9 @@ class Product < ApplicationRecord
   belongs_to :category
   belongs_to :size, optional: true
   belongs_to :brand, optional: true
-  belongs_to :condition, optional: true
-  belongs_to :delivery_method, optional: true
+  belongs_to :condition
+  belongs_to :delivery_method
   belongs_to :delivery_day
-  belongs_to :trading_evaluation
-
-  has_many :images
+  belongs_to :trading_evaluation, optional: true
+  has_many :images, inverse_of: :product
 end
