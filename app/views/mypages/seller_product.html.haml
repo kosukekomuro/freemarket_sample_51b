@@ -58,7 +58,7 @@
           .product-showbox-contents-detail-delivery-fee__title
             配送料の負担
           .product-showbox-contents-detail-delivery-fee__contents
-            = @product.delivery_method.delivery_fee_burden.burden
+            = @product.delivery_method.parent.name
         .product-showbox-contents-detail-delivery-method
           .product-showbox-contents-detail-delivery-method__title
             配送の方法

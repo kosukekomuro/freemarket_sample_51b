@@ -18,4 +18,10 @@ class Product < ApplicationRecord
   scope :brands, -> (brand_id, category_id, product_id){ where('(brand_id = ?) AND (category_id = ?) AND (id != ?)', brand_id, category_id, product_id).limit(6) }
   scope :previous, -> (product_id){ where('(id < ?)', product_id).order("id DESC").first }
   scope :next, -> (product_id){ where('(id > ?)', product_id).order("id ASC").first }
+
+  validates :price, numericality: { only_integer: true, greater_than: 300, less_than: 10000000, message: "300以上9,999,999以下で入力してください"}
+  validates :name, format: { with: /\A[a-zA-Z0-9]|[ぁ-んァ-ン一-龥]|[ -\~〜（）()]+\z/ }
+  validates :description, format: { with: /\A[a-zA-Z0-9]|[ぁ-んァ-ン一-龥]|[ -\~〜（）()]+\z/ }
+  validates :brand, format: { with: /\A[a-zA-Z0-9]|[ぁ-んァ-ン一-龥]|[ -\~〜（）()]+\z/ }
+
 end

@@ -1,4 +1,4 @@
-$(document).on("turbolinks:load", function() {
+( window.onload = function() {
   // 親カテゴリの選択
   $("#sell-parent-category").change(function(){
     $("#sell-child-box").remove();
@@ -11,7 +11,7 @@ $(document).on("turbolinks:load", function() {
         option += `<option value="${child.id}">${child.name}</option>`
       });
       var html = `<div class="sell-select-wrapper", id="sell-child-box">
-                    <select name="category_id", id="sell-child-category", class="sell-select-default">
+                    <select name="category_id", id="sell-child-category", class="sell-select-default", required>
                       <option value label="---"></option>
                       ${option}
                     </select>
@@ -44,7 +44,7 @@ $(document).on("turbolinks:load", function() {
         option += `<option value="${child.id}">${child.name}</option>`
       });
       var html = `<div class="sell-select-wrapper", id="sell-grandchild-box">
-                    <select name="category_id", id="sell-grandchild-category", class="sell-select-default">
+                    <select name="category_id", id="sell-grandchild-category", class="sell-select-default", required>
                       <option value label="---"></option>
                       ${option}
                     </select>
@@ -83,7 +83,7 @@ $(document).on("turbolinks:load", function() {
         });
         var html = `<h3>サイズ<span class="require-form">必須</span></h3>
                     <div class="sell-select-wrapper">
-                      <select name="size", class="sell-select-default", id="sell-size-id">
+                      <select name="size", class="sell-select-default", id="sell-size-id", required>
                         <option value label="---"></option>
                         ${option}
                       </select>
@@ -130,7 +130,7 @@ $(document).on("turbolinks:load", function() {
                     <h3>配送方法<span class="require-form">必須</span></h3>
                   </div>
                   <div class="sell-select-wrapper", id="sell-delivery-box">
-                    <select name="delivery_method_id", id="sell-delivery-method", class="sell-select-default">
+                    <select name="delivery_method_id", id="sell-delivery-method", class="sell-select-default", required>
                       <option value label="---"></option>
                       ${option}
                     </select>
@@ -163,7 +163,7 @@ $(document).on("turbolinks:load", function() {
 　// 手数料などの計算
   $("#product_price").on("keyup", function(){
     var val = $(this).val();
-    if(val >= 300 && isFinite(val)){
+    if(val >= 300 && val < 10000000){
       $("#list_right_tax").text("");
       $("#list_right_price").text("");
       var tax = val * 0.1
@@ -228,5 +228,24 @@ $(document).on("turbolinks:load", function() {
     }
     setTimeout(action,50);
   });
-});
 
+　 // モーダルの表示とバリデーション
+  $('.sell-form').on('submit', function() {
+    if($('#sell-condition').val() == '') {
+      alert('商品状態が空欄です！');
+      return false;
+    }
+    else if($('#sell-prefecture').val() == '') {
+      alert('発送元の地域が空欄です！');
+      return false; 
+    }
+    else if($('#sell-delivery-day').val() == '') {
+      alert('配送までの日数が空欄です！');
+      return false; 
+    }
+    else　{
+      $(".sell-modal-box").fadeIn(500);
+      $(".modal-overlay").show();
+    }
+  });
+});
