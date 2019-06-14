@@ -29,8 +29,6 @@
         var html = buildHTML(data);
         $(".sell-category-select").append(html);
       })
-      .fail(function(){
-      })
   });
   // 子カテゴリの選択
  $(document).on('change', "#sell-child-category", function(){
@@ -68,8 +66,6 @@
           $(".sell-size-brand").hide();
         }
       })
-      .fail(function(){
-      })
   });
 
   // 孫カテゴリの選択
@@ -105,8 +101,6 @@
           } else {
             $(".sell-size-brand").hide();
           }
-      })
-      .fail(function(){
       })
   });
 
@@ -149,8 +143,6 @@
         var html = buildHTML(data);
         $(".sell-delivery").append(html);
       }
-    })
-    .fail(function(){
     })
   });
 
@@ -207,8 +199,6 @@
         $(".brand-find-box").append(sellBrandBox);
         $('#sell-search-result').find('li').remove();
       }
-    })
-    .fail(function(){
     })
   });
 
