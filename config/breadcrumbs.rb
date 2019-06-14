@@ -17,6 +17,31 @@ crumb :cards_new do
   parent :cards_index
 end
 
+crumb :likes do
+  link "いいね！一覧", likes_list_mypages_path
+  parent :mypages
+end
+
+crumb :selling_list do
+  link "出品した商品 - 出品中", selling_list_mypages_path
+  parent :mypages
+end
+
+crumb :profile do
+  link "プロフィール", '/mypages'
+  parent :mypages
+end
+
+crumb :myconfirmation do
+  link "本人情報の登録", myconfirmation_mypages_path
+  parent :mypages
+end
+
+crumb :logout do
+  link "ログアウト", root_path
+  parent :mypages
+end
+
 # crumb :projects do
 #   link "Projects", projects_path
 # end
