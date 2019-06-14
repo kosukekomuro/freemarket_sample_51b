@@ -13,15 +13,30 @@ class ProductsController < ApplicationController
     get_category_children if params[:category]
     get_category_grandchildren if params[:category_ancestry]
     get_category_size if params[:category_size]
+    delivery_parents = DeliveryMethod.roots
+    @delivery_parents = delivery_parents.map{|delivery| [delivery.name]}
+    get_delivery_children if params[:delivery]
+    get_brand_list if params[:brand]
     @product = Product.new
-
     render layout: "sellproduct"
   end
 
   def create
-    product = Product.new(product_params)
-    product.save
-    redirect_to root_path
+    @product = Product.new(product_params)
+    @product_brand = Brand.find_or_create_by(brand: params[:product][:brand])
+    @product.brand_id = @product_brand.id
+    if @product.save
+      params[:images]['url'].map do |a|
+        @image = @product.images.create!(url: a)
+      end
+    else
+      category_parents = Category.roots
+      @category_parents = category_parents.map{|parent| [parent.name]}
+      delivery_parents = DeliveryMethod.roots
+      @delivery_parents = delivery_parents.map{|delivery| [delivery.name]}
+      
+      render :new, layout: "sellproduct"
+    end
   end
 
   def search
@@ -81,7 +96,7 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :price, :description, :category_id, :condition_id, :brand_id, :size_id, :prefecture_id, :delivery_fee_burden_id, :delivery_method_id, :delivery_day_id)
+    params.require(:product).permit(:name, :price, :description, :category_id, :condition_id, :size_id, :brand_id, :prefecture_id, :delivery_method_id, :delivery_day_id).merge(seller_id: @current_user.id, trading_evaluation_id: 1, status_id: 1)
   end
 
   def get_category_children
@@ -111,6 +126,22 @@ class ProductsController < ApplicationController
     end
   end
 
+  def get_delivery_children
+    delivery = params[:delivery]
+    delivery_parents = DeliveryMethod.find_by(name: delivery)
+    @delivery_children = delivery_parents.children
+    respond_to do |format|
+      format.json
+    end
+  end
+
+  def get_brand_list
+    @brand_names = Brand.where('brand LIKE(?)', "%#{params[:brand]}%")
+    respond_to do |format|
+      format.json
+    end
+  end
+
   def set_pickup_category(first, second, third, fourth)
     @category_id = []
     @category_first = Category.find(first)
@@ -121,8 +152,7 @@ class ProductsController < ApplicationController
         @category_id << grand_child.id
       end
     end
-    @category_first_items = Product.where(category_id: @category_id)
-
+    @category_first_items = Product.where(category_id: @category_id).order("id DESC").limit(4)
     @category_id = []
     @category_second = Category.find(second)
     @category_id << @category_second.id
@@ -132,7 +162,7 @@ class ProductsController < ApplicationController
         @category_id << grand_child.id
       end
     end
-    @category_second_items = Product.where(category_id: @category_id)
+    @category_second_items = Product.where(category_id: @category_id).order("id DESC").limit(4)
 
     @category_id = []
     @category_third = Category.find(third)
@@ -143,7 +173,7 @@ class ProductsController < ApplicationController
         @category_id << grand_child.id
       end
     end
-    @category_third_items = Product.where(category_id: @category_id)
+    @category_third_items = Product.where(category_id: @category_id).order("id DESC").limit(4)
 
     @category_id = []
     @category_fourth = Category.find(fourth)
@@ -154,21 +184,21 @@ class ProductsController < ApplicationController
         @category_id << grand_child.id
       end
     end
-    @category_fourth_items = Product.where(category_id: @category_id)
+    @category_fourth_items = Product.where(category_id: @category_id).order("id DESC").limit(4)
   end
 
   def set_pickup_brand(first, second, third, fourth)
     @brand_first = Brand.find(first)
-    @brand_first_items = Product.where(brand_id: first)
+    @brand_first_items = Product.where(brand_id: first).order("id DESC").limit(4)
 
     @brand_second = Brand.find(second)
-    @brand_second_items = Product.where(brand_id: second)
+    @brand_second_items = Product.where(brand_id: second).order("id DESC").limit(4)
 
     @brand_third = Brand.find(third)
-    @brand_third_items = Product.where(brand_id: third)
+    @brand_third_items = Product.where(brand_id: third).order("id DESC").limit(4)
 
     @brand_fourth = Brand.find(fourth)
-    @brand_fourth_items = Product.where(brand_id: fourth)
+    @brand_fourth_items = Product.where(brand_id: fourth).order("id DESC").limit(4)
   end
 
   def set_product

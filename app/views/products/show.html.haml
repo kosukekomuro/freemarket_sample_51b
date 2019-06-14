@@ -48,7 +48,8 @@
           .product-showbox-contents-detail-size__title
             商品のサイズ
           .product-showbox-contents-detail-size__contents
-            = @product.size.size
+            - if @product.size
+              = @product.size.size
         .product-showbox-contents-detail-condition
           .product-showbox-contents-detail-condition__title
             商品の状態
