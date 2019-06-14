@@ -1,6 +1,7 @@
 @mixin one-product($width, $sold-font-size:20px, $sold-top-position: 15px, $sold-figure-width: $width - 113px){
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: flex-start;
   margin: 15px auto;
   
   &__link{

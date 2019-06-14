@@ -44,7 +44,7 @@ $(document).on("turbolinks:load", function() {
                           </div>`;
 
         productListHtml += `<a href = " ${link}", class = "product-search-result-item__link", value = "${product.id}">
-                              <img class = "product-search-result-item__img" src="${product.image}">
+                              <img class = "product-search-result-item__img" src="${product.image.url}">
                               ${productInfoHtml}
                             </a>`;
     });
