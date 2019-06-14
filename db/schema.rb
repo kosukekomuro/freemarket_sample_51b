@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_11_103943) do
+ActiveRecord::Schema.define(version: 2019_06_12_112425) do
 
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "brand", null: false
@@ -152,7 +152,7 @@ ActiveRecord::Schema.define(version: 2019_06_11_103943) do
     t.string "card_id"
     t.string "nickname", null: false
     t.string "email", null: false
-    t.string "password_digest", null: false
+    t.string "password_digest"
   end
 
   add_foreign_key "category_sizes", "categories"

@@ -6,10 +6,10 @@
       = link_to "新規会員登録", sign_up_users_path, class: "btn-sign-up"
     .login__main__container__body
       .login__main__container__body__login-btn
-        = link_to "/auth/facebook", class: "btn-default btn-sns btn-sns-facebook" do
+        = link_to "/auth/facebook", class: "btn-default btn-sns btn-sns-facebook", method: :post do
           %i.fab.fa-facebook-square
           Facebookでログイン
-        = link_to "/auth/google_oauth2", class: "btn-default btn-sns btn-sns-google" do
+        = link_to "/auth/google_oauth2", class: "btn-default btn-sns btn-sns-google", method: :post do
           = image_tag "https://img.icons8.com/color/50/000000/google-logo.png", class: "google-icon"
           Googleでログイン
     = form_for :session, url: sessions_path do |f|

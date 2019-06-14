@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :require_sign_in, only: :registration_complete
-  before_action :save_to_session, only: :address_registration
-  before_action :sns_login, only: :user_registration
+  before_action :save_to_session_address_registration, only: :address_registration
+  before_action :save_to_session_card_registration, only: :card_registration
   layout 'users'
 
   def login
@@ -14,18 +14,33 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def user_registration_sns
+    @user = User.new
+    sns_email = request.env['omniauth.auth']['info']['email'] rescue nil
+    sns_uid = request.env['omniauth.auth']['uid'] rescue nil
+    sns_info = SnsCredential.find_by(uid: sns_uid)
+    user = User.find_by(email: sns_email)
+    if user && sns_info
+      session[:user_id] = user.id
+      redirect_to root_path
+    else
+      @sns_name = request.env['omniauth.auth']['info']['name'] rescue nil
+      @sns_email = request.env['omniauth.auth']['info']['email'] rescue nil
+      session[:provider] = request.env['omniauth.auth']['provider'] rescue nil
+      session[:uid] = request.env['omniauth.auth']['uid'] rescue nil
+    end
+  end
+
   def sms_confirmation
   end
 
   def address_registration
     @user = User.new
-    @user.build_user_detail
-    @user.build_user_address
+    @user_detail = @user.build_user_detail
+    @user_address = @user.build_user_address
   end
 
   def card_registration
-    session[:user_detail_attributes] = user_params[:user_detail_attributes]
-    session[:user_address_attributes] = user_params[:user_address_attributes]
   end
 
   def registration_complete
@@ -94,7 +109,7 @@ class UsersController < ApplicationController
     false
   end
 
-  def save_to_session
+  def save_to_session_address_registration
     session[:nickname] = user_params[:nickname]
     session[:email] = user_params[:email]
     session[:password] = user_params[:password]
@@ -105,23 +120,23 @@ class UsersController < ApplicationController
       password: user_params[:password],
       password_confirmation: user_params[:password_confirmation]
     )
-    render '/users/user_registration' unless @user.valid?
+    unless @user.valid?
+      if user_params[:password]
+        render '/users/user_registration'
+      else
+        render '/users/user_registration_sns'
+      end
+    end
   end
 
-  def sns_login
-    sns_email = request.env['omniauth.auth']['info']['email'] rescue nil
-    return false unless sns_email
-    sns_uid = request.env['omniauth.auth']['uid'] rescue nil
-    sns_info = SnsCredential.find_by(uid: sns_uid)
-    user = User.find_by(email: sns_email)
-    if user && sns_info
-      session[:user_id] = user.id
-      redirect_to root_path
-    else
-      @sns_name = request.env['omniauth.auth']['info']['name'] rescue nil
-      @sns_email = request.env['omniauth.auth']['info']['email'] rescue nil
-      session[:provider] = request.env['omniauth.auth']['provider'] rescue nil
-      session[:uid] = request.env['omniauth.auth']['uid'] rescue nil
+  def save_to_session_card_registration
+    @user = User.new
+    session[:user_detail_attributes] = user_params[:user_detail_attributes]
+    session[:user_address_attributes] = user_params[:user_address_attributes]
+    @user_detail = @user.build_user_detail(session[:user_detail_attributes])
+    @user_address = @user.build_user_address(session[:user_address_attributes])
+    unless @user_detail.valid? && @user_address.valid?
+      render '/users/address_registration'
     end
   end
 end
