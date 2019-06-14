@@ -73,6 +73,11 @@ $(document).on("turbolinks:load", function() {
     return html;
   };
 
+  //カテゴリーの孫リストをチッェクボックスで作成する
+  const buildCategoryGrandChildrenSelect = (categories, related) => {
+    
+  }
+
   // 並び替えの選択時に発火
   // 商品を再建策後、選択された並び順に並び替えて表示する
   $('.product-detail-search-form-sort__select').on('change', () =>{
