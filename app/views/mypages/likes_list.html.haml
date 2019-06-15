@@ -1,0 +1,18 @@
+- breadcrumb :likes
+.wrapper
+  = render "/layouts/sidemenu"
+  .mypage__main-contents
+    .likes-product
+      .likes-product__head
+        %h2 いいね！一覧
+      .likes-product__contents
+        - @products.each do |product|
+          = link_to product_path(product.id) do
+            .item
+              = image_tag "#{product.images[0].url}", class: "product__image"
+              .product
+                .product__title
+                  = product.name
+                .product__price ¥ #{product.price}
+              = fa_icon "angle-right"
+  .clear

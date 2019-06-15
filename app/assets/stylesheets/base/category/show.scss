@@ -39,12 +39,13 @@
 .show-category-item{
   @include one-product(188px, 15px);
   width: 1020px;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  
 
   &__link{
     margin: 0 16px 30px 0;
+
+    &:nth-child(5n){
+      margin: 0 0px 30px 0;
+    }
   }
 }
 

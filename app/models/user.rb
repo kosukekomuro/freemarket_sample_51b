@@ -5,6 +5,8 @@ class User < ApplicationRecord
   has_one :user_detail
   has_one :user_address
   accepts_nested_attributes_for :user_detail, :user_address
+  has_many :likes
+  has_many :products, through: :likes
 
   validates :nickname, presence: true
   validates :email, presence: true, uniqueness: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/ }

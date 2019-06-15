@@ -47,18 +47,12 @@ ActiveRecord::Schema.define(version: 2019_06_12_112425) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "delivery_fee_burdens", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "burden", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "delivery_methods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "delivery_fee_burden_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
-    t.index ["delivery_fee_burden_id"], name: "index_delivery_methods_on_delivery_fee_burden_id"
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_delivery_methods_on_ancestry"
   end
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -67,6 +61,13 @@ ActiveRecord::Schema.define(version: 2019_06_12_112425) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_images_on_product_id"
+  end
+
+  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "user_id"
+    t.string "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -78,7 +79,6 @@ ActiveRecord::Schema.define(version: 2019_06_12_112425) do
     t.bigint "size_id"
     t.bigint "brand_id"
     t.bigint "condition_id", null: false
-    t.bigint "delivery_fee_burden_id", null: false
     t.bigint "delivery_method_id", null: false
     t.bigint "prefecture_id", null: false
     t.bigint "delivery_day_id", null: false
@@ -86,12 +86,12 @@ ActiveRecord::Schema.define(version: 2019_06_12_112425) do
     t.bigint "trading_evaluation_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status_id", null: false
     t.index ["brand_id"], name: "index_products_on_brand_id"
     t.index ["buyer_id"], name: "index_products_on_buyer_id"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["condition_id"], name: "index_products_on_condition_id"
     t.index ["delivery_day_id"], name: "index_products_on_delivery_day_id"
-    t.index ["delivery_fee_burden_id"], name: "index_products_on_delivery_fee_burden_id"
     t.index ["delivery_method_id"], name: "index_products_on_delivery_method_id"
     t.index ["name"], name: "index_products_on_name"
     t.index ["prefecture_id"], name: "index_products_on_prefecture_id"

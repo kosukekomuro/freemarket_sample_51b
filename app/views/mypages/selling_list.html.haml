@@ -1,4 +1,4 @@
-- breadcrumb :mypages
+- breadcrumb :selling_list
 .wrapper
   = render "/layouts/sidemenu"
   .mypage__main-contents
@@ -21,7 +21,7 @@
                 .product__title
                   = product.name
                 = fa_icon "heart", class: "heart" 
-                .product__likes 0
+                .product__likes #{product.likes.length}
                 = fa_icon "comment-alt", class: "comment"
                 .product__comments 0
               = fa_icon "angle-right"

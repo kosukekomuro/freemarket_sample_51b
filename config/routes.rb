@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :products, only: [:index, :new, :create, :show, :destroy] do
     collection do
       get 'search'
+      get 'detail_search'
     end
     member do
       get 'buy'
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
       get 'logout'
       get 'myconfirmation'
       get 'selling_list'
+      get 'likes_list'
     end
     member do
       get 'seller_product'
@@ -46,6 +48,7 @@ Rails.application.routes.draw do
   end
 
   resources :sessions, only: [:create, :destroy]
+  resources :likes, only: [:create, :destroy]
 
   get 'auth/:provider/callback', to: 'users#user_registration_sns'
   get 'auth/failure', to: 'users#login'
