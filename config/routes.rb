@@ -39,6 +39,7 @@ Rails.application.routes.draw do
       get 'login'
       get 'sign_up'
       get 'user_registration'
+      get 'user_registration_sns'
       get 'sms_confirmation'
       get 'address_registration'
       get 'card_registration'
@@ -47,10 +48,9 @@ Rails.application.routes.draw do
   end
 
   resources :sessions, only: [:create, :destroy]
-
   resources :likes, only: [:create, :destroy]
 
-  get 'auth/:provider/callback', to: 'users#user_registration'
+  get 'auth/:provider/callback', to: 'users#user_registration_sns'
   get 'auth/failure', to: 'users#login'
 
 end
