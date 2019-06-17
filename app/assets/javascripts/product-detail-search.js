@@ -195,34 +195,4 @@ $(document).on("turbolinks:load", function() {
       });
     };
   });
-
-  // //ブランドのインクリメンタルサーチ
-  // $(document).on("keyup", ".sell-brand-input", function(){
-  //   var brand = $.trim($(this).val());
-  //   function buildHTML(brand){
-  //     var search_brand_list = ``
-  //     brand.forEach(function(b){
-  //       search_brand_list += `<li class="sell-search-list">${b.brand}</li>`
-  //     });
-  //     var sellBrandBox = `<div class="sell-search-block">
-  //                           <ul id="sell-search-result">
-  //                             ${search_brand_list}
-  //                           </ul>
-  //                         </div>`
-  //     return sellBrandBox;
-  //   };
-  //   $.ajax({
-  //     url: '/products/new',
-  //     type: 'GET',
-  //     data:{brand: brand},
-  //     dataType: 'json'
-  //   })
-  //   .done(function(data){
-  //     if( data != ""){
-  //       var sellBrandBox = buildHTML(data);
-  //       $(".brand-find-box").append(sellBrandBox);
-  //       $('#sell-search-result').find('li').remove();
-  //     }
-  //   })
-  // });
 });
