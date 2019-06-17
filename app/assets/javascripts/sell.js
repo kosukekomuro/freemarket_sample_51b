@@ -173,7 +173,7 @@
   });
 
   // ブランドのインクリメンタルサーチ
-  $(document).on("keyup", ".sell-brand-input", function(){
+  $(document).on("keyup", ".product-detail-search-form-value-brand__input", function(){
     var brand = $.trim($(this).val());
     function buildHTML(brand){
       var search_brand_list = ``

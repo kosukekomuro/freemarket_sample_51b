@@ -57,26 +57,65 @@ $(document).on("turbolinks:load", function() {
   };
 
   //カテゴリーの子リストを作成する
-  const buildCategoryChildrenSelect = (categories, related) =>{
+  const buildCategoryChildrenSelect = (categories) =>{
     let selectOption = `<option value="0">すべて</option>`;
     
     categories.forEach((category) => {
       selectOption += `<option value="${category.id}">${category.name}</option>`
     });
 
-    html =  `<div class = "product-detail-search-form-value-category-${related}">
-              <select name="category_sort" id="category_sort" class="product-detail-search-form-value-category-${related}__select">
+    html =  `<div class = "product-detail-search-form-value-category-children">
+              <select name="category_sort" id="category_sort" class="product-detail-search-form-value-category-children__select">
                 ${selectOption}
               </select>
-              <i class="fas fa-chevron-down product-detail-search-form-value-category-${related}__icon"></i>
+              <i class="fas fa-chevron-down product-detail-search-form-value-category-children__icon"></i>
             </div>`
     return html;
   };
 
   //カテゴリーの孫リストをチッェクボックスで作成する
-  const buildCategoryGrandChildrenSelect = (categories, related) => {
-    
-  }
+  const buildCategoryGrandChildrenSelect = (categories) => {
+      let checkbox = ""
+
+    categories.forEach((category) => {
+      checkbox += `<div class = "product-search-category-select-grandchildren">
+                    <input type="checkbox" name="category_select${category.id}[category_select][]" id="category_select${category.id}_category_select_" value="${category.id}" class="product-search-category-select-grandchildren__check-box">
+                    <label class="product-search-category-select-grandchildren__label" for="category_select${category.id}_category_select_">${category.name}</label>
+                   </div>`
+    });
+
+    html =  `<div class = "product-detail-search-form-value-category-grandchildren">
+              ${checkbox}
+             <div>`
+
+    return html
+  };
+
+  // 検索するカテゴリーidを返却する。
+  const searchCategory = selectCategoryParent => {
+
+    const selectCategoryChild = $('.product-detail-search-form-value-category-children__select').val();
+    const selectCategoryGrandchildren = $('[class="product-search-category-select-grandchildren__check-box"]:checked').map(function() {
+      return parseInt($(this).val());
+    }).get();
+
+    // 孫カテゴリーが選ばれている場合
+    if (selectCategoryGrandchildren.length > 0){
+      return selectCategoryGrandchildren;
+    };
+    // 子カテゴリーと孫カテゴリーが選ばれていない場合
+    if (selectCategoryGrandchildren.length == 0 && typeof selectCategoryChild === "undefined"){
+      return selectCategoryParent;
+    };
+    // 子カテゴリーのすべてが選ばれている場合
+    if (selectCategoryChild == 0 ){
+      return selectCategoryParent;
+    };
+    // 孫カテゴリーが選ばれていない場合(子カテゴリのすべて以外が選択されている場合)
+    if (selectCategoryGrandchildren.length == 0){
+      return selectCategoryChild;
+    };
+  };
 
   // 並び替えの選択時に発火
   // 商品を再建策後、選択された並び順に並び替えて表示する
@@ -85,12 +124,16 @@ $(document).on("turbolinks:load", function() {
     const url = "/products/detail_search";
     const selectedSort = $('option:selected').val();
     const searchKeyword = $('.product-detail-search-form-value-keyword__input').val();
+    const selectedCategory = searchCategory($('.product-detail-search-form-value-category__select').val());
+    const searchBrand = $('.product-detail-search-form-value-brand__input').val();
 
     $.ajax({
       url: url,
       type: "GET",
       data: {selected_sort: selectedSort,
-             search_keyword: searchKeyword},
+             search_keyword: searchKeyword,
+             selected_category: selectedCategory,
+             search_brand: searchBrand},
       dataType: 'json',
     })
     .done(function(data){
@@ -107,7 +150,7 @@ $(document).on("turbolinks:load", function() {
   $('.product-detail-search-form-value-category__select').on('change', (e) =>{
 
     $('.product-detail-search-form-value-category-children').remove();
-    $('.product-detail-search-form-value-category-grand-children').remove();
+    $('.product-detail-search-form-value-category-grandchildren').remove();
 
     const selectedCategoryId = $(e.currentTarget).val();
     const url = "/categories/get_category_list";
@@ -131,7 +174,7 @@ $(document).on("turbolinks:load", function() {
 
   //選択された親カテゴリーから子カテゴリーの選択技を作成する。
   $(document).on('change', '.product-detail-search-form-value-category-children__select', (e) =>{
-    $('.product-detail-search-form-value-category-grand-children').remove();
+    $('.product-detail-search-form-value-category-grandchildren').remove();
 
     const selectedCategoryId = $(e.currentTarget).val();
     const url = "/categories/get_category_list";
@@ -144,7 +187,7 @@ $(document).on("turbolinks:load", function() {
         dataType: 'json',
       })
       .done(function(data){
-        const html = buildCategoryChildrenSelect(data, "grand-children");
+        const html = buildCategoryGrandChildrenSelect(data);
         $('.product-detail-search-form-value-category-children').after(html);
       })
       .fail(function(){
@@ -152,4 +195,34 @@ $(document).on("turbolinks:load", function() {
       });
     };
   });
+
+  // //ブランドのインクリメンタルサーチ
+  // $(document).on("keyup", ".sell-brand-input", function(){
+  //   var brand = $.trim($(this).val());
+  //   function buildHTML(brand){
+  //     var search_brand_list = ``
+  //     brand.forEach(function(b){
+  //       search_brand_list += `<li class="sell-search-list">${b.brand}</li>`
+  //     });
+  //     var sellBrandBox = `<div class="sell-search-block">
+  //                           <ul id="sell-search-result">
+  //                             ${search_brand_list}
+  //                           </ul>
+  //                         </div>`
+  //     return sellBrandBox;
+  //   };
+  //   $.ajax({
+  //     url: '/products/new',
+  //     type: 'GET',
+  //     data:{brand: brand},
+  //     dataType: 'json'
+  //   })
+  //   .done(function(data){
+  //     if( data != ""){
+  //       var sellBrandBox = buildHTML(data);
+  //       $(".brand-find-box").append(sellBrandBox);
+  //       $('#sell-search-result').find('li').remove();
+  //     }
+  //   })
+  // });
 });

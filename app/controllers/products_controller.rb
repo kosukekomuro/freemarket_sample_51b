@@ -42,13 +42,19 @@ class ProductsController < ApplicationController
   def search
     @keyword = params[:keyword]
     @products = Product.where("name LIKE ?", "%#{params[:keyword]}%").limit(4800)
-    @new_products = Product.all.order(id: "DESC").limit(36) if @products.length == 0
+    @result_count = @products.length
+    @products = Product.all.order(id: "DESC").limit(36) if @products.length == 0
   end
 
   def detail_search
     @keyword = params[:search_keyword]
+    @category = search_category(params[:selected_category])
+    @brand = search_brand(params[:search_brand])
+
     @products =  Product
                   .where("name LIKE ?", "%#{@keyword}%")
+                  .where(category_id: @category)
+                  .where(brand_id: @brand)
                   .order(Product.product_sort_condition(params[:selected_sort].to_i))
 
     @result_count = @products.length
@@ -203,5 +209,24 @@ class ProductsController < ApplicationController
 
   def set_product
     @product = Product.find(params[:id])
+  end
+
+  def search_category(search_category)
+    if !search_category.instance_of?(Array)
+      search_category = Category.search_category_family_ids(search_category)
+    end
+
+    return search_category
+  end
+
+  # 検索するブランドのidを配列で返却する
+  # 一致するブランド名が存在しない場合、すべてのブランドidを返却する
+  def search_brand(search_brand)
+    if Brand.find_by(brand: search_brand) == nil
+      return brand = Brand.all.ids
+    end
+    if Brand.find_by(brand: search_brand) != nil
+      return brand = [Brand.find_by(brand: search_brand).id]
+    end
   end
 end
