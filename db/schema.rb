@@ -167,7 +167,7 @@ ActiveRecord::Schema.define(version: 2019_06_16_095347) do
     t.string "card_id"
     t.string "nickname", null: false
     t.string "email", null: false
-    t.string "password_digest", null: false
+    t.string "password_digest"
   end
 
   add_foreign_key "category_sizes", "categories"
