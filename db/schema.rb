@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_12_112425) do
+ActiveRecord::Schema.define(version: 2019_06_16_095347) do
 
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "brand", null: false
@@ -100,6 +100,21 @@ ActiveRecord::Schema.define(version: 2019_06_12_112425) do
     t.index ["trading_evaluation_id"], name: "index_products_on_trading_evaluation_id"
   end
 
+  create_table "size_each_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "size_each_category_sizes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "size_each_category_id"
+    t.bigint "size_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["size_each_category_id"], name: "index_size_each_category_sizes_on_size_each_category_id"
+    t.index ["size_id"], name: "index_size_each_category_sizes_on_size_id"
+  end
+
   create_table "sizes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "size", null: false
     t.datetime "created_at", null: false
@@ -158,6 +173,8 @@ ActiveRecord::Schema.define(version: 2019_06_12_112425) do
   add_foreign_key "category_sizes", "categories"
   add_foreign_key "category_sizes", "sizes"
   add_foreign_key "images", "products", on_delete: :cascade
+  add_foreign_key "size_each_category_sizes", "size_each_categories"
+  add_foreign_key "size_each_category_sizes", "sizes"
   add_foreign_key "sns_credentials", "users"
   add_foreign_key "user_addresses", "users"
   add_foreign_key "user_details", "users"

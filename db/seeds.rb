@@ -360,7 +360,7 @@ other_office.children.create([{name: "オフィス用品一途"},{name: "オフ�
 condition = Condition.create([{ condition: "新品、未使用"}, { condition: "未使用に近い"}, { condition: "目立った傷や汚れなし"}, { condition: "やや傷や汚れあり"}, { condition: "傷や汚れあり"}, { condition: "全体的に状態が悪い"}])
 delivery_day = DeliveryDay.create([{ day: "1~2日で発送"}, { day: "2~3日で発送"}, { day: "4~7日で発送"}])
 
-size = Size.create([{size: "XXS以下"},{size: "XS(SS以下)"},{size: "S"},{size: "M"},{size: "L"},{size: "XL(LL)"},{size: "2XL(3L)"},{size: "3XL(4L)"},{size: "4XL(5L)以上"},{size: "FREE SIZE"},{size: "20cm以下"},{size: "20.5cm"},{size: "21cm"},{size: "21.5cm"},{size: "22cm"},{size: "22.5cm"},{size: "23cm"},{size: "23.5cm"},{size: "23.5cm以下"},{size: "24cm"},{size: "24.5cm"},{size: "25cm"},{size: "25.5cm"},{size: "26cm"},{size: "26.5cm"},{size: "27cm"},{size: "27.5cm以上"},{size: "27.5cm"},{size: "28cm"},{size: "28.5cm"},{size: "29cm"},{size: "29.5cm"},{size: "30cm"},{size: "30.5cm"},{size: "31cm以上"},{size: "60cm"},{size: "70cm"},{size: "80cm"},{size: "90cm"},{size: "95cm"},{size: "100cm"},{size: "110cm"},{size: "120cm"},{size: "130cm"},{size: "140cm"},{size: "150cm"},{size: "160cm"},{size: "10.5cm以下"},{size: "11cm・11.5cm"},{size: "12cm・12.5cm"},{size: "13cm・13.5cm"},{size: "14cm・14.5cm"},{size: "15cm・15.5cm"},{size: "16cm・16.5cm"},{size: "17cm以上"},{size: "12インチ"},{size: "13インチ"},{size: "14インチ"},{size: "15インチ"},{size: "16インチ"},{size: "17インチ"},{size: "18インチ"},{size: "19インチ"},{size: "20インチ"},{size: "21インチ"},{size: "22インチ"},{size: "23インチ"},{size: "24インチ"},{size: "XSサイズ以下"},{size: "Sサイズ"},{size: "Mサイズ"},{size: "Lサイズ"},{size: "XLサイズ"},{size: "XXLサイズ以上"},{size: "フリーサイズ"},{size: "子ども用"}])
+size = Size.create([{size: "XXS以下"},{size: "XS(SS以下)"},{size: "S"},{size: "M"},{size: "L"},{size: "XL(LL)"},{size: "2XL(3L)"},{size: "3XL(4L)"},{size: "4XL(5L)以上"},{size: "FREE SIZE"},{size: "20cm以下"},{size: "20.5cm"},{size: "21cm"},{size: "21.5cm"},{size: "22cm"},{size: "22.5cm"},{size: "23cm"},{size: "23.5cm"},{size: "23.5cm以下"},{size: "24cm"},{size: "24.5cm"},{size: "25cm"},{size: "25.5cm"},{size: "26cm"},{size: "26.5cm"},{size: "27cm"},{size: "27.5cm以上"},{size: "27.5cm"},{size: "28cm"},{size: "28.5cm"},{size: "29cm"},{size: "29.5cm"},{size: "30cm"},{size: "30.5cm"},{size: "31cm以上"},{size: "60cm"},{size: "70cm"},{size: "80cm"},{size: "90cm"},{size: "95cm"},{size: "100cm"},{size: "110cm"},{size: "120cm"},{size: "130cm"},{size: "140cm"},{size: "150cm"},{size: "160cm"},{size: "10.5cm以下"},{size: "11cm・11.5cm"},{size: "12cm・12.5cm"},{size: "13cm・13.5cm"},{size: "14cm・14.5cm"},{size: "15cm・15.5cm"},{size: "16cm・16.5cm"},{size: "17cm以上"},{size: "12インチ"},{size: "13インチ"},{size: "14インチ"},{size: "15インチ"},{size: "16インチ"},{size: "17インチ"},{size: "18インチ"},{size: "19インチ"},{size: "20インチ"},{size: "21インチ"},{size: "22インチ"},{size: "23インチ"},{size: "24インチ"},{size: "XSサイズ以下"},{size: "Sサイズ"},{size: "Mサイズ"},{size: "Lサイズ"},{size: "XLサイズ"},{size: "XXLサイズ以上"},{size: "フリーサイズ"},{size: "子ども用"},{size: "60cm以下"},{size: "~70cm"},{size: "~80cm"},{size: "~90cm"},{size: "90cm以上"},{size: "〜20インチ"},{size: "20〜26インチ"},{size: "26〜32インチ"},{size: "32〜37インチ"},{size: "37〜40インチ"},{size: "40〜42インチ"},{size: "42〜46インチ"},{size: "46〜52インチ"},{size: "52〜60インチ"},{size: "60インチ〜"},{size: "ニコンFマウント"},{size: "キヤノンEFマウント"},{size: "ペンタックスKマウント"},{size: "ペンタックスQマウント"},{size: "フォーサーズマウント"},{size: "マイクロフォーサーズマウント"},{size: "aAマウント"},{size: "aEマウント"},{size: "ニコン１マウント"},{size: "キヤノンEF-Mマウント"},{size: "Xマウント"},{size: "シグマSAマウント"},{size: "50cc以下"},{size: "51cc-125cc"},{size: "126cc-250cc"},{size: "251cc-400cc"},{size: "401cc-750cc"},{size: "751cc以上"},{size: "140cm〜"},{size: "150cm〜"},{size: "160cm〜"},{size: "170cm〜"},{size: "スキーボード"},{size: "その他"},{size: "135cm-140cm未満"},{size: "140cm-145cm未満"},{size: "145cm-150cm未満"},{size: "150cm-155cm未満"},{size: "155cm-160cm未満"},{size: "160cm-165cm未満"},{size: "165cm-170cm未満"}])
 
 (158..174).each do |number|
   category_size = CategorySize.create([{category_id: "#{number}", size_id: 1}, {category_id: "#{number}", size_id: 2}, {category_id: "#{number}", size_id: 3},{category_id: "#{number}", size_id: 4},{category_id: "#{number}", size_id: 5}, {category_id: "#{number}", size_id: 6}, {category_id: "#{number}", size_id: 7}, {category_id: "#{number}", size_id: 8}, {category_id: "#{number}", size_id: 9}, {category_id: "#{number}", size_id: 10}])
@@ -7013,3 +7013,70 @@ buyer.children.create([{ name: "未定"}, { name: "クロネコヤマト"}, { na
     { brand: "877*7(バナナセブン)"}, 
     { brand: "Kosuke Komuro"}, 
     { brand: "88ズ"}])
+
+size_each_category = SizeEachCategory.create([
+  { name: "洋服のサイズ"},
+  { name: "メンズ靴のサイズ"}, 
+  { name: "レディース靴のサイズ"},
+  { name: "スカートのサイズ"},
+  { name: "キッズ服のサイズ"},
+  { name: "ベビー・キッズ靴のサイズ"},
+  { name: "ベビー服のサイズ"},
+  { name: "テレビのサイズ"},
+  { name: "カメラレンズのサイズ"},
+  { name: "オートバイのサイズ"},
+  { name: "ヘルメットのサイズ"},
+  { name: "タイヤのサイズ"},
+  { name: "スキーのサイズ"},
+  { name: "スノーボードのサイズ"}])
+
+(1..10).each do |number|
+  size_each_Category_size = SizeEachCategorySize.create([{size_id: "#{number}", size_each_category_id: 1}])
+end
+(19..26).each do |number|
+  size_each_Category_size = SizeEachCategorySize.create([{size_id: "#{number}", size_each_category_id: 2}])
+end
+(28..35).each do |number|
+  size_each_Category_size = SizeEachCategorySize.create([{size_id: "#{number}", size_each_category_id: 2}])
+end
+(11..18).each do |number|
+  size_each_Category_size = SizeEachCategorySize.create([{size_id: "#{number}", size_each_category_id: 3}])
+end
+(20..27).each do |number|
+  size_each_Category_size = SizeEachCategorySize.create([{size_id: "#{number}", size_each_category_id: 3}])
+end
+(77..81).each do |number|
+  size_each_Category_size = SizeEachCategorySize.create([{size_id: "#{number}", size_each_category_id: 4}])
+end
+(41..47).each do |number|
+  size_each_Category_size = SizeEachCategorySize.create([{size_id: "#{number}", size_each_category_id: 5}])
+end
+(48..55).each do |number|
+  size_each_Category_size = SizeEachCategorySize.create([{size_id: "#{number}", size_each_category_id: 6}])
+end
+(36..40).each do |number|
+  size_each_Category_size = SizeEachCategorySize.create([{size_id: "#{number}", size_each_category_id: 7}])
+end
+(82..91).each do |number|
+  size_each_Category_size = SizeEachCategorySize.create([{size_id: "#{number}", size_each_category_id: 8}])
+end
+(92..103).each do |number|
+  size_each_Category_size = SizeEachCategorySize.create([{size_id: "#{number}", size_each_category_id: 9}])
+end
+(104..109).each do |number|
+  size_each_Category_size = SizeEachCategorySize.create([{size_id: "#{number}", size_each_category_id: 10}])
+end
+(69..76).each do |number|
+  size_each_Category_size = SizeEachCategorySize.create([{size_id: "#{number}", size_each_category_id: 11}])
+end
+(56..68).each do |number|
+  size_each_Category_size = SizeEachCategorySize.create([{size_id: "#{number}", size_each_category_id: 12}])
+end
+(111..114).each do |number|
+  size_each_Category_size = SizeEachCategorySize.create([{size_id: "#{number}", size_each_category_id: 13}])
+end
+size_each_Category_size = SizeEachCategorySize.create([{size_id: "76", size_each_category_id: 13}])
+size_each_Category_size = SizeEachCategorySize.create([{size_id: "115", size_each_category_id: 13}])
+(116..122).each do |number|
+  size_each_Category_size = SizeEachCategorySize.create([{size_id: "#{number}", size_each_category_id: 14}])
+end

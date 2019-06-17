@@ -47,9 +47,15 @@
   @include product-select-defalut(50%);
 }
 
-.product-detail-search-form-value-category-grand-children{
+.product-detail-search-form-value-category-grandchildren{
   margin-top: 10px;
-  @include product-select-defalut(50%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.product-search-category-select-grandchildren{
+  @include product-check-box-defalut;
 }
 
 .product-detail-search-form-value-category-label{

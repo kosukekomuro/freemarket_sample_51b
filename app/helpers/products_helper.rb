@@ -11,9 +11,9 @@ module ProductsHelper
   end
 
   def category_sort
-    category_roots = Category.roots
     @categories_selection = [["すべて", 0]]
-
+    category_roots = Category.roots
+    
     category_roots.each do |category|
       category_select_input = [category.name, category.id]
       @categories_selection << category_select_input
@@ -22,8 +22,20 @@ module ProductsHelper
     return @categories_selection
   end
 
+  def size_sort
+    @sizes_selection = [["すべて", 0]]
+    sizes = SizeEachCategory.all
+
+    sizes.each do |size|
+      size_select_input = [size.name, size.id]
+      @sizes_selection << size_select_input
+    end
+
+    return @sizes_selection
+  end
+
   def price_sort 
-    @product_sort_selection = [
+    @price_sort_selection = [
                                 ["選択してください", 0],
                                 ["300 ~ 1000", "300 ~ 1000"],
                                 ["1000 ~ 5000", "1000 ~ 5000",], 
@@ -47,6 +59,5 @@ module ProductsHelper
                                 "販売中",
                                 "売り切れ"
                               ]
-                                
   end
 end
