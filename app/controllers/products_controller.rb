@@ -48,15 +48,16 @@ class ProductsController < ApplicationController
 
   def detail_search
     @keyword = params[:search_keyword]
-    @category = search_category(params[:selected_category])
-    @brand = search_brand(params[:search_brand])
-
-    @products =  Product
-                  .where("name LIKE ?", "%#{@keyword}%")
-                  .where(category_id: @category)
-                  .where(brand_id: @brand)
-                  .order(Product.product_sort_condition(params[:selected_sort].to_i))
-
+    @products =  Product.detail_search(@keyword, 
+                                        params[:selected_category], 
+                                        params[:search_brand], 
+                                        params[:selected_size],
+                                        params[:search_price_min],
+                                        params[:search_price_max],
+                                        params[:selected_condition],
+                                        params[:selected_delivery_burden],
+                                        params[:selected_salus_status],
+                                        params[:selected_sort])
     @result_count = @products.length
     @products = Product.all.order(id: "DESC").limit(36) if @result_count == 0
 
@@ -64,6 +65,16 @@ class ProductsController < ApplicationController
       format.json
     end
   end
+
+  def create_search_selection
+    @sizes = size_selection(params[:size_each_category_id]) if params[:size_each_category_id]
+
+    respond_to do |format|
+      format.json
+    end
+  end
+
+
 
   def buy
     render layout: "sellproduct"
@@ -211,22 +222,15 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
-  def search_category(search_category)
-    if !search_category.instance_of?(Array)
-      search_category = Category.search_category_family_ids(search_category)
+  def size_selection(search_size)
+    size_each_category = SizeEachCategory.find(search_size)
+    sizes = []
+
+    size_each_category.size_each_category_sizes.each do |size_each_category_size|
+      size = {name: size_each_category_size.size.size , id: size_each_category_size.size.id }
+      sizes << size
     end
 
-    return search_category
-  end
-
-  # 検索するブランドのidを配列で返却する
-  # 一致するブランド名が存在しない場合、すべてのブランドidを返却する
-  def search_brand(search_brand)
-    if Brand.find_by(brand: search_brand) == nil
-      return brand = Brand.all.ids
-    end
-    if Brand.find_by(brand: search_brand) != nil
-      return brand = [Brand.find_by(brand: search_brand).id]
-    end
+    return sizes
   end
 end
