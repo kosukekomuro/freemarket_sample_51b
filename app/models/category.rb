@@ -13,16 +13,9 @@ class Category < ApplicationRecord
   # 最下層のカテゴリーidを配列で返却する
   def self.search_category_family_ids(parent_id)
 
-    # カテゴリ-のparent_id == 0の場合、全ての孫カテゴリーのidを返却する
+    # カテゴリ-のparent_id == 0の場合、からの配列を返却
     if parent_id.to_i == 0
-      category = []
-      category_roots = Category.roots
-
-      category_roots.each do |category_root|
-        category.concat(category_root.indirect_ids)
-      end
-      
-      return category
+      return category = []
     end
 
     category_parent = Category.find(parent_id)

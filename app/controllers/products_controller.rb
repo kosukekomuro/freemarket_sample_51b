@@ -48,13 +48,24 @@ class ProductsController < ApplicationController
 
   def detail_search
     @keyword = params[:search_keyword]
-    @category = search_category(params[:selected_category])
-    @brand = search_brand(params[:search_brand])
+    category = search_category(params[:selected_category])
+    brand = Brand.search_name(params[:search_brand])
+    size = params[:selected_size]
+    price_min = params[:search_price_min]
+    price_max = params[:search_price_max]
+    condition = Condition.search_condition_ids(params[:selected_condition])
+    delivery_burden = DeliveryMethod.search_delivery_method_family_ids(params[:selected_delivery_burden])
+    salus_status = search_salus_status(params[:selected_salus_status])
 
     @products =  Product
-                  .where("name LIKE ?", "%#{@keyword}%")
-                  .where(category_id: @category)
-                  .where(brand_id: @brand)
+                  .search_name(@keyword)
+                  .search_category(category)
+                  .search_brand(brand)
+                  .search_size(size)
+                  .search_price(price_min, price_max)
+                  .search_condition(condition)
+                  .search_delivery_burden(delivery_burden)
+                  .search_salus_status(salus_status)
                   .order(Product.product_sort_condition(params[:selected_sort].to_i))
 
     @result_count = @products.length
@@ -64,6 +75,16 @@ class ProductsController < ApplicationController
       format.json
     end
   end
+
+  def create_search_selection
+    @sizes = size_selection(params[:size_each_category_id]) if params[:size_each_category_id]
+
+    respond_to do |format|
+      format.json
+    end
+  end
+
+
 
   def buy
     render layout: "sellproduct"
@@ -212,21 +233,35 @@ class ProductsController < ApplicationController
   end
 
   def search_category(search_category)
-    if !search_category.instance_of?(Array)
+    if search_category == "0"
+      return []
+    end
+
+    unless search_category.instance_of?(Array)
       search_category = Category.search_category_family_ids(search_category)
+      return search_category
     end
 
     return search_category
   end
 
-  # 検索するブランドのidを配列で返却する
-  # 一致するブランド名が存在しない場合、すべてのブランドidを返却する
-  def search_brand(search_brand)
-    if Brand.find_by(brand: search_brand) == nil
-      return brand = Brand.all.ids
+  def size_selection(search_size)
+    size_each_category = SizeEachCategory.find(search_size)
+    sizes = []
+
+    size_each_category.size_each_category_sizes.each do |size_each_category_size|
+      size = {name: size_each_category_size.size.size , id: size_each_category_size.size.id }
+      sizes << size
     end
-    if Brand.find_by(brand: search_brand) != nil
-      return brand = [Brand.find_by(brand: search_brand).id]
+
+    return sizes
+  end
+
+  def search_salus_status(salus_status)
+    if !salus_status.present? || salus_status.include?("0") || (["1", "2"] - salus_status).empty?
+      return salus_status = []
     end
+
+    return salus_status
   end
 end
