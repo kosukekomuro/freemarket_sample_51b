@@ -87,6 +87,17 @@
   @include product-form-label;
 }
 
+.product-detail-search-form-value-size-checkbox{
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.product-search-size-select{
+  @include product-check-box-defalut;
+}
+
 .product-detail-search-form-value-price{
   margin-top: 40px;
   @include product-select-defalut(75%);

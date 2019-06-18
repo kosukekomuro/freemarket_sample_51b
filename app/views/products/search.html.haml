@@ -1,9 +1,9 @@
 .default-container 
   %main.product-search-wrap
     .product-detail-search
-      = form_with url: search_products_path, class: ".product-detail-search-form" do |f|
+      = form_with url: search_products_path, class: "product-detail-search-form" do |f|
         .product-detail-search-form-sort
-          = select_tag "product_sort", options_for_select(product_sort), class: "product-detail-search-form-sort__select"
+          = f.select "product_sort", options_for_select(product_sort), {}, class: "product-detail-search-form-sort__select"
           %i.fas.fa-chevron-down.product-detail-search-form-sort__icon
         .product-detail-search-form-value
           %h3.product-detail-search-form-value__title
@@ -19,7 +19,7 @@
               %i.fas.fa-bars.product-detail-search-form-value-category-label__icon
               %span.product-detail-search-form-value-category-label__title
                 カテゴリーを選択する
-            = select_tag "category_sort", options_for_select(category_sort), class: "product-detail-search-form-value-category__select"
+            = f.select "category_sort", options_for_select(category_sort), {}, class: "product-detail-search-form-value-category__select"
             %i.fas.fa-chevron-down.product-detail-search-form-value-category__icon
           .product-detail-search-form-value-brand
             %label.product-detail-search-form-value-brand-label
@@ -27,19 +27,20 @@
               %span.product-detail-search-form-value-brand-label__title
                 ブランド名から探す
             = f.text_field "keyword", class: "product-detail-search-form-value-brand__input sell-brand-input", placeholder: "例) シャネル"
+            .brand-find-box
           .product-detail-search-form-value-size
             %label.product-detail-search-form-value-size-label
               %i.fas.fa-expand.product-detail-search-form-value-size-label__icon
               %span.product-detail-search-form-value-size-label__title
                 サイズを指定する
-            = select_tag "product_sort", options_for_select(size_sort), class: "product-detail-search-form-value-size__select"
+            = f.select "product_sort", options_for_select(size_sort), {}, class: "product-detail-search-form-value-size__select"
             %i.fas.fa-chevron-down.product-detail-search-form-value-size__icon
           .product-detail-search-form-value-price
             %label.product-detail-search-form-value-price-label
               %i.fas.fa-dollar-sign.product-detail-search-form-value-price-label__icon
               %span.product-detail-search-form-value-price-label__title
                 価格
-            = select_tag "product_sort", options_for_select(price_sort), class: "product-detail-search-form-value-price__select"
+            = f.select "product_sort", options_for_select(price_sort), {}, class: "product-detail-search-form-value-price__select"
             %i.fas.fa-chevron-down.product-detail-search-form-value-price__icon
           = f.text_field "praice-min", class: "product-detail-search-form-value-price-min", type:"number", placeholder: "¥ Min"
           %span ~
@@ -50,39 +51,30 @@
               %span.product-detail-search-form-value-condition-label__title
                 商品の状態
             .product-search-condition-select-container
-              .product-search-condition-select
-                = check_box_tag "condition_all", 1, false, {class: "product-search-condition-select__check-box"}
-                = label_tag "condition_all" ,"全て", class: "product-search-condition-select__label", for: "condition_all"
-              - condition_sort.each do |condition|
+              - condition_sort.each_with_index do |condition, i|
                 .product-search-condition-select
-                  = check_box_tag "condition_select#{condition.id}[condition_select][]", condition.id, false, {class: "product-search-condition-select__check-box"}
-                  = label_tag "condition-select-label", "#{condition.condition}", class: "product-search-condition-select__label", for: "condition_select#{condition.id}_condition_select_"
+                  = check_box_tag "condition_select[#{i}]", condition[1], false, {class: "product-search-condition-select__check-box"}
+                  = label_tag "condition-select-label", "#{condition[0]}", class: "product-search-condition-select__label", for: "condition_select_#{i}"
           .product-detail-search-form-value-delivery-burden
             %label.product-detail-search-form-value-delivery-burden-label
               %i.fas.fa-truck-moving.product-detail-search-form-value-delivery-burden-label__icon
               %span.product-detail-search-form-value-delivery-burden__title
                 配送料の負担
             .product-search-delivery-burden-select-container
-              .product-search-delivery-burden-select
-                = check_box_tag "delivery-burden_all", 0, false, {class: "product-search-delivery-burden-select__check-box"}
-                = label_tag "delivery-burden_all" ,"すべて", class: "product-search-delivery-burden-select__label", for: "delivery-burden_all"
               - delivery_burden_sort.each_with_index do |burden, i|
                 .product-search-delivery-burden-select
-                  = check_box_tag "burden#{i}[burden][]", burden.name, false,  {class: "product-search-delivery-burden-select__check-box"}
-                  = label_tag "burden-label", "#{burden.name}", class: "product-search-delivery-burden-select__label", for: "burden#{i}_burden_"
+                  = check_box_tag "burden[#{i}]", burden[1], false,  {class: "product-search-delivery-burden-select__check-box"}
+                  = label_tag "burden-label", "#{burden[0]}", class: "product-search-delivery-burden-select__label", for: "burden_#{burden[1]}"
           .product-detail-search-form-value-sales-status
             %label.product-detail-search-form-value-sales-status-label
               %i.fas.fa-shopping-basket.product-detail-search-form-value-sales-status-label__icon
               %span.product-detail-search-form-value-sales-status__title
                 販売状況
             .product-search-sales-status-select-container
-              .product-search-sales-status-select
-                = check_box_tag "sales-status_all", 0, false, {class: "product-search-sales-status-select__check-box"}
-                = label_tag "sales-status_all" ,"すべて", class: "product-search-sales-status-select__label", for: "sales-status_all"
-              - sales_status_sort.each_with_index do |states, i|
+              - sales_status_sort.each_with_index do |status, i|
                 .product-search-sales-status-select
-                  = check_box_tag "sales-status#{i + 1}[sales-status][]", i + 1, false, {class: "product-search-sales-status-select__check-box"}
-                  = label_tag "sales-status", "#{states}", class: "product-search-sales-status-select__label", for: "sales-status#{i + 1}_sales-status_"
+                  = check_box_tag "sales-status[#{i}]", status[1], false, {class: "product-search-sales-status-select__check-box"}
+                  = label_tag "sales-status", "#{status[0]}", class: "product-search-sales-status-select__label", for: "sales-status_#{i}"
           .product-detail-search-form-btn
             .product-detail-search-form-btn__clear
               クリア

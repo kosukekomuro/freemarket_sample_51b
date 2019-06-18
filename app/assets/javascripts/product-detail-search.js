@@ -17,7 +17,7 @@ $(document).on("turbolinks:load", function() {
       let link = "/products/" + product.id;
       let productInfoHtml = "";
 
-      if(product.buyer == 0){
+      if (product.buyer){
         productInfoHtml += `<div class = "product-search-result-item__sold">
                               <div class = "product-search-result-item__sold--msg">
                                 SOLD
@@ -117,15 +117,44 @@ $(document).on("turbolinks:load", function() {
     };
   };
 
-  // 並び替えの選択時に発火
-  // 商品を再建策後、選択された並び順に並び替えて表示する
-  $('.product-detail-search-form-sort__select').on('change', () =>{
-    
+  //サイズの選択技をチッェクボックスで作成する
+  const buildSizeSelect = (sizes) => {
+    let checkbox = ""
+
+    sizes.forEach((size) => {
+      checkbox += `<div class = "product-search-size-select">
+                    <input type="checkbox" name="category_select${size.id}[size_select][]" id="size_select${size.id}_size_select_" value="${size.id}" class="product-search-size-select__check-box">
+                    <label class="product-search-size-select__label" for="size_select${size.id}_size_select_">${size.name}</label>
+                  </div>`
+    });
+
+    html =  `<div class = "product-detail-search-form-value-size-checkbox">
+              ${checkbox}
+            <div>`
+
+    return html
+  };
+
+  const detailSearch = () =>{
     const url = "/products/detail_search";
     const selectedSort = $('option:selected').val();
     const searchKeyword = $('.product-detail-search-form-value-keyword__input').val();
     const selectedCategory = searchCategory($('.product-detail-search-form-value-category__select').val());
     const searchBrand = $('.product-detail-search-form-value-brand__input').val();
+    const selectedSize = $('[class="product-search-size-select__check-box"]:checked').map(function() {
+      return parseInt($(this).val());
+    }).get();
+    const searchPriceMin = $('.product-detail-search-form-value-price-min').val();
+    const searchPriceMax = $('.product-detail-search-form-value-price-max').val();
+    const selectedCondition = $('[class="product-search-condition-select__check-box"]:checked').map(function() {
+      return parseInt($(this).val());
+    }).get();
+    const selectedDeliveryBurden = $('[class="product-search-delivery-burden-select__check-box"]:checked').map(function() {
+      return parseInt($(this).val());
+    }).get();
+    const selectedSalusStatus = $('[class="product-search-sales-status-select__check-box"]:checked').map(function() {
+      return parseInt($(this).val());
+    }).get();
 
     $.ajax({
       url: url,
@@ -133,7 +162,13 @@ $(document).on("turbolinks:load", function() {
       data: {selected_sort: selectedSort,
              search_keyword: searchKeyword,
              selected_category: selectedCategory,
-             search_brand: searchBrand},
+             search_brand: searchBrand,
+             selected_size: selectedSize,
+             search_price_min: searchPriceMin,
+             search_price_max: searchPriceMax,
+             selected_condition: selectedCondition,
+             selected_delivery_burden: selectedDeliveryBurden,
+             selected_salus_status: selectedSalusStatus},
       dataType: 'json',
     })
     .done(function(data){
@@ -144,11 +179,68 @@ $(document).on("turbolinks:load", function() {
     .fail(function(){
       alert('通信に失敗しました。再度読み込んでください');
     });
+  };
+
+  //全チェックボックスのチェックを操作する
+  //すべてが選択された場合、全チェックボックスをチェックする。(反対もしかり)
+  const operateTotalCheckbox = element =>{
+    const elementClass ='input[class=' + element.attr('class')
+
+    if ( element.is(':checked') ){
+      $(elementClass).prop("checked",true);
+    }else{
+      $(elementClass).prop("checked",false);
+    }
+  };
+
+  //チェックボックスの選択技ですべての選択技のチェック判定を行う。
+  const decisionAllcheck = element =>{
+    const elementClass = element.attr('class')
+    const checkboxLength = $(`.${elementClass}`).length
+    const elementId = element.attr('id')
+    const elementIdString = (elementId).replace(/\d+/, '');
+    let checkFlag = true;
+    let checkElementId;
+
+    for(let i=1; i<checkboxLength; i++) {
+      checkElementId = elementIdString + i.toString();
+
+      if( !$(`input[id=${checkElementId}`).is(':checked') ){
+        checkFlag = false;
+      };
+    };
+
+    if(checkFlag){
+      $(`input[id= ${elementIdString}` + "0").prop("checked", true);
+    }else{
+      $(`input[id= ${elementIdString}` + "0").prop("checked", false);
+    };
+  };
+
+  // 並び替えの選択時に発火
+  // 商品を再建策後、選択された並び順に並び替えて表示する
+  $('.product-detail-search-form-sort__select').on('change', () =>{
+    detailSearch();
+  });
+
+  //実行ボタンクリック時に発火
+  $('.product-detail-search-form-btn__execution').on('click', () =>{
+    detailSearch();
+  });
+
+  //クリアボタン押下時に発火
+  $('.product-detail-search-form-btn__clear').on('click', () =>{
+    $(".product-detail-search-form")[0].reset();
+    $('.product-detail-search-form-value-category-children').remove();
+    $('.product-detail-search-form-value-category-grandchildren').remove();
+    $('.product-detail-search-form-value-size-checkbox').remove();
+    $(".product-search-condition-select__check-box").prop("checked",false);
+    $(".product-search-delivery-burden-select__check-box").prop("checked",false);
+    $(".product-search-sales-status-select__check-box").prop("checked",false);
   });
 
   //選択された親カテゴリーから子カテゴリーの選択技を作成する。
   $('.product-detail-search-form-value-category__select').on('change', (e) =>{
-
     $('.product-detail-search-form-value-category-children').remove();
     $('.product-detail-search-form-value-category-grandchildren').remove();
 
@@ -172,7 +264,7 @@ $(document).on("turbolinks:load", function() {
     };
   });
 
-  //選択された親カテゴリーから子カテゴリーの選択技を作成する。
+  //選択された子カテゴリーから孫カテゴリーの選択技を作成する。
   $(document).on('change', '.product-detail-search-form-value-category-children__select', (e) =>{
     $('.product-detail-search-form-value-category-grandchildren').remove();
 
@@ -194,5 +286,67 @@ $(document).on("turbolinks:load", function() {
         alert('通信に失敗しました。再度読み込んでください');
       });
     };
+  });
+
+  // 選択されたサイズの選択技をチェックボックスで作成する
+  $('.product-detail-search-form-value-size__select').on('change', (e) =>{
+    $('.product-detail-search-form-value-size-checkbox').remove();
+    
+    const selectedSizeEachCategoryId = $(e.currentTarget).val();
+    const url = "/products/create_search_selection";
+
+    if (selectedSizeEachCategoryId != "0"){
+      $.ajax({
+        url: url,
+        type: "GET",
+        data: {size_each_category_id: selectedSizeEachCategoryId},
+        dataType: 'json',
+      })
+      .done(function(data){
+        const html = buildSizeSelect(data);
+        $('.product-detail-search-form-value-size').after(html);
+      })
+      .fail(function(){
+        alert('通信に失敗しました。再度読み込んでください');
+      });
+    };
+  });
+  // 選択されたサイズの選択技をチェックボックスで作成する
+  $('.product-detail-search-form-value-price__select').on('change', (e) =>{
+    const selectedPrice = $(e.currentTarget).val();
+    const displayPrice = selectedPrice.split(" ");
+    
+    $('.product-detail-search-form-value-price-min').val(displayPrice[0]);
+    $('.product-detail-search-form-value-price-max').val(displayPrice[2]);
+  });
+
+  //商品の状態チェックボックスですべてを選んだ時
+  $('#condition_select_0').on('click', (e) => {
+    operateTotalCheckbox($(e.currentTarget));
+  });
+
+  //配送料金の負担チェックボックスですべてを選んだ時
+  $('#burden_0').on('click', (e) => {
+    operateTotalCheckbox($(e.currentTarget));
+  });
+
+  //配送料金の負担チェックボックスですべてを選んだ時
+  $('#sales-status_0').on('click', (e) => {
+    operateTotalCheckbox($(e.currentTarget));
+  });
+
+  //商品の状態チェックボックスがチェックされた時発火
+  $('.product-search-condition-select__check-box').on('click', (e) => {
+    decisionAllcheck($(e.currentTarget));
+  });
+
+  //配送料の負担チェックボックスがチェックされた時発火
+  $('.product-search-delivery-burden-select__check-box').on('click', (e) => {
+    decisionAllcheck($(e.currentTarget));
+  });
+
+  //販売状況チェックボックスがチェックされた時発火
+  $('.product-search-sales-status-select__check-box').on('click', (e) => {
+    decisionAllcheck($(e.currentTarget));
   });
 });

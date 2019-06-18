@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     collection do
       get 'search'
       get 'detail_search'
+      get 'create_search_selection'
     end
     member do
       get 'buy'
