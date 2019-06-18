@@ -48,26 +48,16 @@ class ProductsController < ApplicationController
 
   def detail_search
     @keyword = params[:search_keyword]
-    category = search_category(params[:selected_category])
-    brand = Brand.search_name(params[:search_brand])
-    size = params[:selected_size]
-    price_min = params[:search_price_min]
-    price_max = params[:search_price_max]
-    condition = Condition.search_condition_ids(params[:selected_condition])
-    delivery_burden = DeliveryMethod.search_delivery_method_family_ids(params[:selected_delivery_burden])
-    salus_status = search_salus_status(params[:selected_salus_status])
-
-    @products =  Product
-                  .search_name(@keyword)
-                  .search_category(category)
-                  .search_brand(brand)
-                  .search_size(size)
-                  .search_price(price_min, price_max)
-                  .search_condition(condition)
-                  .search_delivery_burden(delivery_burden)
-                  .search_salus_status(salus_status)
-                  .order(Product.product_sort_condition(params[:selected_sort].to_i))
-
+    @products =  Product.detail_search(@keyword, 
+                                        params[:selected_category], 
+                                        params[:search_brand], 
+                                        params[:selected_size],
+                                        params[:search_price_min],
+                                        params[:search_price_max],
+                                        params[:selected_condition],
+                                        params[:selected_delivery_burden],
+                                        params[:selected_salus_status],
+                                        params[:selected_sort])
     @result_count = @products.length
     @products = Product.all.order(id: "DESC").limit(36) if @result_count == 0
 
@@ -232,19 +222,6 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
-  def search_category(search_category)
-    if search_category == "0"
-      return []
-    end
-
-    unless search_category.instance_of?(Array)
-      search_category = Category.search_category_family_ids(search_category)
-      return search_category
-    end
-
-    return search_category
-  end
-
   def size_selection(search_size)
     size_each_category = SizeEachCategory.find(search_size)
     sizes = []
@@ -255,13 +232,5 @@ class ProductsController < ApplicationController
     end
 
     return sizes
-  end
-
-  def search_salus_status(salus_status)
-    if !salus_status.present? || salus_status.include?("0") || (["1", "2"] - salus_status).empty?
-      return salus_status = []
-    end
-
-    return salus_status
   end
 end

@@ -11,24 +11,6 @@ class Product < ApplicationRecord
   belongs_to :delivery_day
   belongs_to :trading_evaluation
   has_many :images, dependent: :destroy, inverse_of: :product
-
-  def self.product_sort_condition(condition)
-    case condition
-    when 1 then
-      return "updated_at DESC"
-    when 2 then
-      return "price ASC"
-    when 3 then
-      return "price DESC"
-    when 4 then
-      return "updated_at ASC"
-    when 5 then
-      return "updated_at DESC"
-    when 6 then
-      # Todo いいねの数 ソート機能 後に実装
-    end
-  end
-
   has_many :likes
   has_many :users, through: :likes
 
@@ -70,4 +52,73 @@ class Product < ApplicationRecord
   validates :description, format: { with: /\A[a-zA-Z0-9]|[ぁ-んァ-ン一-龥]|[ -\~〜（）()]+\z/ }
   validates :brand, format: { with: /\A[a-zA-Z0-9]|[ぁ-んァ-ン一-龥]|[ -\~〜（）()]+\z/ }
 
+  def self.product_sort_condition(condition)
+    case condition
+    when 1 then
+      return "updated_at DESC"
+    when 2 then
+      return "price ASC"
+    when 3 then
+      return "price DESC"
+    when 4 then
+      return "updated_at ASC"
+    when 5 then
+      return "updated_at DESC"
+    when 6 then
+      # Todo いいねの数 ソート機能 後に実装
+    end
+  end
+
+  def self.detail_search(keyword, 
+                          category, 
+                          brand, 
+                          size, 
+                          price_min, 
+                          price_max, 
+                          condition, 
+                          delivery_burden, 
+                          salus_status,
+                          sort)
+
+    category = search_category(category)
+    brand = Brand.search_name(brand)
+    condition = Condition.search_condition_ids(size)
+    delivery_burden = DeliveryMethod.search_delivery_method_family_ids(delivery_burden)
+    salus_status = search_salus_status(salus_status)
+
+    @products =  Product
+                  .search_name(keyword)
+                  .search_category(category)
+                  .search_brand(brand)
+                  .search_size(size)
+                  .search_price(price_min, price_max)
+                  .search_condition(condition)
+                  .search_delivery_burden(delivery_burden)
+                  .search_salus_status(salus_status)
+                  .order(Product.product_sort_condition(sort.to_i))
+    
+    return @products
+  end
+
+  private
+  def search_category(search_category)
+    if search_category == "0"
+      return []
+    end
+
+    unless search_category.instance_of?(Array)
+      search_category = Category.search_category_family_ids(search_category)
+      return search_category
+    end
+
+    return search_category
+  end
+
+  def search_salus_status(salus_status)
+    if !salus_status.present? || salus_status.include?("0") || (["1", "2"] - salus_status).empty?
+      return salus_status = []
+    end
+
+    return salus_status
+  end
 end
