@@ -439,8 +439,8 @@ end
 category_size = CategorySize.create([{category_id: 844, size_id: 69}, {category_id: 844, size_id: 70}, {category_id: 844, size_id: 71},{category_id: 844, size_id: 72},{category_id: 844, size_id: 73}, {category_id: 844, size_id: 74}, {category_id: 844, size_id: 75}, {category_id: 844, size_id: 76}])
 
 evaluation = TradingEvaluation.create(evaluation: "1")
-user = User.create!(nickname: 'komuro', email: 'admin@example.com', password: 'password')
-user = User.create!(nickname: 'test', email: 'test@example.com', password: 'password')
+user = User.create!(nickname: 'buyer', email: 'buyer_user@example.com', password: 'password')
+user = User.create!(nickname: 'seller', email: 'seller_use@example.com', password: 'password')
 user = User.create!(nickname: 'test1', email: 'test1@example.com', password: 'password')
 user = User.create!(nickname: 'test2', email: 'test2@example.com', password: 'password')
 
