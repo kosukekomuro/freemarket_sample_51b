@@ -27,13 +27,7 @@
         %h2.sign-up__main__container__head 住所入力
         .sign-up__main__container__body
           .sign-up__main__container__body__form
-            - if @user_detail.errors.any?
-              - @user_detail.errors.full_messages.each do |message|
-                = message
-            - if @user_address.errors.any?
-              - @user_address.errors.full_messages.each do |message|
-                = message
-            = form_for @user, url: card_registration_users_path, method: :get do |f|
+            = form_for @user, url: card_registration_users_path, method: :get, html: { id: :address_registration_form } do |f|
               = f.fields_for :user_detail do |d|
                 .form-group
                   %label.form-label お名前
