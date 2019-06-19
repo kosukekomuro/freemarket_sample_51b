@@ -20,6 +20,7 @@ $(document).on("turbolinks:load", function() {
     return html;
   };
 
+  // カテゴリーの子idから孫リストの作成
   const buildHeaderCategoryGrandChildrenList = grandchildren =>{
     let html = "";
     
@@ -60,12 +61,10 @@ $(document).on("turbolinks:load", function() {
   })
 
   // ヘッダーで選択された親と子からカテゴリーの孫リストを作成する。
+  // $(document).on("mouseover", ".header-product-nav-child__list--button", function () {
   $(document).on("mouseover", ".header-product-nav-child__list--button", function () {
-    $('.header-product-nav-grand-child').empty();
     $('.header-product-nav-child__list--button').css({'color':'#333', 'background-color':'white'});
-
     $(this).css({'background-color':'#eee'});
-
     const data = $(this).attr('value');
     
     $.ajax({
@@ -76,12 +75,14 @@ $(document).on("turbolinks:load", function() {
     })
     .done(function(data){
       const html = buildHeaderCategoryGrandChildrenList(data);
+      $('.header-product-nav-grand-child').empty();
       $('.header-product-nav-grand-child').append(html);
     })
     .fail(function(){
       alert('通信に失敗しました。再度読み込んでください');
     })
-  })
+  });
+
   $(document).on("mouseover", ".header-product-nav-grand-child__list--button", function () {
     $('.header-product-nav-grand-child__list--button').css({'color':'#333', 'background-color':'white'})
 

@@ -58,6 +58,7 @@ class ProductsController < ApplicationController
                                         params[:selected_delivery_burden],
                                         params[:selected_salus_status],
                                         params[:selected_sort])
+
     @result_count = @products.length
     @products = Product.all.order(id: "DESC").limit(36) if @result_count == 0
 
