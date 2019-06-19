@@ -57,6 +57,23 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  &__name{
+    height: 51px;
+    position: relative;
+    overflow: hidden;
+
+    &:after{
+      display: block;
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 50%;
+      height: 1.5em;
+      background: linear-gradient(to right, rgba(255,255,255,0), #fff 72%);
+    }
+  }
 }
 
 @mixin category-box-deteil-info-price{

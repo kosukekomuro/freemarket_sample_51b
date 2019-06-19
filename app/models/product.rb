@@ -52,6 +52,10 @@ class Product < ApplicationRecord
   validates :description, format: { with: /\A[a-zA-Z0-9]|[ぁ-んァ-ン一-龥]|[ -\~〜（）()]+\z/ }
   validates :brand, format: { with: /\A[a-zA-Z0-9]|[ぁ-んァ-ン一-龥]|[ -\~〜（）()]+\z/ }
 
+  def attributes_with_virtual(product)
+    attributes.merge!(likes_length: product.likes.length )
+  end
+
   def self.product_sort_condition(condition)
     case condition
     when 1 then
@@ -64,9 +68,9 @@ class Product < ApplicationRecord
       return "updated_at ASC"
     when 5 then
       return "updated_at DESC"
-    when 6 then
-      # Todo いいねの数 ソート機能 後に実装
     end
+
+    return ""
   end
 
   def self.detail_search(keyword, 
@@ -80,11 +84,10 @@ class Product < ApplicationRecord
                           salus_status,
                           sort)
 
-    category = search_category(category)
+    category = Category.set_search_category(category)
     brand = Brand.search_name(brand)
-    condition = Condition.search_condition_ids(size)
+    condition = Condition.search_condition_ids(condition)
     delivery_burden = DeliveryMethod.search_delivery_method_family_ids(delivery_burden)
-    salus_status = search_salus_status(salus_status)
 
     @products =  Product
                   .search_name(keyword)
@@ -96,29 +99,12 @@ class Product < ApplicationRecord
                   .search_delivery_burden(delivery_burden)
                   .search_salus_status(salus_status)
                   .order(Product.product_sort_condition(sort.to_i))
-    
+
+    # いいねの数ソート実行
+    if @products.present? && sort.to_i == 6
+      @products = @products.sort {|a, b| b.attributes_with_virtual(b)[:likes_length] <=> a.attributes_with_virtual(a)[:likes_length] }
+    end
+
     return @products
-  end
-
-  private
-  def search_category(search_category)
-    if search_category == "0"
-      return []
-    end
-
-    unless search_category.instance_of?(Array)
-      search_category = Category.search_category_family_ids(search_category)
-      return search_category
-    end
-
-    return search_category
-  end
-
-  def search_salus_status(salus_status)
-    if !salus_status.present? || salus_status.include?("0") || (["1", "2"] - salus_status).empty?
-      return salus_status = []
-    end
-
-    return salus_status
   end
 end

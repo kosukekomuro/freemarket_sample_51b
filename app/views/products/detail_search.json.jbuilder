@@ -9,7 +9,7 @@ json.set! :products do
     json.buyer product.buyer_id
     json.name product.name
     json.price product.price
-    json.evaluation product.trading_evaluation.evaluation
+    json.likes product.likes.length
   end
 end
 
