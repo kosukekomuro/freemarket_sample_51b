@@ -46,17 +46,6 @@ class Product < ApplicationRecord
       end
     end
   end
-  scope :set_search_category, -> (search_category) do
-    if search_category == "0"
-      return []
-    end
-
-    if !search_category.instance_of?(Array)
-      search_category = Category.search_category_family_ids(search_category)
-      return search_category
-    end
-    return search_category
-  end
   scope :product_sort_condition, -> (condition) do
     case condition
     when 1 then
@@ -81,6 +70,23 @@ class Product < ApplicationRecord
     attributes.merge!(likes_length: product.likes.length )
   end
 
+  def self.product_sort_condition(condition)
+    case condition
+    when 1 then
+      return  "updated_at DESC"
+    when 2 then
+      return "price ASC"
+    when 3 then
+      return "price DESC"
+    when 4 then
+      return "updated_at ASC"
+    when 5 then
+      return ("updated_at DESC")
+    end
+
+    return ""
+  end
+
   def self.detail_search(keyword, 
                           category, 
                           brand, 
@@ -92,7 +98,7 @@ class Product < ApplicationRecord
                           salus_status,
                           sort)
 
-    category = set_search_category(category)
+    category = Category.set_search_category(category)
     brand = Brand.search_name(brand)
     condition = Condition.search_condition_ids(condition)
     delivery_burden = DeliveryMethod.search_delivery_method_family_ids(delivery_burden)
@@ -106,7 +112,7 @@ class Product < ApplicationRecord
                   .search_condition(condition)
                   .search_delivery_burden(delivery_burden)
                   .search_salus_status(salus_status)
-                  .product_sort_condition(sort.to_i)
+                  .order(Product.product_sort_condition(sort.to_i))
 
     # いいねの数ソート実行
     if @products.present? && sort.to_i == 6

@@ -40,4 +40,18 @@ class Category < ApplicationRecord
        return category_parent.indirect_ids
     end
   end
+
+  # 選択されたカテゴリーを返却する。
+  def self.set_search_category(search_category)
+    if search_category == "0"
+      return []
+    end
+
+    if !search_category.instance_of?(Array)
+      search_category = Category.search_category_family_ids(search_category)
+      return search_category
+    end
+
+    return search_category
+  end
 end
