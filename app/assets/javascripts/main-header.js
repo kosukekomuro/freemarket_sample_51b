@@ -61,6 +61,7 @@ $(document).on("turbolinks:load", function() {
   })
 
   // ヘッダーで選択された親と子からカテゴリーの孫リストを作成する。
+  // $(document).on("mouseover", ".header-product-nav-child__list--button", function () {
   $(document).on("mouseover", ".header-product-nav-child__list--button", function () {
     $('.header-product-nav-child__list--button').css({'color':'#333', 'background-color':'white'});
     $(this).css({'background-color':'#eee'});
