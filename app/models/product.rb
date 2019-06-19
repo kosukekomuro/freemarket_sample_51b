@@ -46,20 +46,6 @@ class Product < ApplicationRecord
       end
     end
   end
-  scope :product_sort_condition, -> (condition) do
-    case condition
-    when 1 then
-      return  order("updated_at DESC")
-    when 2 then
-      return order("price ASC")
-    when 3 then
-      return order("price DESC")
-    when 4 then
-      return order("updated_at ASC")
-    when 5 then
-      return order("updated_at DESC")
-    end
-  end
 
   validates :price, numericality: { only_integer: true, greater_than: 300, less_than: 10000000, message: "300以上9,999,999以下で入力してください"}
   validates :name, format: { with: /\A[a-zA-Z0-9]|[ぁ-んァ-ン一-龥]|[ -\~〜（）()]+\z/ }
@@ -73,7 +59,7 @@ class Product < ApplicationRecord
   def self.product_sort_condition(condition)
     case condition
     when 1 then
-      return  "updated_at DESC"
+      return "updated_at DESC"
     when 2 then
       return "price ASC"
     when 3 then
@@ -81,7 +67,7 @@ class Product < ApplicationRecord
     when 4 then
       return "updated_at ASC"
     when 5 then
-      return ("updated_at DESC")
+      return "updated_at DESC"
     end
 
     return ""
