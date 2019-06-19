@@ -46,19 +46,32 @@ class Product < ApplicationRecord
       end
     end
   end
+  scope :set_search_category, -> (search_category) do
+    if search_category == "0"
+      return []
+    end
+
+    if !search_category.instance_of?(Array)
+      search_category = Category.search_category_family_ids(search_category)
+      return search_category
+    end
+    return search_category
+  end
   scope :product_sort_condition, -> (condition) do
     case condition
     when 1 then
-      return  order("updated_at DESC")
+      return "updated_at DESC"
     when 2 then
-      return order("price ASC")
+      return "price ASC"
     when 3 then
-      return order("price DESC")
+      return "price DESC"
     when 4 then
-      return order("updated_at ASC")
+      return "updated_at ASC"
     when 5 then
-      return order("updated_at DESC")
+      return "updated_at DESC"
     end
+
+    return ""
   end
 
   validates :price, numericality: { only_integer: true, greater_than: 300, less_than: 10000000, message: "300以上9,999,999以下で入力してください"}
@@ -68,23 +81,6 @@ class Product < ApplicationRecord
 
   def attributes_with_virtual(product)
     attributes.merge!(likes_length: product.likes.length )
-  end
-
-  def self.product_sort_condition(condition)
-    case condition
-    when 1 then
-      return  "updated_at DESC"
-    when 2 then
-      return "price ASC"
-    when 3 then
-      return "price DESC"
-    when 4 then
-      return "updated_at ASC"
-    when 5 then
-      return ("updated_at DESC")
-    end
-
-    return ""
   end
 
   def self.detail_search(keyword, 
