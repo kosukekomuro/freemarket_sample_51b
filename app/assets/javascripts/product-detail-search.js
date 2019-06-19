@@ -33,7 +33,7 @@ $(document).on("turbolinks:load", function() {
                                 <span class="product-search-result-item-info-price__main">
                                   <i class="fa fa-heart product-search-result-item-info-price__main--icon-red"></i>
                                   <span class="product-search-result-item-info-price__main--evaluation">
-                                    ${product.evaluation}
+                                    ${product.likes}
                                   </span>
                                 </span>
                               </p>
