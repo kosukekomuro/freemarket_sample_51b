@@ -25,7 +25,7 @@
     %main.sign-up__main
       %section.sign-up__main__container
         %h2.sign-up__main__container__head 会員情報入力
-        = form_for @user, url: address_registration_users_path, method: :get do |f|
+        = form_for @user, url: address_registration_users_path, method: :get, html: { id: :user_registration_sns_form } do |f|
           .sign-up__main__container__body
             .sign-up__main__container__body__form
               - if @user.errors.any?
