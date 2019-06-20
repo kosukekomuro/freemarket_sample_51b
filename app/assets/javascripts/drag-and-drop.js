@@ -55,13 +55,11 @@ $(document).on('turbolinks:load', function(){
           files_array.pop();
           $(".error-image").text("10枚以上の画像のアップロードはできません"); 
           $(".error-image").css("color", "red"); 
-          console.log(count_image);
         }
         else if (count_image == 10){
           var html = buildImage(imageUrl);
           $(".sell-image-display").prepend(html);
           $('.dropzone').hide();
-          console.log(count_image);
         }
         else if (count_image == 4){
           var html = buildImage(imageUrl);
@@ -108,7 +106,6 @@ $(document).on('turbolinks:load', function(){
 
   // changeイベントでのイベントの検知
   $(document).on('change', '.upload-image', function(){
-    console.log("イベントけんち");
     var files = $('.upload-image').prop('files');
       // 画像のファイルを一つづつ、先ほどの画像管理用の配列に追加する。
     for (var i=0; i<files.length; i++) {
@@ -131,13 +128,11 @@ $(document).on('turbolinks:load', function(){
           files_array.pop();
           $(".error-image").text("10枚以上の画像のアップロードはできません"); 
           $(".error-image").css("color", "red"); 
-          console.log(count_image);
         }
         else if (count_image == 10){
           var html = buildImage(imageUrl);
           $(".sell-image-display").prepend(html);
           $('.dropzone').hide();
-          console.log(count_image);
         }
         else if (count_image == 4){
           var html = buildImage(imageUrl);
@@ -192,7 +187,6 @@ $(document).on('turbolinks:load', function(){
     var delete_image = $(this).parent().parent().remove();
     var add_width = $('.dropzone').css('width',$('.dropzone').width()+128)
     var count_image = files_array.length
-    console.log(files_array);
     if (count_image == 9){
       $('.dropzone').show();
       $(".sell-dropbox__text").css("top", "5%");
@@ -230,7 +224,6 @@ $(document).on('turbolinks:load', function(){
   // プレビュー画像の取得
   $(document).on('click', '.image-edit-btn', function(e) {
     var src = $('.image-edit-btn').parent().siblings("image-mam").find("img").attr('src');
-    console.log(src);
     $(".trim-image-ori").attr("src", src);
     $(".sell-modal-trim").fadeIn(500);
     $(".modal-overlay").show();
