@@ -43,7 +43,7 @@ class ProductsController < ApplicationController
     @keyword = params[:keyword]
     @products = Product.where("name LIKE ?", "%#{params[:keyword]}%").limit(4800)
     @result_count = @products.length
-    @products = Product.all.order(id: "DESC").limit(36) if @products.length == 0
+    @products = Product.all.order(updated_at: "DESC").limit(36) if @products.length == 0 || !@keyword.present?
   end
 
   def detail_search
