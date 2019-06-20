@@ -19,12 +19,6 @@
 
       &:last-child{
         font-weight: 600;
-
-        &:before{
-          color: #343a40;
-          font-family: FontAwesome;
-          content: "\f015";
-        }
       }
     }
   }
