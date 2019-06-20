@@ -1,6 +1,7 @@
 @mixin one-product($width, $sold-font-size:20px, $sold-top-position: 15px, $sold-figure-width: $width - 113px){
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: flex-start;
   margin: 15px auto;
   
   &__link{
@@ -56,6 +57,23 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  &__name{
+    height: 51px;
+    position: relative;
+    overflow: hidden;
+
+    &:after{
+      display: block;
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 50%;
+      height: 1.5em;
+      background: linear-gradient(to right, rgba(255,255,255,0), #fff 72%);
+    }
+  }
 }
 
 @mixin category-box-deteil-info-price{

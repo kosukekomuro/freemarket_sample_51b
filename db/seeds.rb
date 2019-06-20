@@ -360,7 +360,7 @@ other_office.children.create([{name: "オフィス用品一途"},{name: "オフ�
 condition = Condition.create([{ condition: "新品、未使用"}, { condition: "未使用に近い"}, { condition: "目立った傷や汚れなし"}, { condition: "やや傷や汚れあり"}, { condition: "傷や汚れあり"}, { condition: "全体的に状態が悪い"}])
 delivery_day = DeliveryDay.create([{ day: "1~2日で発送"}, { day: "2~3日で発送"}, { day: "4~7日で発送"}])
 
-size = Size.create([{size: "XXS以下"},{size: "XS(SS以下)"},{size: "S"},{size: "M"},{size: "L"},{size: "XL(LL)"},{size: "2XL(3L)"},{size: "3XL(4L)"},{size: "4XL(5L)以上"},{size: "FREE SIZE"},{size: "20cm以下"},{size: "20.5cm"},{size: "21cm"},{size: "21.5cm"},{size: "22cm"},{size: "22.5cm"},{size: "23cm"},{size: "23.5cm"},{size: "23.5cm以下"},{size: "24cm"},{size: "24.5cm"},{size: "25cm"},{size: "25.5cm"},{size: "26cm"},{size: "26.5cm"},{size: "27cm"},{size: "27.5cm以上"},{size: "27.5cm"},{size: "28cm"},{size: "28.5cm"},{size: "29cm"},{size: "29.5cm"},{size: "30cm"},{size: "30.5cm"},{size: "31cm以上"},{size: "60cm"},{size: "70cm"},{size: "80cm"},{size: "90cm"},{size: "95cm"},{size: "100cm"},{size: "110cm"},{size: "120cm"},{size: "130cm"},{size: "140cm"},{size: "150cm"},{size: "160cm"},{size: "10.5cm以下"},{size: "11cm・11.5cm"},{size: "12cm・12.5cm"},{size: "13cm・13.5cm"},{size: "14cm・14.5cm"},{size: "15cm・15.5cm"},{size: "16cm・16.5cm"},{size: "17cm以上"},{size: "12インチ"},{size: "13インチ"},{size: "14インチ"},{size: "15インチ"},{size: "16インチ"},{size: "17インチ"},{size: "18インチ"},{size: "19インチ"},{size: "20インチ"},{size: "21インチ"},{size: "22インチ"},{size: "23インチ"},{size: "24インチ"},{size: "XSサイズ以下"},{size: "Sサイズ"},{size: "Mサイズ"},{size: "Lサイズ"},{size: "XLサイズ"},{size: "XXLサイズ以上"},{size: "フリーサイズ"},{size: "子ども用"}])
+size = Size.create([{size: "XXS以下"},{size: "XS(SS以下)"},{size: "S"},{size: "M"},{size: "L"},{size: "XL(LL)"},{size: "2XL(3L)"},{size: "3XL(4L)"},{size: "4XL(5L)以上"},{size: "FREE SIZE"},{size: "20cm以下"},{size: "20.5cm"},{size: "21cm"},{size: "21.5cm"},{size: "22cm"},{size: "22.5cm"},{size: "23cm"},{size: "23.5cm"},{size: "23.5cm以下"},{size: "24cm"},{size: "24.5cm"},{size: "25cm"},{size: "25.5cm"},{size: "26cm"},{size: "26.5cm"},{size: "27cm"},{size: "27.5cm以上"},{size: "27.5cm"},{size: "28cm"},{size: "28.5cm"},{size: "29cm"},{size: "29.5cm"},{size: "30cm"},{size: "30.5cm"},{size: "31cm以上"},{size: "60cm"},{size: "70cm"},{size: "80cm"},{size: "90cm"},{size: "95cm"},{size: "100cm"},{size: "110cm"},{size: "120cm"},{size: "130cm"},{size: "140cm"},{size: "150cm"},{size: "160cm"},{size: "10.5cm以下"},{size: "11cm・11.5cm"},{size: "12cm・12.5cm"},{size: "13cm・13.5cm"},{size: "14cm・14.5cm"},{size: "15cm・15.5cm"},{size: "16cm・16.5cm"},{size: "17cm以上"},{size: "12インチ"},{size: "13インチ"},{size: "14インチ"},{size: "15インチ"},{size: "16インチ"},{size: "17インチ"},{size: "18インチ"},{size: "19インチ"},{size: "20インチ"},{size: "21インチ"},{size: "22インチ"},{size: "23インチ"},{size: "24インチ"},{size: "XSサイズ以下"},{size: "Sサイズ"},{size: "Mサイズ"},{size: "Lサイズ"},{size: "XLサイズ"},{size: "XXLサイズ以上"},{size: "フリーサイズ"},{size: "子ども用"},{size: "60cm以下"},{size: "~70cm"},{size: "~80cm"},{size: "~90cm"},{size: "90cm以上"},{size: "〜20インチ"},{size: "20〜26インチ"},{size: "26〜32インチ"},{size: "32〜37インチ"},{size: "37〜40インチ"},{size: "40〜42インチ"},{size: "42〜46インチ"},{size: "46〜52インチ"},{size: "52〜60インチ"},{size: "60インチ〜"},{size: "ニコンFマウント"},{size: "キヤノンEFマウント"},{size: "ペンタックスKマウント"},{size: "ペンタックスQマウント"},{size: "フォーサーズマウント"},{size: "マイクロフォーサーズマウント"},{size: "aAマウント"},{size: "aEマウント"},{size: "ニコン１マウント"},{size: "キヤノンEF-Mマウント"},{size: "Xマウント"},{size: "シグマSAマウント"},{size: "50cc以下"},{size: "51cc-125cc"},{size: "126cc-250cc"},{size: "251cc-400cc"},{size: "401cc-750cc"},{size: "751cc以上"},{size: "140cm〜"},{size: "150cm〜"},{size: "160cm〜"},{size: "170cm〜"},{size: "スキーボード"},{size: "その他"},{size: "135cm-140cm未満"},{size: "140cm-145cm未満"},{size: "145cm-150cm未満"},{size: "150cm-155cm未満"},{size: "155cm-160cm未満"},{size: "160cm-165cm未満"},{size: "165cm-170cm未満"}])
 
 (158..174).each do |number|
   category_size = CategorySize.create([{category_id: "#{number}", size_id: 1}, {category_id: "#{number}", size_id: 2}, {category_id: "#{number}", size_id: 3},{category_id: "#{number}", size_id: 4},{category_id: "#{number}", size_id: 5}, {category_id: "#{number}", size_id: 6}, {category_id: "#{number}", size_id: 7}, {category_id: "#{number}", size_id: 8}, {category_id: "#{number}", size_id: 9}, {category_id: "#{number}", size_id: 10}])
@@ -439,7 +439,10 @@ end
 category_size = CategorySize.create([{category_id: 844, size_id: 69}, {category_id: 844, size_id: 70}, {category_id: 844, size_id: 71},{category_id: 844, size_id: 72},{category_id: 844, size_id: 73}, {category_id: 844, size_id: 74}, {category_id: 844, size_id: 75}, {category_id: 844, size_id: 76}])
 
 evaluation = TradingEvaluation.create(evaluation: "1")
-user = User.create!(nickname: 'komuro', email: 'admin@example.com', password: 'password')
+user = User.create!(nickname: 'buyer', email: 'buyer_user@example.com', password: 'password')
+user = User.create!(nickname: 'seller', email: 'seller_use@example.com', password: 'password')
+user = User.create!(nickname: 'test1', email: 'test1@example.com', password: 'password')
+user = User.create!(nickname: 'test2', email: 'test2@example.com', password: 'password')
 
 seller = DeliveryMethod.create(name: "送料込み(出品者負担)")
 buyer = DeliveryMethod.create(name: "着払い(購入者負担)")
@@ -7013,3 +7016,169 @@ buyer.children.create([{ name: "未定"}, { name: "クロネコヤマト"}, { na
     { brand: "877*7(バナナセブン)"}, 
     { brand: "Kosuke Komuro"}, 
     { brand: "88ズ"}])
+
+size_each_category = SizeEachCategory.create([
+  { name: "洋服のサイズ"},
+  { name: "メンズ靴のサイズ"}, 
+  { name: "レディース靴のサイズ"},
+  { name: "スカートのサイズ"},
+  { name: "キッズ服のサイズ"},
+  { name: "ベビー・キッズ靴のサイズ"},
+  { name: "ベビー服のサイズ"},
+  { name: "テレビのサイズ"},
+  { name: "カメラレンズのサイズ"},
+  { name: "オートバイのサイズ"},
+  { name: "ヘルメットのサイズ"},
+  { name: "タイヤのサイズ"},
+  { name: "スキーのサイズ"},
+  { name: "スノーボードのサイズ"}])
+
+(1..10).each do |number|
+  size_each_Category_size = SizeEachCategorySize.create([{size_id: "#{number}", size_each_category_id: 1}])
+end
+(19..26).each do |number|
+  size_each_Category_size = SizeEachCategorySize.create([{size_id: "#{number}", size_each_category_id: 2}])
+end
+(28..35).each do |number|
+  size_each_Category_size = SizeEachCategorySize.create([{size_id: "#{number}", size_each_category_id: 2}])
+end
+(11..18).each do |number|
+  size_each_Category_size = SizeEachCategorySize.create([{size_id: "#{number}", size_each_category_id: 3}])
+end
+(20..27).each do |number|
+  size_each_Category_size = SizeEachCategorySize.create([{size_id: "#{number}", size_each_category_id: 3}])
+end
+(77..81).each do |number|
+  size_each_Category_size = SizeEachCategorySize.create([{size_id: "#{number}", size_each_category_id: 4}])
+end
+(41..47).each do |number|
+  size_each_Category_size = SizeEachCategorySize.create([{size_id: "#{number}", size_each_category_id: 5}])
+end
+(48..55).each do |number|
+  size_each_Category_size = SizeEachCategorySize.create([{size_id: "#{number}", size_each_category_id: 6}])
+end
+(36..40).each do |number|
+  size_each_Category_size = SizeEachCategorySize.create([{size_id: "#{number}", size_each_category_id: 7}])
+end
+(82..91).each do |number|
+  size_each_Category_size = SizeEachCategorySize.create([{size_id: "#{number}", size_each_category_id: 8}])
+end
+(92..103).each do |number|
+  size_each_Category_size = SizeEachCategorySize.create([{size_id: "#{number}", size_each_category_id: 9}])
+end
+(104..109).each do |number|
+  size_each_Category_size = SizeEachCategorySize.create([{size_id: "#{number}", size_each_category_id: 10}])
+end
+(69..76).each do |number|
+  size_each_Category_size = SizeEachCategorySize.create([{size_id: "#{number}", size_each_category_id: 11}])
+end
+(56..68).each do |number|
+  size_each_Category_size = SizeEachCategorySize.create([{size_id: "#{number}", size_each_category_id: 12}])
+end
+(111..114).each do |number|
+  size_each_Category_size = SizeEachCategorySize.create([{size_id: "#{number}", size_each_category_id: 13}])
+end
+size_each_Category_size = SizeEachCategorySize.create([{size_id: "76", size_each_category_id: 13}])
+size_each_Category_size = SizeEachCategorySize.create([{size_id: "115", size_each_category_id: 13}])
+(116..122).each do |number|
+  size_each_Category_size = SizeEachCategorySize.create([{size_id: "#{number}", size_each_category_id: 14}])
+end
+
+product = Product.create([
+  { name: "美型シルエット・パーフェクトT", description: "アーヴェヴェの新作", seller_id: 1, buyer_id: nil ,category_id: 158, size_id: 1, brand_id: 1, condition_id: 1, delivery_method_id: 13, prefecture_id: 1, delivery_day_id: 1, price: 1500, trading_evaluation_id: 1, status_id: 1 }
+])
+(1..10).each do |number|
+  image = Image.create([{url: open("#{Rails.root}/db/fixtures/fixture#{number}.png"), product_id: 1}])
+end
+product = Product.create([
+  { name: "袖レースロゴ刺繍Tシャツ", description: "アーヴェヴェの新作", seller_id: 1, buyer_id: 2, category_id: 158, size_id: 2, brand_id: 1, condition_id: 1, delivery_method_id: 12, prefecture_id: 2, delivery_day_id: 1, price: 999, trading_evaluation_id: 1, status_id: 1 }
+])
+(11..13).each do |number|
+  image = Image.create([{url: open("#{Rails.root}/db/fixtures/fixture#{number}.png"), product_id: 2}])
+end
+product = Product.create([
+  { name: "ドットビスチェTシャツ", description: "アーカーの新作", seller_id: 2, buyer_id: nil, category_id: 158, size_id: 2, brand_id: 593, condition_id: 2, delivery_method_id: 12, prefecture_id: 2, delivery_day_id: 2, price: 5000, trading_evaluation_id: 1, status_id: 1 }
+])
+(14..16).each do |number|
+  image = Image.create([{url: open("#{Rails.root}/db/fixtures/fixture#{number}.png"), product_id: 3}])
+end
+product = Product.create([
+  { name: "袖レースロゴ刺繍Tシャツ", description: "アーキの新作", seller_id: 2, buyer_id: 1, category_id: 159, size_id: 2, brand_id: 593, condition_id: 2, delivery_method_id: 12, prefecture_id: 2, delivery_day_id: 2, price: 2000, trading_evaluation_id: 1, status_id: 1 }
+])
+(17..19).each do |number|
+  image = Image.create([{url: open("#{Rails.root}/db/fixtures/fixture#{number}.png"), product_id: 4}])
+end
+product = Product.create([
+  { name: "【大きいサイズ】バックリボントップス", description: "アーキの新作", seller_id: 2, buyer_id: nil, category_id: 159, size_id: 6, brand_id: 593, condition_id: 3, delivery_method_id: 13, prefecture_id: 2, delivery_day_id: 2, price: 10000, trading_evaluation_id: 1, status_id: 1 }
+])
+(20..22).each do |number|
+  image = Image.create([{url: open("#{Rails.root}/db/fixtures/fixture#{number}.png"), product_id: 5}])
+end
+product = Product.create([
+  { name: "【小さいサイズ】バックリボントップス", description: "アーキの新作", seller_id: 2, buyer_id: nil, category_id: 159, size_id: 1, brand_id: 593, condition_id: 3, delivery_method_id: 13, prefecture_id: 2, delivery_day_id: 2, price: 10001, trading_evaluation_id: 1, status_id: 1 }
+])
+(20..22).each do |number|
+  image = Image.create([{url: open("#{Rails.root}/db/fixtures/fixture#{number}.png"), product_id: 6}])
+end
+product = Product.create([
+  { name: "【普通サイズ】バックリボントップス", description: "アーキの新作", seller_id: 2, buyer_id: nil, category_id: 159, size_id: 3, brand_id: 3, condition_id: 3, delivery_method_id: 13, prefecture_id: 2, delivery_day_id: 2, price: 10001, trading_evaluation_id: 1, status_id: 1 }
+])
+(20..22).each do |number|
+  image = Image.create([{url: open("#{Rails.root}/db/fixtures/fixture#{number}.png"), product_id: 7}])
+end
+product = Product.create([
+  { name: "ロゴTシャツ", description: "アーヴェヴェの新作", seller_id: 2, buyer_id: nil, category_id: 338, size_id: 3, brand_id: 1, condition_id: 3, delivery_method_id: 13, prefecture_id: 2, delivery_day_id: 2, price: 50000, trading_evaluation_id: 1, status_id: 1 }
+])
+image = Image.create([{url: open("#{Rails.root}/db/fixtures/fixture23.png"), product_id: 8}])
+product = Product.create([
+  { name: "エイグインティ", description: "アーヴェヴェの新作", seller_id: 2, buyer_id: 1, category_id: 338, size_id: 3, brand_id: 1, condition_id: 3, delivery_method_id: 13, prefecture_id: 2, delivery_day_id: 2, price: 50000, trading_evaluation_id: 1, status_id: 1 }
+])
+image = Image.create([{url: open("#{Rails.root}/db/fixtures/fixture24.png"), product_id: 9}])
+product = Product.create([
+  { name: "レスティオ", description: "アユイテの新作", seller_id: 2, buyer_id: 1, category_id: 338, size_id: 3, brand_id: 340, condition_id: 3, delivery_method_id: 13, prefecture_id: 2, delivery_day_id: 2, price: 100000, trading_evaluation_id: 1, status_id: 1 }
+])
+image = Image.create([{url: open("#{Rails.root}/db/fixtures/fixture25.png"), product_id: 10}])
+product = Product.create([
+  { name: "クラスティ", description: "アユイテの新作", seller_id: 2, buyer_id: nil, category_id: 338, size_id: 3, brand_id: 340, condition_id: 3, delivery_method_id: 13, prefecture_id: 2, delivery_day_id: 2, price: 500, trading_evaluation_id: 1, status_id: 1 }
+])
+image = Image.create([{url: open("#{Rails.root}/db/fixtures/fixture26.png"), product_id: 11}])
+product = Product.create([
+  { name: "リバースTシャツ", description: "アユイテの新作", seller_id: 1, buyer_id: nil, category_id: 338, size_id: 3, brand_id: 340, condition_id: 3, delivery_method_id: 11, prefecture_id: 2, delivery_day_id: 2, price: 501, trading_evaluation_id: 1, status_id: 1 }
+])
+image = Image.create([{url: open("#{Rails.root}/db/fixtures/fixture27.png"), product_id: 12}])
+product = Product.create([
+  { name: "オーバーサイズ 半袖 Tシャツ", description: "アユイテの新作", seller_id: 1, buyer_id: nil, category_id: 338, size_id: 3, brand_id: 340, condition_id: 3, delivery_method_id: 11, prefecture_id: 2, delivery_day_id: 2, price: 9999, trading_evaluation_id: 1, status_id: 1 }
+])
+image = Image.create([{url: open("#{Rails.root}/db/fixtures/fixture28.png"), product_id: 13}])
+product = Product.create([
+  { name: "レトロなじんべい", description: "アイアムアイの新作", seller_id: 1, buyer_id: nil, category_id: 469, size_id: 3, brand_id: 58, condition_id: 3, delivery_method_id: 11, prefecture_id: 2, delivery_day_id: 2, price: 9999, trading_evaluation_id: 1, status_id: 1 }
+])
+image = Image.create([{url: open("#{Rails.root}/db/fixtures/fixture29.png"), product_id: 14}])
+product = Product.create([
+  { name: "梅干ごはん柄の浴衣", description: "アイアムアイの新作", seller_id: 1, buyer_id: nil, category_id: 469, size_id: 3, brand_id: 58, condition_id: 3, delivery_method_id: 11, prefecture_id: 2, delivery_day_id: 2, price: 9999, trading_evaluation_id: 1, status_id: 1 }
+])
+image = Image.create([{url: open("#{Rails.root}/db/fixtures/fixture30.png"), product_id: 15}])
+product = Product.create([
+  { name: "和柄袴風カバーオール【男の子用】", description: "アイアムアイの新作", seller_id: 1, buyer_id: nil, category_id: 469, size_id: 3, brand_id: 58, condition_id: 3, delivery_method_id: 11, prefecture_id: 2, delivery_day_id: 2, price: 999, trading_evaluation_id: 1, status_id: 1 }
+])
+image = Image.create([{url: open("#{Rails.root}/db/fixtures/fixture31.png"), product_id: 16}])
+product = Product.create([
+  { name: "和柄袴風カバーオール【男の子用】", description: "アイアムアイの新作", seller_id: 1, buyer_id: nil, category_id: 469, size_id: 3, brand_id: 58, condition_id: 3, delivery_method_id: 11, prefecture_id: 2, delivery_day_id: 2, price: 10000, trading_evaluation_id: 1, status_id: 1 }
+])
+image = Image.create([{url: open("#{Rails.root}/db/fixtures/fixture32.png"), product_id: 17}])
+product = Product.create([
+  { name: "シヤチハタチーク", description: "アークスタンダードの新作", seller_id: 1, buyer_id: nil, category_id: 644, size_id: 3, brand_id: 4, condition_id: 3, delivery_method_id: 11, prefecture_id: 2, delivery_day_id: 2, price: 2489, trading_evaluation_id: 1, status_id: 1 }
+])
+image = Image.create([{url: open("#{Rails.root}/db/fixtures/fixture33.png"), product_id: 18}])
+product = Product.create([
+  { name: "オーガニック ハンド＆ボディウォッシュ 250ml", description: "アークスタンダードの新作", seller_id: 1, buyer_id: 2, category_id: 644, size_id: 3, brand_id: 4, condition_id: 3, delivery_method_id: 11, prefecture_id: 2, delivery_day_id: 2, price: 3780, trading_evaluation_id: 1, status_id: 1 }
+])
+image = Image.create([{url: open("#{Rails.root}/db/fixtures/fixture34.png"), product_id: 19}])
+product = Product.create([
+  { name: "ヴィー 虫除けスプレー", description: "アークスタンダードの新作", seller_id: 1, buyer_id: 2, category_id: 644, size_id: 3, brand_id: 4, condition_id: 3, delivery_method_id: 11, prefecture_id: 2, delivery_day_id: 2, price: 5890, trading_evaluation_id: 1, status_id: 1 }
+])
+image = Image.create([{url: open("#{Rails.root}/db/fixtures/fixture35.png"), product_id: 20}])
+product = Product.create([
+  { name: "カレンドラ ベビーミルクローション", description: "アークスタンダードの新作", seller_id: 1, buyer_id: nil, category_id: 644, size_id: 3, brand_id: 4, condition_id: 3, delivery_method_id: 11, prefecture_id: 2, delivery_day_id: 2, price: 10010, trading_evaluation_id: 1, status_id: 1 }
+])
+image = Image.create([{url: open("#{Rails.root}/db/fixtures/fixture36.png"), product_id: 21}])
