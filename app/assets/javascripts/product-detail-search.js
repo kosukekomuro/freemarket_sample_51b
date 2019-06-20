@@ -1,7 +1,12 @@
 $(document).on("turbolinks:load", function() {
   const buildDetailSearchResult = data => {
+    let html = ``;
 
-    let html = `<h2 class = "product-search-result__title">${data.keyword}の検索結果</h2>`;
+    if(data.keyword != ""){
+      html += `<h2 class = "product-search-result__title">${data.keyword}の検索結果</h2>`;
+    }else{
+      html += `<h2 class = "product-search-result__title">検索結果</h2>`;
+    };
 
     if (data.reseltCount > 0){
       html += `<p class = "product-search-result__count">1 - ${data.products.length}件表示<p>`;
@@ -75,8 +80,7 @@ $(document).on("turbolinks:load", function() {
 
   //カテゴリーの孫リストをチッェクボックスで作成する
   const buildCategoryGrandChildrenSelect = (categories) => {
-      let checkbox = ""
-
+      let checkbox = ``
     categories.forEach((category) => {
       checkbox += `<div class = "product-search-category-select-grandchildren">
                     <input type="checkbox" name="category_select${category.id}[category_select][]" id="category_select${category.id}_category_select_" value="${category.id}" class="product-search-category-select-grandchildren__check-box">
@@ -119,7 +123,7 @@ $(document).on("turbolinks:load", function() {
 
   //サイズの選択技をチッェクボックスで作成する
   const buildSizeSelect = (sizes) => {
-    let checkbox = ""
+    let checkbox = ``
 
     sizes.forEach((size) => {
       checkbox += `<div class = "product-search-size-select">
@@ -217,6 +221,17 @@ $(document).on("turbolinks:load", function() {
     };
   };
 
+  //ブランドの検索結果のhtmlを作成する
+  const bildBrandListHTML = brandList =>{
+    let html = ``;
+
+    brandList.forEach((brand) => {
+      html += `<li class="products-search-brand-result__list">${brand.brand}</li>`
+    });
+
+    return html
+  };
+
   // 並び替えの選択時に発火
   // 商品を再建策後、選択された並び順に並び替えて表示する
   $('.product-detail-search-form-sort__select').on('change', () =>{
@@ -234,6 +249,7 @@ $(document).on("turbolinks:load", function() {
     $('.product-detail-search-form-value-category-children').remove();
     $('.product-detail-search-form-value-category-grandchildren').remove();
     $('.product-detail-search-form-value-size-checkbox').remove();
+    $(".products-search-brand-result").empty();
     $(".product-search-condition-select__check-box").prop("checked",false);
     $(".product-search-delivery-burden-select__check-box").prop("checked",false);
     $(".product-search-sales-status-select__check-box").prop("checked",false);
@@ -311,7 +327,7 @@ $(document).on("turbolinks:load", function() {
       });
     };
   });
-  // 選択されたサイズの選択技をチェックボックスで作成する
+  // 選択された値段を入力欄に表示する。
   $('.product-detail-search-form-value-price__select').on('change', (e) =>{
     const selectedPrice = $(e.currentTarget).val();
     const displayPrice = selectedPrice.split(" ");
@@ -348,5 +364,33 @@ $(document).on("turbolinks:load", function() {
   //販売状況チェックボックスがチェックされた時発火
   $('.product-search-sales-status-select__check-box').on('click', (e) => {
     decisionAllcheck($(e.currentTarget));
+  });
+
+  // ブランドのインクリメンタルサーチ
+  $('.product-detail-search-form-value-brand__input').on('keyup', (e) => {
+    const brand = $(e.currentTarget).val();
+    $(".products-search-brand-result").empty();
+    if(brand !== ""){
+
+      $.ajax({
+        url: '/products/new',
+        type: 'GET',
+        data:{brand: brand},
+        dataType: 'json'
+      })
+      .done(function(brandList){
+        html = bildBrandListHTML(brandList);
+        $(".products-search-brand-result").append(html);
+      })
+      .fail(function(){
+        alert('通信に失敗しました。再度読み込んでください');
+      })
+    };
+  });
+  // ブランドを選択した時、ブランド欄に表示する。
+  $(document).on('click', '.products-search-brand-result__list', (e) =>{
+    const brand = $(e.currentTarget).text();
+    $(".product-detail-search-form-value-brand__input").val(brand);
+    $(".products-search-brand-result").empty();
   });
 });
