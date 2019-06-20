@@ -152,7 +152,7 @@
     $(".delivery-method").val(delivery_method_id);
   });
 
-　// 手数料などの計算
+  // 手数料などの計算
   $("#product_price").on("keyup", function(){
     var val = $(this).val();
     if(val >= 300 && val < 10000000){
