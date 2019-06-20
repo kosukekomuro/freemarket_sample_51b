@@ -159,7 +159,7 @@ $(document).on("turbolinks:load", function() {
     const selectedSalusStatus = $('[class="product-search-sales-status-select__check-box"]:checked').map(function() {
       return parseInt($(this).val());
     }).get();
-
+    
     $.ajax({
       url: url,
       type: "GET",
