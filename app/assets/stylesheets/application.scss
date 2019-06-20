@@ -2,6 +2,7 @@
 @import 'config/color';
 @import 'config/font-size';
 @import 'config/common';
+@import 'config/cropper.min';
 @import 'mixin/main-header';
 @import 'mixin/button';
 @import 'mixin/text';
@@ -24,6 +25,7 @@
 @import 'modules/logout';
 @import 'modules/error_message';
 @import 'modules/my-confirmation';
+@import 'modules/trim';
 @import 'base/product/index';
 @import 'base/product/buy';
 @import 'base/category/show';
