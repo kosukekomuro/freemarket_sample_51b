@@ -218,24 +218,4 @@
     }
     setTimeout(action,50);
   });
-
-　 // モーダルの表示とバリデーション
-  $('.sell-form').on('submit', function() {
-    if($('#sell-condition').val() == '') {
-      alert('商品状態が空欄です！');
-      return false;
-    }
-    else if($('#sell-prefecture').val() == '') {
-      alert('発送元の地域が空欄です！');
-      return false; 
-    }
-    else if($('#sell-delivery-day').val() == '') {
-      alert('配送までの日数が空欄です！');
-      return false; 
-    }
-    else　{
-      $(".sell-modal-box").fadeIn(500);
-      $(".modal-overlay").show();
-    }
-  });
 });

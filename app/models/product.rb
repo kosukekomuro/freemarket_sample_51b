@@ -41,5 +41,4 @@ class Product < ApplicationRecord
   validates :name, format: { with: /\A[a-zA-Z0-9]|[ぁ-んァ-ン一-龥]|[ -\~〜（）()]+\z/ }
   validates :description, format: { with: /\A[a-zA-Z0-9]|[ぁ-んァ-ン一-龥]|[ -\~〜（）()]+\z/ }
   validates :brand, format: { with: /\A[a-zA-Z0-9]|[ぁ-んァ-ン一-龥]|[ -\~〜（）()]+\z/ }
-
 end

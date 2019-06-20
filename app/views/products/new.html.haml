@@ -15,24 +15,16 @@
         %p 最大10枚までアップロードできます
         .sell-drop-display
           #preview
-            %ul.sell-image-display
-          .dropzone#dropzone_top
-            = f.label :url, id: 'image_file_filed',class: 'drop_area', for: "upload-image" do
-              .sell-dropbox__upload
-                %p.sell-dropbox__text.sell-dropbox__text-top
-                  ドラックアンドドロップ
-                  %br またはクリックしてファイルをアップロード
-                  = f.file_field :url , name: "images[url][]", class: 'sell-item_image upload-image', id: "upload-image", multiple: true, required: true
-        .sell-drop-display
-          #preview2
-            %ul.sell-image-display2
-          .dropzone#dropzone_bottom
-            = f.label :url, id: 'image_file_filed',class: 'drop_area', for: "upload-image" do
-              .sell-dropbox__upload
-                %p.sell-dropbox__text
-                  ドラックアンドドロップ
-                  %br またはクリックしてファイルをアップロード
-                  = f.file_field "", name: "images[url][]", class: 'sell-item_image upload-image', id: "upload-image", multiple: true
+            .sell-image-display             
+              #preview-sub
+              .dropzone
+                = f.label :url, id: 'image_file_filed',class: 'drop_area', for: "upload-image" do
+                  .sell-dropbox__upload
+                    %p.sell-dropbox__text.sell-dropbox__text-top
+                      ドラックアンドドロップ
+                      %br またはクリックしてファイルをアップロード
+                      = f.file_field :url , name: "images[url][]", class: 'sell-item_image upload-image', id: "upload-image", multiple: true
+            %p.error-image   
       .sell-content
         .sell-form-group
           %h3
@@ -136,7 +128,7 @@
             また、出品をもちまして
             = link_to "加盟店規約", root_path, class: "sell-link-blue"
             に同意したことになります。
-        = f.submit "出品する", class: "sell-btn-default sell-btn-conf"
+        = f.submit "出品する", class: "sell-btn-default sell-btn-conf", disable_with: "Save"
         = link_to "もどる", root_path, class: "sell-btn-back"
 .modal-overlay
 .sell-modal-box
@@ -147,3 +139,13 @@
       = link_to "続けて出品する" , new_product_path, class: "sell-btn-again btn-reload"
       %p.sell-redirect-top
         = link_to "商品ページへ行ってシェアする", root_path, class: "sell-blue btn-reload"
+.sell-modal-trim
+  .sell-trim-header
+    %h3.trim-left 写真を切り取る
+    .trim-right 写真を変更する
+  .trim-editer
+    %img(src="https://cdn.pixabay.com/photo/2016/11/29/04/19/beach-1867285_1280.jpg" class="trim-image-ori")
+  %div
+  .trim-btn
+    %a.trim-btn-left キャンセル
+    %a.trim-btn-right 完了
