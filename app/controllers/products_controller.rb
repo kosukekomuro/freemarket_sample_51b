@@ -88,6 +88,8 @@ class ProductsController < ApplicationController
       customer: @current_user.card_id,
       currency: 'jpy',
     )
+    @product.buyer_id = @current_user.id
+    @product.save
     redirect_to action: :index
   end
 
