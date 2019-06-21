@@ -1,0 +1,205 @@
+%main.sell-main
+  .sellbox{id: @product.id}
+    %h2.sellbox__title 商品の情報を入力
+    = form_with model: @product, class: "sell-form", local: true, url: product_path(@product.id), action: "patch"  do |f|
+      - if @product.errors.any?
+        #error_explanation
+          %ul
+            - @product.errors.full_messages.each do |message|
+              %li
+                = message
+      .sell-upload
+        %h3.sell-upload__title
+          出品画像
+          %span.require-form 必須
+        %p 最大10枚までアップロードできます
+        .sell-drop-display
+          #preview
+            .sell-image-display             
+              - @product.images.each do |image|
+                .sell-image-list
+                  %figure.image-mam
+                    = image_tag ("#{image.url}"), class: "sell-image-orig"
+                  .display-link-image
+                    %a.sell-upload-btn.border-right.image-edit-bt 編集
+                    %a.sell-upload-btn.image-delete-btn{id: image.id} 削除
+              
+              - if ( @images_length == 1 || @images_length == 6 )
+                #preview-sub
+                .dropzone{style: 'width: 510px;'}
+                  = f.label :url, id: 'image_file_filed',class: 'drop_area', for: "upload-image" do
+                    .sell-dropbox__upload
+                      %p.sell-dropbox__text.sell-dropbox__text-top
+                        ドラックアンドドロップ
+                        %br またはクリックしてファイルをアップロード
+                        = f.file_field :url , name: "images[url][]", class: 'sell-item_image upload-image', id: "upload-image", multiple: true
+              - elsif ( @images_length == 2 || @images_length == 7 )
+                #preview-sub
+                .dropzone{style: 'width: 380px;'}
+                  = f.label :url, id: 'image_file_filed',class: 'drop_area', for: "upload-image" do
+                    .sell-dropbox__upload
+                      %p.sell-dropbox__text.sell-dropbox__text-top
+                        ドラックアンドドロップ
+                        %br またはクリックしてファイルをアップロード
+                        = f.file_field :url , name: "images[url][]", class: 'sell-item_image upload-image', id: "upload-image", multiple: true
+              - elsif ( @images_length == 3 || @images_length == 8 )
+                #preview-sub
+                .dropzone{style: 'width: 250px;'}
+                  = f.label :url, id: 'image_file_filed',class: 'drop_area', for: "upload-image" do
+                    .sell-dropbox__upload
+                      %p.sell-dropbox__text.sell-dropbox__text-top
+                        ドラックアンドドロップ
+                        %br またはクリックしてファイルをアップロード
+                        = f.file_field :url , name: "images[url][]", class: 'sell-item_image upload-image', id: "upload-image", multiple: true
+              - elsif ( @images_length == 9 )
+                #preview-sub
+                .dropzone{style: 'width: 120px;'}
+                  = f.label :url, id: 'image_file_filed',class: 'drop_area', for: "upload-image" do
+                    .sell-dropbox__upload
+                      %p.sell-dropbox__text.sell-dropbox__text-top
+                        ドラックアンドドロップ
+                        %br またはクリックしてファイルをアップロード
+                        = f.file_field :url , name: "images[url][]", class: 'sell-item_image upload-image', id: "upload-image", multiple: true
+              - elsif ( @images_length == 4 )
+                #preview-sub{style: 'display: inline;'}
+                .dropzone
+                  = f.label :url, id: 'image_file_filed',class: 'drop_area', for: "upload-image" do
+                    .sell-dropbox__upload
+                      %p.sell-dropbox__text.sell-dropbox__text-top
+                        ドラックアンドドロップ
+                        %br またはクリックしてファイルをアップロード
+                        = f.file_field :url , name: "images[url][]", class: 'sell-item_image upload-image', id: "upload-image", multiple: true
+              - elsif ( @images_length == 10 )
+                #preview-sub
+                .dropzone{style: 'display: none;'}
+                  = f.label :url, id: 'image_file_filed',class: 'drop_area', for: "upload-image" do
+                    .sell-dropbox__upload
+                      %p.sell-dropbox__text.sell-dropbox__text-top
+                        ドラックアンドドロップ
+                        %br またはクリックしてファイルをアップロード
+                        = f.file_field :url , name: "images[url][]", class: 'sell-item_image upload-image', id: "upload-image", multiple: true
+              - elsif ( @images_length == 5 )
+                #preview-sub{style: 'display: none;'}
+                .dropzone
+                  = f.label :url, id: 'image_file_filed',class: 'drop_area', for: "upload-image" do
+                    .sell-dropbox__upload
+                      %p.sell-dropbox__text.sell-dropbox__text-top
+                        ドラックアンドドロップ
+                        %br またはクリックしてファイルをアップロード
+                        = f.file_field :url , name: "images[url][]", class: 'sell-item_image upload-image', id: "upload-image", multiple: true
+            %p.error-image   
+      .sell-content
+        .sell-form-group
+          %h3
+            商品名
+            %span.require-form 必須
+          = f.text_field "name", class: "sell-input-default", placeholder: "商品名（必須 40文字まで)", required: true
+        .sell-form-group.sell-form-group-after
+          %h3
+            商品の説明
+            %span.require-form 必須
+          = f.text_area "description", class: "sell-textarea-default", placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", required: true
+      .sell-content.sell-flex
+        %h3.sell-box-subtitle 商品の詳細
+        .sell-form-box
+          .sell-form-group#sell-category
+            %h3
+              カテゴリー
+              %span.require-form 必須
+            .sell-select-wrapper.sell-category-select
+              = select_tag "category", options_for_select(@category_parents, selected: @product.category.parent.parent.name), id: "sell-parent-category", class: "sell-select-default", include_blank: '---', required: true
+              = f.hidden_field :category_id, value: "#{@product.category.id}", class: "category"
+              - if @product.size
+                = f.hidden_field :size_id, value: "#{@product.size.id}", class: "sell-size"
+              - else
+                = f.hidden_field :size_id, value: "", class: "sell-size"
+              %i.fas.fa-chevron-down
+              .sell-select-wrapper#sell-child-box
+                = select_tag "category", options_for_select(@category_children, selected: @product.category.parent.id), id: "sell-child-category", class: "sell-select-default", include_blank: '---', required: true
+                %i.fas.fa-chevron-down
+              .sell-select-wrapper#sell-grandchild-box
+                = select_tag "category", options_for_select(@category_grand_children, selected: @product.category.id), id: "sell-grandchild-category", class: "sell-select-default", include_blank: '---', required: true
+                %i.fas.fa-chevron-down
+          .sell-size-brand{style: 'display: inline;'}
+            .sell-form-group.sell-product-margin.sell-size-select
+              - if @product.size
+                %h3
+                  サイズ
+                  %span.require-form 必須
+                .sell-select-wrapper#sell-size-select
+                  = select_tag "size", options_for_select(@category_sizes, selected: @product.size.id), include_blank: '---', id: "sell-size-id", class: "sell-select-default", required: true, value: ""
+                  %i.fas.fa-chevron-down
+            .sell-form-group.sell-product-margin#sell-brand
+              %h3
+                ブランド
+                %span.arbitrary-form 任意
+              .none-box
+                = f.text_field :brand, class: "sell-input-default sell-brand-input", placeholder: "例) シャネル", value: @product.brand.brand
+            .brand-find-box
+          .sell-form-group.sell-product-margin
+            %h3
+              商品の状態
+              %span.require-form 必須
+            .sell-select-wrapper
+              = f.collection_select( :condition_id, Condition.all, :id, :condition, { prompt: "---" }, {class: "sell-select-default", id: "sell-condition"} )
+              %i.fas.fa-chevron-down
+      .sell-content.sell-flex
+        .sell-box-subtilte-flex
+          %h3.sell-box-subtitle 配送について
+          = link_to "？", root_path, class: "sell-form-question"
+        .sell-form-box
+          .sell-form-group
+            %h3
+              配送料の負担
+              %span.require-form 必須
+            .sell-select-wrapper
+              = select_tag "delivery", options_for_select(@delivery_parents, selected: @product.delivery_method.parent.name), include_blank: '---', id: "sell-delivery-burden", class: "sell-select-default", required: true
+              = f.hidden_field :delivery_method_id, value: "#{@product.delivery_method.id}", class: "delivery-method"
+              %i.fas.fa-chevron-down
+          .sell-form-group.sell-product-margin.sell-delivery
+            .sell-form-group#sell-delivery-title
+              %h3
+                配送方法
+                %span.require-form 必須
+            .sell-select-wrapper#sell-delivery-box
+              = select_tag "delivery", options_for_select(@delivery_children, selected: @product.delivery_method.name), include_blank: '---', id: "sell-delivery-box", class: "sell-select-default", required: true
+              %i.fas.fa-chevron-down
+          .sell-form-group.sell-product-margin
+            %h3
+              発送元の地域
+              %span.require-form 必須
+            .sell-select-wrapper
+              = f.collection_select(:prefecture_id, Prefecture.all, :id, :name, { prompt: "---" }, { class: "sell-select-default", id: "sell-prefecture"} )
+              %i.fas.fa-chevron-down
+          .sell-form-group.sell-product-margin
+            %h3
+              発送までの日数
+              %span.require-form 必須
+            .sell-select-wrapper
+              = f.collection_select(:delivery_day_id, DeliveryDay.all , :id, :day, { prompt: "---"}, {class: "sell-select-default", id: "sell-delivery-day"})
+              %i.fas.fa-chevron-down
+      .sell-content.sell-flex
+        .sell-box-subtilte-flex
+          %h3.sell-box-subtitle 販売価格(300〜9,999,999)
+          = link_to "？", root_path, class: "sell-form-question"
+        .sell-form-box
+          %ul.sell-form-group
+            %li.sell-money-flex
+              %h3.sell-label-left
+                価格
+                %span.require-form 必須
+              .sell-price-left ¥
+              .sell-price-right
+                = f.text_field "price", class: "sell-money-default", id: "product_price", placeholder: "例）300", required: true
+            %li.sell-fee
+              .sell-fee-left
+                販売手数料 (10%)
+              .sell-fee-right#list_right_tax ¥ #{@sale_commission}
+            %li.sell-fee.sell-font-bold
+              .sell-fee-left
+                販売利益
+              .sell-fee-right.sell-font-big#list_right_price ¥ #{@product.price - @sale_commission}
+      .sell-content
+        .sell-btnbox
+        = f.submit "変更する", class: "sell-btn-default sell-btn-conf"
+        = link_to "キャンセル", root_path, class: "sell-btn-back"

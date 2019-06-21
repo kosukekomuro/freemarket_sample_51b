@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
 
-  before_action :set_product, only: [:buy, :pay, :show]
+  before_action :set_product, only: [:buy, :pay, :show, :edit, :update]
 
   def index
     set_pickup_category(1,2,3,7)
@@ -108,6 +108,66 @@ class ProductsController < ApplicationController
         product = Product.find(params[:product_id])
         product.delete
       }
+    end
+  end
+
+  def edit
+    category_parents = Category.roots
+    @category_parents = category_parents.map{|parent| [parent.name]}
+    category_children = Category.find_by(name: @product.category.parent.parent.name).children
+    @category_children = category_children.map{|children| [children.name, children.id]}
+    category_grand_children = Category.find_by(id: @product.category.parent.id).children
+    @category_grand_children = category_grand_children.map{|grand_children| [grand_children.name, grand_children.id]}
+    
+    category_sizes = Category.find_by(id: @product.category.id).sizes
+    @category_sizes = category_sizes.map{|size| [size.size, size.id]}
+    
+    delivery_parents = DeliveryMethod.roots
+    @delivery_parents = delivery_parents.map{|delivery| [delivery.name]}
+    @delivery_children = @product.delivery_method.parent.children.map{|delivery_child| [delivery_child.name]}
+  
+    get_brand_list if params[:brand]
+    @sale_commission = (0.1 * @product.price).round
+    @images_length = Image.where('(product_id = ?)', params[:id]).length
+
+    render layout: "sellproduct"
+  end
+
+  def update    
+    @product_brand = Brand.find_or_create_by(brand: params[:product][:brand])
+    @product.brand_id = @product_brand.id
+    if Category.find(params[:product][:category_id]).category_sizes.length == 0
+      params[:product][:size_id] = nil
+    end 
+    
+    if @product.update(product_params)  
+      if params[:images] != nil
+        params[:images]['url'].map do |a|
+          if a != "null"
+            @image = @product.images.create!(url: a)
+          end
+        end
+      end
+    else
+      category_parents = Category.roots
+      @category_parents = category_parents.map{|parent| [parent.name]}
+      delivery_parents = DeliveryMethod.roots
+      @delivery_parents = delivery_parents.map{|delivery| [delivery.name]}   
+      render :new, layout: "sellproduct"
+    end
+  end
+
+  def delete
+    Image.find(params[:id]).delete
+    respond_to do |format|
+      format.json{}
+    end
+  end
+
+  def image
+    @images = Image.where('(product_id = ?)', params[:id]).length
+    respond_to do |format|
+      format.json{}
     end
   end
 

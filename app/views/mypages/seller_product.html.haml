@@ -85,7 +85,7 @@
     .product-showbox-description
       = @product.description
   .product-show-btn
-    = link_to "商品の編集", root_path, class: "product-showbox-edit"
+    = link_to "商品の編集", edit_product_path(@product.id), class: "product-showbox-edit"
     .product-show-btn__text
       or
     = link_to "出品を再開する", root_path, class: "product-showbox-edit"

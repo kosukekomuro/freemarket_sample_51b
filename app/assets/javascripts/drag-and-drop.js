@@ -1,5 +1,18 @@
 $(document).on('turbolinks:load', function(){
-
+  if(location.href.match(/products\/[0-9]+\/edit/)){
+    var product_id = $('.sellbox').attr('id');
+    $.ajax({
+      url: '/products/image',
+      type: "GET",
+      data: { id: product_id },
+      dataType: 'json',
+    }) 
+    .done(function(length){
+      for (var i=0; i<length.length; i++) {
+        files_array.push(null);
+      }
+    })
+  }
   function buildImage(loadedImageUri){
     // srcに""をつけることにより無事写真の取得に成功
     var imageBuild = `<div class="sell-image-list">
@@ -219,6 +232,18 @@ $(document).on('turbolinks:load', function(){
     else {
       add_width
     }
+    var image_id = $(this).attr('id');
+    if(image_id){
+      $.ajax({
+        url: '/products/delete',
+        type: "DELETE",
+        data: { id: image_id },
+        dataType: 'json',
+      }) 
+      .done(function(){
+
+      })
+    }
   });
 
   // プレビュー画像の取得
@@ -255,19 +280,34 @@ $(document).on('turbolinks:load', function(){
       $.each(files_array,function(index,file){
         formdata.append('images[url][]',file)
       })
-      $.ajax({
-        url: '/products',
-        type: 'POST',
-        data: formdata,
-        dataType: 'json',
-        processData: false,
-        contentType: false
-      }) 
-      .done(function(){
-        $(".sell-modal-box").fadeIn(500);
-        $(".modal-overlay").show();
-      })
+      if(location.href.match(/new/)){
+        $.ajax({
+          url: '/products',
+          type: 'POST',
+          data: formdata,
+          dataType: 'json',
+          processData: false,
+          contentType: false
+        }) 
+        .done(function(){
+          $(".sell-modal-box").fadeIn(500);
+          $(".modal-overlay").show();
+        })
+      } else{
+        var product_id = $('.sellbox').attr('id');
+        var url = `/products/${product_id}`;
+        $.ajax({
+          url: url,
+          type: 'PATCH',
+          data: formdata,
+          dataType: 'json',
+          processData: false,
+          contentType: false
+        }) 
+        .done(function(){
+          window.location.href = location.href.replace(/products\/[0-9]+\/edit/, "");
+        })
+      }
     }
   });
-
 });
