@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root "products#index"
-  resources :products, only: [:index, :new, :create, :show, :destroy] do
+  resources :products, only: [:index, :new, :create, :show, :destroy, :edit, :update] do
     collection do
       get 'search'
       get 'detail_search'
       get 'create_search_selection'
+      delete 'delete'
+      get 'image'
     end
     member do
       get 'buy'

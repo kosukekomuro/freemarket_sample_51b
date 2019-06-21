@@ -1,6 +1,6 @@
 ( window.onload = function() {
   // 親カテゴリの選択
-  $("#sell-parent-category").change(function(){
+  $(document).on('change', "#sell-parent-category", function(){
     $("#sell-child-box").remove();
     $("#sell-grandchild-box").remove();
     $(".sell-size-brand").hide();
@@ -94,6 +94,8 @@
         dataType: 'json'
       })
       .done(function(data){
+        $(".sell-form-group.sell-product-margin.sell-size-select").empty();
+        $("#sell-size-select").remove();
         if( data != ""){
             var html = buildHTML(data);
             $(".sell-size-select").empty().append(html);
