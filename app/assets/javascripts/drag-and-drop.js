@@ -240,9 +240,6 @@ $(document).on('turbolinks:load', function(){
         data: { id: image_id },
         dataType: 'json',
       }) 
-      .done(function(){
-
-      })
     }
   });
 
