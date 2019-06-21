@@ -50,6 +50,10 @@ crumb :category do |category|
   end
 end
 
-crumb :product do |keyword|
+crumb :product_search do |keyword|
   link "詳細検索"
+end
+
+crumb :product_show do |product|
+  link product.name, product_path(product.id)
 end
