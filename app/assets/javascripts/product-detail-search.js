@@ -264,9 +264,7 @@ $(document).on("turbolinks:load", function() {
 
   //選択された親カテゴリーから子カテゴリーの選択技を作成する。
   $('.product-detail-search-form-value-category__select').on('change', (e) =>{
-    $('.product-detail-search-form-value-category-children').remove();
-    $('.product-detail-search-form-value-category-grandchildren').remove();
-
+    
     const selectedCategoryId = $(e.currentTarget).val();
     const url = "/categories/get_category_list";
 
@@ -278,6 +276,8 @@ $(document).on("turbolinks:load", function() {
         dataType: 'json',
       })
       .done(function(data){
+        $('.product-detail-search-form-value-category-children').remove();
+        $('.product-detail-search-form-value-category-grandchildren').remove();
         const html = buildCategoryChildrenSelect(data, "children");
         $('.product-detail-search-form-value-category').after(html);
       })
@@ -289,8 +289,7 @@ $(document).on("turbolinks:load", function() {
 
   //選択された子カテゴリーから孫カテゴリーの選択技を作成する。
   $(document).on('change', '.product-detail-search-form-value-category-children__select', (e) =>{
-    $('.product-detail-search-form-value-category-grandchildren').remove();
-
+    
     const selectedCategoryId = $(e.currentTarget).val();
     const url = "/categories/get_category_list";
 
@@ -302,6 +301,7 @@ $(document).on("turbolinks:load", function() {
         dataType: 'json',
       })
       .done(function(data){
+        $('.product-detail-search-form-value-category-grandchildren').remove();
         const html = buildCategoryGrandChildrenSelect(data);
         $('.product-detail-search-form-value-category-children').after(html);
       })
