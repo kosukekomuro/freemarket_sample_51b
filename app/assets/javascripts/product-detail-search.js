@@ -185,8 +185,11 @@ $(document).on("turbolinks:load", function() {
     });
   };
 
-  //全チェックボックスのチェックを操作する
-  //すべてが選択された場合、全チェックボックスをチェックする。(反対もしかり)
+  /**
+   *  すべてが選択された場合、全チェックボックスがすべての状態と同じになる。
+   * 
+   * @param {Object} element 発火した要素
+   */
   const operateTotalCheckbox = element =>{
     const elementClass ='input[class=' + element.attr('class')
 
@@ -197,7 +200,11 @@ $(document).on("turbolinks:load", function() {
     }
   };
 
-  //チェックボックスの選択技ですべての選択技のチェック判定を行う。
+  /**
+   *  チェックボックスの選択ですべての選択肢のチェック判定を行う。
+   *  
+   *  @param {Object} element 発火した要素
+   */
   const decisionAllcheck = element =>{
     const elementClass = element.attr('class')
     const checkboxLength = $(`.${elementClass}`).length
@@ -257,9 +264,7 @@ $(document).on("turbolinks:load", function() {
 
   //選択された親カテゴリーから子カテゴリーの選択技を作成する。
   $('.product-detail-search-form-value-category__select').on('change', (e) =>{
-    $('.product-detail-search-form-value-category-children').remove();
-    $('.product-detail-search-form-value-category-grandchildren').remove();
-
+    
     const selectedCategoryId = $(e.currentTarget).val();
     const url = "/categories/get_category_list";
 
@@ -271,6 +276,8 @@ $(document).on("turbolinks:load", function() {
         dataType: 'json',
       })
       .done(function(data){
+        $('.product-detail-search-form-value-category-children').remove();
+        $('.product-detail-search-form-value-category-grandchildren').remove();
         const html = buildCategoryChildrenSelect(data, "children");
         $('.product-detail-search-form-value-category').after(html);
       })
@@ -282,8 +289,7 @@ $(document).on("turbolinks:load", function() {
 
   //選択された子カテゴリーから孫カテゴリーの選択技を作成する。
   $(document).on('change', '.product-detail-search-form-value-category-children__select', (e) =>{
-    $('.product-detail-search-form-value-category-grandchildren').remove();
-
+    
     const selectedCategoryId = $(e.currentTarget).val();
     const url = "/categories/get_category_list";
 
@@ -295,6 +301,7 @@ $(document).on("turbolinks:load", function() {
         dataType: 'json',
       })
       .done(function(data){
+        $('.product-detail-search-form-value-category-grandchildren').remove();
         const html = buildCategoryGrandChildrenSelect(data);
         $('.product-detail-search-form-value-category-children').after(html);
       })
@@ -336,32 +343,32 @@ $(document).on("turbolinks:load", function() {
     $('.product-detail-search-form-value-price-max').val(displayPrice[2]);
   });
 
-  //商品の状態チェックボックスですべてを選んだ時
+  //商品の状態チェックボックスですべてを選んだ時、発火
   $('#condition_select_0').on('click', (e) => {
     operateTotalCheckbox($(e.currentTarget));
   });
 
-  //配送料金の負担チェックボックスですべてを選んだ時
+  //配送料金の負担チェックボックスですべてを選んだ時、発火
   $('#burden_0').on('click', (e) => {
     operateTotalCheckbox($(e.currentTarget));
   });
 
-  //配送料金の負担チェックボックスですべてを選んだ時
+  //配送料金の負担チェックボックスですべてを選んだ時、発火
   $('#sales-status_0').on('click', (e) => {
     operateTotalCheckbox($(e.currentTarget));
   });
 
-  //商品の状態チェックボックスがチェックされた時発火
+  //商品の状態チェックボックスがチェックされた時、発火
   $('.product-search-condition-select__check-box').on('click', (e) => {
     decisionAllcheck($(e.currentTarget));
   });
 
-  //配送料の負担チェックボックスがチェックされた時発火
+  //配送料の負担チェックボックスがチェックされた時、発火
   $('.product-search-delivery-burden-select__check-box').on('click', (e) => {
     decisionAllcheck($(e.currentTarget));
   });
 
-  //販売状況チェックボックスがチェックされた時発火
+  //販売状況チェックボックスがチェックされた時、発火
   $('.product-search-sales-status-select__check-box').on('click', (e) => {
     decisionAllcheck($(e.currentTarget));
   });
